@@ -43,19 +43,19 @@ class CancleAndCompleteWidget extends StatelessWidget {
               Text(
                 'Driver Name :',
                 style: TextStyle(
-                    color: tempColor.blackColor,
-                    fontSize: 16,
-                    fontFamily: 'lib/assets/font/AbrilFatface-Regular.ttf'),
+                    color: tempColor.greyColor,
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold),
               ),
               const SizedBox(
-                width: 5,
+                width: 10,
               ),
               Text(
                 driverName,
                 style: TextStyle(
                     color: tempColor.blackColor,
-                    fontSize: 18,
-                    fontFamily: 'lib/assets/font/AbrilFatface-Regular.ttf'),
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold),
               ),
             ],
           ),
@@ -68,19 +68,19 @@ class CancleAndCompleteWidget extends StatelessWidget {
               Text(
                 'Pickup Time :',
                 style: TextStyle(
-                    color: tempColor.blackColor,
-                    fontSize: 18,
-                    fontFamily: 'lib/assets/font/AbrilFatface-Regular.ttf'),
+                    color: tempColor.greyColor,
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold),
               ),
               const SizedBox(
-                width: 5,
+                width: 10,
               ),
               Text(
                 pickupTime,
                 style: TextStyle(
                     color: tempColor.blackColor,
-                    fontSize: 18,
-                    fontFamily: 'lib/assets/font/AbrilFatface-Regular.ttf'),
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold),
               ),
             ],
           ),
@@ -91,34 +91,57 @@ class CancleAndCompleteWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
-                'Total Amount : ',
+                'Total Amount :',
                 style: TextStyle(
-                    color: tempColor.blackColor,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
-                    fontFamily: 'lib/assets/font/AbrilFatface-Regular.ttf'),
+                  color: tempColor.greyColor,
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               const SizedBox(
-                width: 5,
+                width: 10,
               ),
               Text(
                 totalAmount,
                 style: TextStyle(
-                    color: tempColor.blackColor,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
-                    fontFamily: 'lib/assets/font/AbrilFatface-Regular.ttf'),
+                  color: tempColor.blackColor,
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ],
           ),
           const SizedBox(
-            height: 15,
+            height: 10,
           ),
-          InkWell(
+          Container(
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: Colors.red,
+                style: BorderStyle.solid,
+                width: 1.5,
+              ),
+              color: tempColor.whiteColor,
+              borderRadius: BorderRadius.circular(30.0),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Center(
+                  child: Text(
+                'STATUS: $status',
+                style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    color: tempColor.blackColor),
+              )),
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          GestureDetector(
             onTap: onTap,
             child: Container(
-              height: 50,
-              width: 500,
               decoration: BoxDecoration(
                 border: Border.all(
                   color: Colors.blue,
@@ -128,16 +151,19 @@ class CancleAndCompleteWidget extends StatelessWidget {
                 color: tempColor.whiteColor,
                 borderRadius: BorderRadius.circular(30.0),
               ),
-              child: Center(
-                  child: Text(
-                status,
-                style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    fontFamily: 'lib/assets/font/AbrilFatface-Regular.ttf'),
-              )),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: const Center(
+                    child: Text(
+                  'VIEW DETAILS',
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                  ),
+                )),
+              ),
             ),
-          ),
+          )
         ],
       ),
     );

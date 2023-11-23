@@ -35,23 +35,12 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => ReviewYourBookingScreen());
     case myride:
       return MaterialPageRoute(builder: (context) => MyRidesScreen());
-    case bookingDetail:
-      return MaterialPageRoute(builder: (context) => BookingDetailScreen());
     case acceptedRides:
       return MaterialPageRoute(builder: (context) => AcceptedRidesScreen());
-    case acceptedRidesDetail:
-      return MaterialPageRoute(
-          builder: (context) => AcceptedRideDetailScreen());
     case completeRides:
       return MaterialPageRoute(builder: (context) => CompleteRidesScreen());
-
-    case completeRidesDetails:
-      return MaterialPageRoute(
-          builder: (context) => CompleteRideDetailScreen());
     case cancellRides:
       return MaterialPageRoute(builder: (context) => CancellRidesScreen());
-    case cancellRidesDetails:
-      return MaterialPageRoute(builder: (context) => CancellRideDetailScreen());
     case driverMyRide:
       return MaterialPageRoute(builder: (context) => D_MyRidesScreen());
     case driverMyRidesDetails:

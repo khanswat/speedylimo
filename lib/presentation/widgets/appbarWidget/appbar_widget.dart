@@ -34,7 +34,7 @@ class _AppBarWidgetState extends State<AppBarWidget> {
             bottomLeft: Radius.circular(10.0),
             bottomRight: Radius.circular(10.0)),
         gradient: LinearGradient(
-          colors: [Colors.blue, Color(0xff00C6FF)],
+          colors: [Colors.blue, Colors.black87],
           begin: Alignment.centerLeft,
           end: Alignment.centerRight,
         ),

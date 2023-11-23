@@ -1,3 +1,5 @@
+import 'package:speedylimo/data/data.dart';
+
 import '../../providers/user.api.dart';
 
 class UserRepository {
@@ -17,4 +19,40 @@ class UserRepository {
   //     rethrow;
   //   }
   // }
+
+  Future<MyRidesModel> getMyRides() async {
+    try {
+      final res = await _userAPI.getMyRides();
+      return MyRidesModel.fromMap(res);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<AcceptedRidesModel> getAcceptedRides() async {
+    try {
+      final res = await _userAPI.getAcceptedRides();
+      return AcceptedRidesModel.fromMap(res);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<CancelRidesModel> getCancelRides() async {
+    try {
+      final res = await _userAPI.getCancelRides();
+      return CancelRidesModel.fromMap(res);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<CompletedRidesModel> getCompletedRides() async {
+    try {
+      final res = await _userAPI.getCompletedRides();
+      return CompletedRidesModel.fromMap(res);
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

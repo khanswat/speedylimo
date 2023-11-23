@@ -72,7 +72,7 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
       body: Theme(
         data: Theme.of(
           context,
-        ).copyWith(colorScheme: ColorScheme.light(primary: Colors.amber)),
+        ).copyWith(colorScheme: ColorScheme.light(primary: Colors.blue)),
         child: Container(
           child: Column(
             children: [

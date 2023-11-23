@@ -117,7 +117,7 @@ class _BttomNavigationScreenState extends State<BttomNavigationScreen>
           child: Container(
             decoration: const BoxDecoration(
               gradient: LinearGradient(
-                colors: [Colors.blue, Color(0xff00C6FF)],
+                colors: [Colors.blue, Colors.black87],
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
               ),

@@ -64,7 +64,7 @@ class _NavDrawerState extends State<NavDrawer> {
                 ),
                 decoration: const BoxDecoration(
                   gradient: LinearGradient(
-                    colors: [Colors.blue, Color(0xff00C6FF)],
+                    colors: [Colors.blue, Colors.black87],
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,
                   ),
@@ -163,21 +163,6 @@ class _NavDrawerState extends State<NavDrawer> {
                       showCanceldialoge();
                     },
                   ),
-                  ListTile(
-                    leading: Image.asset(
-                      'changePass'.png,
-                      height: 30,
-                    ),
-                    title: const Text(
-                      'admin',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 14),
-                    ),
-                    onTap: () =>
-                        NavigationService.instance.navigateTo(adminHome),
-                  ),
                 ],
               ),
               // Column(
@@ -248,7 +233,7 @@ class _NavDrawerState extends State<NavDrawer> {
                           NavigationService.instance.navigateTo(adminHome),
                     )
                   : Container(),
-              data!.roles![0].name != 'Passenger'
+              data.roles![0].name != 'Passenger'
                   ? ListTile(
                       leading: const Icon(
                         Icons.lock,

@@ -18,7 +18,8 @@ class TokenInterceptors extends Interceptor {
       },
     );
 
-    options.headers['Authorization'] = 'Bearer $token';
+    options.headers['Authorization'] =
+        'Bearer 112|9o3L78AJhxHZII4pEolfCCqxDoxfuI7YeFfiQ5xI';
 
     handler.next(options);
     print('token: $token');
