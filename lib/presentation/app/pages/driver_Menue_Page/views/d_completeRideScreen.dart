@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../widgets/Widget.dart';
+
 import '/business_logic/cubits/cubits.dart';
 import '/presentation/presentation.dart';
 import '/services/navigation/navigation_service.dart';
@@ -22,12 +22,11 @@ class _D_CompletedRidesScreenState extends State<D_CompletedRidesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        endDrawer: NavDrawer(context),
         appBar: PreferredSize(
             preferredSize: const Size.fromHeight(80),
             child: AppBarWidget(
-              isshow: true,
-              showback: false,
+              isshow: false,
+              showback: true,
               title: false,
               titlename: '',
               name: context.read<UserCubit>().state.update_name ?? '',
@@ -39,7 +38,7 @@ class _D_CompletedRidesScreenState extends State<D_CompletedRidesScreen> {
             return D_CancleAndCompleteWidget(
               passengerName: 'Ali Atta (driver)',
               pickupTime: '12:04 pm 23/01/04',
-              status: "STATUS: COMPLETED",
+              status: 'STATUS: COMPLETED',
               onTap: () {
                 NavigationService.instance
                     .navigateTo(driverCompleteRidesDetail);

@@ -1,7 +1,6 @@
 import '../../../utils/constants/app/app_constants.dart';
 import '/utils/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class LinearGradientWidget extends StatelessWidget {
   const LinearGradientWidget({
@@ -46,14 +45,14 @@ class LinearGradientWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               const Text(
-                "No of Passengers :",
+                'No of Passengers :',
                 style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
                     fontSize: 15),
               ),
               const Text(
-                " 2",
+                ' 2',
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 15,
@@ -69,14 +68,14 @@ class LinearGradientWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               const Text(
-                "No of Bags: ",
+                'No of Bags: ',
                 style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
                     fontSize: 15),
               ),
               const Text(
-                " 2",
+                ' 2',
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 15,

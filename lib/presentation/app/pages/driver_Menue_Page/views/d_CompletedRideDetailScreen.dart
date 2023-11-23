@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../widgets/Widget.dart';
+
 import '/business_logic/cubits/cubits.dart';
 import '/presentation/presentation.dart';
-import '/utils/constants/app/app_constants.dart';
-import '/utils/utils.dart';
 
 class D_CompleteRideDetailScreen extends StatefulWidget {
   const D_CompleteRideDetailScreen({
@@ -24,12 +22,11 @@ class _D_CompleteRideDetailScreenState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        endDrawer: NavDrawer(context),
         appBar: PreferredSize(
             preferredSize: const Size.fromHeight(80),
             child: AppBarWidget(
-              isshow: true,
-              showback: false,
+              isshow: false,
+              showback: true,
               title: false,
               titlename: '',
               name: context.read<UserCubit>().state.update_name ?? '',
@@ -38,23 +35,23 @@ class _D_CompleteRideDetailScreenState
             child: Padding(
                 padding: const EdgeInsets.all(14.0),
                 child: BookingDetailWidget(
-                  bookingType: " Point to point",
-                  droffTime: "",
-                  drpOffLocstion: "Magni labore ea aper",
-                  estDistance: "6.835081 miles",
-                  estDriveTime: "h 0 m 23 s 2",
-                  noBages: " 2",
-                  noPassenger: " 2",
-                  passengerName: " Asad ( Passenger )",
-                  pickupLocation: "Dubai - United Arab Emirates",
-                  pickupTime: " 05:23 am 23/01/05",
-                  specialInstructions: "Dolore soluta lorem",
-                  totslAmount: "USD 100",
-                  tripType: "As directed",
+                  bookingType: ' Point to point',
+                  droffTime: '',
+                  drpOffLocstion: 'Magni labore ea aper',
+                  estDistance: '6.835081 miles',
+                  estDriveTime: 'h 0 m 23 s 2',
+                  noBages: ' 2',
+                  noPassenger: ' 2',
+                  passengerName: ' Asad ( Passenger )',
+                  pickupLocation: 'Dubai - United Arab Emirates',
+                  pickupTime: ' 05:23 am 23/01/05',
+                  specialInstructions: 'Dolore soluta lorem',
+                  totslAmount: 'USD 100',
+                  tripType: 'As directed',
                   rideStatus: Container(
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color: tempColor.greyColor,
+                        color: Colors.amber,
                         style: BorderStyle.solid,
                         width: 1.5,
                       ),
@@ -63,7 +60,7 @@ class _D_CompleteRideDetailScreenState
                     ),
                     child: const Center(
                       child: Text(
-                        " Completed Order",
+                        ' Completed Order',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 15,

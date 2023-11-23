@@ -1,7 +1,6 @@
 import '../../../../utils/constants/app/app_constants.dart';
 import '/utils/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class MyRidesWidget extends StatelessWidget {
   const MyRidesWidget(
@@ -39,7 +38,7 @@ class MyRidesWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
-                "Ride ID:",
+                'Ride ID:',
                 style: TextStyle(
                     color: tempColor.blackColor,
                     fontSize: 16,
@@ -102,7 +101,7 @@ class MyRidesWidget extends StatelessWidget {
               ),
               child: const Center(
                   child: Text(
-                "STATUS: PENDING",
+                'STATUS: PENDING',
                 style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
@@ -129,7 +128,7 @@ class MyRidesWidget extends StatelessWidget {
               ),
               child: const Center(
                   child: Text(
-                "VIEW",
+                'VIEW',
                 style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,

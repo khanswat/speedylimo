@@ -47,6 +47,20 @@ class _BookinNowSceenState extends State<BookinNowSceen> {
   bool color = true;
   bool isChecked = false;
   List<Widget> containers = [];
+  var selectedTime = TimeOfDay.now();
+
+  Future<void> _selectTime(BuildContext context) async {
+    final picked = await showTimePicker(
+      context: context,
+      initialTime: selectedTime,
+    );
+    if (picked != null && picked != selectedTime) {
+      setState(() {
+        selectedTime = picked;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,12 +70,13 @@ class _BookinNowSceenState extends State<BookinNowSceen> {
             expandedHeight: 200.0,
             pinned: true,
             leading: IconButton(
-                icon: const Icon(
-                  Icons.filter_1,
-                  color: Colors.transparent,
+                icon: Icon(
+                  Icons.arrow_circle_left,
+                  size: 30,
+                  color: Colors.black,
                 ),
                 onPressed: () {
-                  // Do something
+                  NavigationService.instance.goBack();
                 }),
             floating: true,
             // snap: true,
@@ -78,7 +93,7 @@ class _BookinNowSceenState extends State<BookinNowSceen> {
                 ),
               ),
               background: Image.asset(
-                "lib/assets/icons/abput1.png",
+                'lib/assets/icons/abput1.png',
                 fit: BoxFit.cover,
               ),
             ),
@@ -116,7 +131,7 @@ class _BookinNowSceenState extends State<BookinNowSceen> {
                               height: 20,
                             ),
                             const Text(
-                              "Thank you for selecting Speedylimo. Please verify your booking information, as we are committed to ensuring that your digital experience is as satisfying as possible. Thank you for choosing Speedylimo.",
+                              'Thank you for selecting Speedylimo. Please verify your booking information, as we are committed to ensuring that your digital experience is as satisfying as possible. Thank you for choosing Speedylimo.',
                               textAlign: TextAlign.center,
                             ),
                           ],
@@ -125,7 +140,7 @@ class _BookinNowSceenState extends State<BookinNowSceen> {
                       //time picker continer
                       const Center(
                         child: CustomLinearGradientWidget(
-                          lastText: "WHEN IS YOUR TRIP?",
+                          lastText: 'WHEN IS YOUR TRIP?',
                           fontSize: 25,
                         ),
                       ),
@@ -189,11 +204,15 @@ class _BookinNowSceenState extends State<BookinNowSceen> {
                               height: 40,
                               width: 120,
                               color: const Color(0xff585858),
-                              child: const TimePickerWidget(
+                              child: TimePickerWidget(
                                 fillColor: Color(0xff585858),
                                 textColor: Colors.white,
                                 borderColor: Color(0xff585858),
                                 size: 18,
+                                selecTime: selectedTime,
+                                onSelected: () async {
+                                  await _selectTime(context);
+                                },
                               ),
                             ),
                           ],
@@ -307,7 +326,7 @@ class _BookinNowSceenState extends State<BookinNowSceen> {
                         ),
                       ), //kindes of trips
                       const CustomLinearGradientWidget(
-                        lastText: "WHAT KIND OF TRIP IS THIS?",
+                        lastText: 'WHAT KIND OF TRIP IS THIS?',
                         fontSize: 20,
                       ),
                       Container(
@@ -340,7 +359,7 @@ class _BookinNowSceenState extends State<BookinNowSceen> {
                                     : const Color(0xff585858),
                                 child: const Center(
                                   child: Text(
-                                    "POINT-TO-POINT",
+                                    'POINT-TO-POINT',
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold,
@@ -367,7 +386,7 @@ class _BookinNowSceenState extends State<BookinNowSceen> {
                                     : const Color(0xff585858),
                                 child: const Center(
                                   child: Text(
-                                    "AS DIRECTED",
+                                    'AS DIRECTED',
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold,
@@ -437,11 +456,15 @@ class _BookinNowSceenState extends State<BookinNowSceen> {
                                           height: 30,
                                           width: 120,
                                           color: const Color(0xff585858),
-                                          child: const TimePickerWidget(
+                                          child: TimePickerWidget(
                                             fillColor: Color(0xff585858),
                                             textColor: Colors.white,
                                             borderColor: Color(0xff585858),
                                             size: 18,
+                                            selecTime: selectedTime,
+                                            onSelected: () async {
+                                              await _selectTime(context);
+                                            },
                                           ),
                                         ),
                                       ],
@@ -472,11 +495,15 @@ class _BookinNowSceenState extends State<BookinNowSceen> {
                                           height: 30,
                                           width: 120,
                                           color: const Color(0xff585858),
-                                          child: const TimePickerWidget(
+                                          child: TimePickerWidget(
                                             fillColor: Color(0xff585858),
                                             textColor: Colors.white,
                                             borderColor: Color(0xff585858),
                                             size: 18,
+                                            selecTime: selectedTime,
+                                            onSelected: () async {
+                                              await _selectTime(context);
+                                            },
                                           ),
                                         ),
                                       ],
@@ -490,7 +517,7 @@ class _BookinNowSceenState extends State<BookinNowSceen> {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           const CustomLinearGradientWidget(
-                            lastText: "WHERE ARE YOU GOING?",
+                            lastText: 'WHERE ARE YOU GOING?',
                             fontSize: 20,
                           ),
                           Container(
@@ -571,7 +598,7 @@ class _BookinNowSceenState extends State<BookinNowSceen> {
                                                 ),
                                                 child: const Center(
                                                   child: Text(
-                                                    "Remove",
+                                                    'Remove',
                                                     style: TextStyle(
                                                         color: Colors.white,
                                                         fontWeight:
@@ -592,7 +619,7 @@ class _BookinNowSceenState extends State<BookinNowSceen> {
                                 });
                               },
                               child: const Text(
-                                "+ ADD STOP ",
+                                '+ ADD STOP ',
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 12,
@@ -676,7 +703,7 @@ class _BookinNowSceenState extends State<BookinNowSceen> {
                                     color: const Color(0xff585858),
                                     child: const Center(
                                         child: Text(
-                                      "Choose Location",
+                                      'Choose Location',
                                       style: TextStyle(
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold),
@@ -704,7 +731,7 @@ class _BookinNowSceenState extends State<BookinNowSceen> {
                                       ),
                                       child: const Center(
                                         child: Text(
-                                          "CALCULATE",
+                                          'CALCULATE',
                                           style: TextStyle(
                                               color: Colors.white,
                                               fontWeight: FontWeight.bold,
@@ -778,7 +805,7 @@ class _BookinNowSceenState extends State<BookinNowSceen> {
                                 ),
                                 child: const Center(
                                   child: Text(
-                                    "SUBMIT",
+                                    'SUBMIT',
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold,

@@ -28,6 +28,7 @@ extension AppColor on Color {
   Color get statuspink => const Color.fromRGBO(255, 199, 201, 1);
   Color get statusyellow => const Color.fromRGBO(255, 232, 159, 1);
   Color get statusgreen => const Color.fromRGBO(177, 255, 182, 1);
+  Color get statusdark => Color.fromARGB(255, 18, 123, 145);
 }
 
 class HexColor extends Color {

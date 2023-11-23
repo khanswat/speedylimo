@@ -72,7 +72,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
         decoration: const BoxDecoration(
           image: DecorationImage(
               image: AssetImage(
-                "lib/assets/icons/login.png",
+                'lib/assets/icons/login.png',
               ),
               fit: BoxFit.fill,
               colorFilter: ColorFilter.mode(Colors.black54, BlendMode.darken)),
@@ -87,7 +87,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
             Image.asset(
-              "lib/assets/icons/Group 1530.png",
+              'lib/assets/icons/Group 1530.png',
               color: Colors.white,
             ),
             Padding(
@@ -285,7 +285,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                               },
                               cornerRadius: 5.0,
                               childWidget: const Text(
-                                "SUBMITTED",
+                                'SUBMITTED',
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold),

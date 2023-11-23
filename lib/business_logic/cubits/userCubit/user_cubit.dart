@@ -5,22 +5,20 @@ import 'user.cubit.dart';
 
 class UserCubit extends Cubit<UserState> with HydratedMixin {
   UserCubit() : super(UserInitial());
-  // var context = NavigationService.instance.navigatorKey.currentContext!;
-  SharedPrefs _sharedPrefs = SharedPrefs();
 
-  void updateName(var updatename) {
-    emit(state.copyWith(update_name: updatename));
+  final SharedPrefs _sharedPrefs = SharedPrefs();
+
+  void updateUser(UserData userData) {
+    emit(state.copyWith(userData: userData));
   }
 
-  void updateEmail(var updatemail) {
-    emit(state.copyWith(update_email: updatemail));
+  void myCurrentAddress(pickResult) {
+    emit(state.copyWith(pickResult: pickResult));
   }
 
   void logout() async {
     await _sharedPrefs.deleteToken();
-    emit(state.copyWithLogout(
-      user: null,
-    ));
+    emit(state.copyWithLogout(userData: null));
   }
 
   @override

@@ -29,6 +29,34 @@ class Password extends FormzInput<String, PasswordValidationError> {
   }
 }
 
+class Name extends FormzInput<String, NameValidationError> {
+  const Name.pure() : super.pure('');
+
+  const Name.dirty([String value = '']) : super.dirty(value);
+
+  @override
+  NameValidationError? validator(String? value) {
+    return ((value != null && value.isEmpty) ||
+            nameRegExp.hasMatch(value ?? ''))
+        ? null
+        : NameValidationError.invalid;
+  }
+}
+
+class Number extends FormzInput<String, NumberValidationError> {
+  const Number.pure() : super.pure('');
+
+  const Number.dirty([String value = '']) : super.dirty(value);
+
+  @override
+  NumberValidationError? validator(String? value) {
+    return ((value != null && value.isEmpty) ||
+            numberRegExp.hasMatch(value ?? ''))
+        ? null
+        : NumberValidationError.invalid;
+  }
+}
+
 class logInOrRegisterFailure implements Exception {
   const logInOrRegisterFailure([
     this.message = 'An unknown exception occurred.',

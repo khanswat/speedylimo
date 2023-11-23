@@ -1,9 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:formz/formz.dart';
-
-import '../../../../../data/data.dart';
-import '/services/navigation/navigation_service.dart';
 import '../../../../../utils/constants/app/app_constants.dart';
 import '../../../../widgets/widget.dart';
 import '/utils/utils.dart';
@@ -75,7 +70,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
           decoration: const BoxDecoration(
             image: DecorationImage(
                 image: AssetImage(
-                  "lib/assets/icons/login.png",
+                  'lib/assets/icons/login.png',
                 ),
                 fit: BoxFit.fill,
                 colorFilter:
@@ -151,7 +146,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                       withLabel: true,
                       validatation: true,
                       hint: 'Email Address',
-                      labelText: "Email Address",
+                      labelText: 'Email Address',
                       // validator:
                       //     state.email.invalid ? 'Incorrect Email' : null,
                       // onChanged: (email) => context

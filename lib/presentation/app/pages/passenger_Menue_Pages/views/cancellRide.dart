@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../widgets/Widget.dart';
 import '/business_logic/cubits/cubits.dart';
 import '/presentation/presentation.dart';
 import '/services/navigation/navigation_service.dart';
@@ -27,7 +26,7 @@ class _CancellRidesScreenState extends State<CancellRidesScreen> {
             preferredSize: const Size.fromHeight(80),
             child: AppBarWidget(
               isshow: true,
-              showback: false,
+              showback: true,
               title: false,
               titlename: '',
               name: context.read<UserCubit>().state.update_name ?? '',
@@ -39,8 +38,8 @@ class _CancellRidesScreenState extends State<CancellRidesScreen> {
             return CancleAndCompleteWidget(
               driverName: 'Ali Atta (driver)',
               pickupTime: '12:04 pm 23/01/04',
-              totalAmount: "0",
-              status: "STATUS: CANCELLED",
+              totalAmount: '0',
+              status: 'STATUS: CANCELLED',
               onTap: () {
                 NavigationService.instance.navigateTo(cancellRidesDetails);
               },

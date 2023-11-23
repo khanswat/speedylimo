@@ -1,13 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:speedylimo/extensions/colors/colors_extension.dart';
 import 'package:speedylimo/presentation/presentation.dart';
-
-import 'package:speedylimo/presentation/widgets/appbarWidget/appbar_widget.dart';
-
 import '../../../../../utils/constants/app/app_constants.dart';
-import '../../sideNavDrawer/views/sideMenuebar_Screen.dart';
 
 // ignore: camel_case_types
 class policyTermsScreen extends StatefulWidget {
@@ -22,12 +16,11 @@ class _policyTermsScreenState extends State<policyTermsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        endDrawer: NavDrawer(context),
         appBar: const PreferredSize(
             preferredSize: Size.fromHeight(80),
             child: AppBarWidget(
-              isshow: true,
-              showback: false,
+              isshow: false,
+              showback: true,
               title: false,
               titlename: '',
               name: '',
@@ -51,7 +44,7 @@ class _policyTermsScreenState extends State<policyTermsScreen> {
                   const CustomLinearGradientWidget(
                     firstText: 'TERM &',
                     lastText: 'CONDITIONS',
-                    fontSize: 30,
+                    fontSize: 25,
                   ),
                   const SizedBox(
                     height: 20,
@@ -59,8 +52,9 @@ class _policyTermsScreenState extends State<policyTermsScreen> {
                   // ignore: avoid_unnecessary_containers
                   Container(
                     child: const Text(
-                      "Speedy Limo offers luxury transportation services at affordable rates through its vast range of stretch limos, SUVs, party buses, vans and sedans. Travelers rely on our services for executive rides, corporate meetings, parties and other events. Since its inception, Speedy Limo has transformed into a marvelous limousine service that is now set to beat your travel expectations so that you have a five-star experience.",
+                      'Speedy Limo offers luxury transportation services at affordable rates through its vast range of stretch limos, SUVs, party buses, vans and sedans. Travelers rely on our services for executive rides, corporate meetings, parties and other events. Since its inception, Speedy Limo has transformed into a marvelous limousine service that is now set to beat your travel expectations so that you have a five-star experience.',
                       textAlign: TextAlign.justify,
+                      style: TextStyle(fontSize: 15),
                     ),
                   ),
                 ],
@@ -83,7 +77,7 @@ class _policyTermsScreenState extends State<policyTermsScreen> {
                   const CustomLinearGradientWidget(
                     firstText: 'PRIVACY',
                     lastText: 'POLICY',
-                    fontSize: 30,
+                    fontSize: 25,
                   ),
                   const SizedBox(
                     height: 20,
@@ -91,8 +85,9 @@ class _policyTermsScreenState extends State<policyTermsScreen> {
                   // ignore: avoid_unnecessary_containers
                   Container(
                     child: const Text(
-                      "Speedy Limo offers luxury transportation services at affordable rates through its vast range of stretch limos, SUVs, party buses, vans and sedans. Travelers rely on our services for executive rides, corporate meetings, parties and other events. Since its inception, Speedy Limo has transformed into a marvelous limousine service that is now set to beat your travel expectations so that you have a five-star experience.",
+                      'Speedy Limo offers luxury transportation services at affordable rates through its vast range of stretch limos, SUVs, party buses, vans and sedans. Travelers rely on our services for executive rides, corporate meetings, parties and other events. Since its inception, Speedy Limo has transformed into a marvelous limousine service that is now set to beat your travel expectations so that you have a five-star experience.',
                       textAlign: TextAlign.justify,
+                      style: TextStyle(fontSize: 15),
                     ),
                   ),
                 ],

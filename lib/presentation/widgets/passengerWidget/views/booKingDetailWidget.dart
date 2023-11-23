@@ -1,10 +1,7 @@
 import 'package:speedylimo/presentation/presentation.dart';
-
 import '../../../../utils/constants/app/app_constants.dart';
-
 import '/utils/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class BookingDetailWidget extends StatelessWidget {
   const BookingDetailWidget({
@@ -97,7 +94,7 @@ class BookingDetailWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 const Text(
-                  "Passenger Name :",
+                  'Passenger Name :',
                   style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
@@ -120,7 +117,7 @@ class BookingDetailWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 const Text(
-                  "Booking Type : ",
+                  'Booking Type : ',
                   style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
@@ -143,7 +140,7 @@ class BookingDetailWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 const Text(
-                  "Ride Status : ",
+                  'Ride Status : ',
                   style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
@@ -175,7 +172,7 @@ class BookingDetailWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 const Text(
-                  "No of Passengers :",
+                  'No of Passengers :',
                   style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
@@ -198,7 +195,7 @@ class BookingDetailWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 const Text(
-                  "No of Bags: ",
+                  'No of Bags: ',
                   style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
@@ -221,7 +218,7 @@ class BookingDetailWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 const Text(
-                  "Pickup Time : ",
+                  'Pickup Time : ',
                   style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
@@ -260,7 +257,7 @@ class BookingDetailWidget extends StatelessWidget {
                 // ignore: avoid_unnecessary_containers
                 Container(
                   child: const Text(
-                    "DropOff Time / Trip Duration",
+                    'DropOff Time / Trip Duration',
                     style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
@@ -301,7 +298,7 @@ class BookingDetailWidget extends StatelessWidget {
                 // ignore: avoid_unnecessary_containers
                 Container(
                   child: const Text(
-                    "Pickup location",
+                    'Pickup location',
                     style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
@@ -346,7 +343,7 @@ class BookingDetailWidget extends StatelessWidget {
                 // ignore: avoid_unnecessary_containers
                 Container(
                   child: const Text(
-                    "Drop off location",
+                    'Drop off location',
                     style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
@@ -390,7 +387,7 @@ class BookingDetailWidget extends StatelessWidget {
                 // ignore: avoid_unnecessary_containers
                 Container(
                   child: const Text(
-                    "Special Instructions",
+                    'Special Instructions',
                     style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
@@ -427,8 +424,8 @@ class BookingDetailWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(5.0),
           ),
           child: const CustomLinearGradientWidget(
-            firstText: "Billing",
-            lastText: "Detail",
+            firstText: 'Billing',
+            lastText: 'Detail',
             fontSize: 30,
           )),
       Container(
@@ -448,7 +445,7 @@ class BookingDetailWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const Text(
-                  "Trip Type",
+                  'Trip Type',
                   style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
@@ -467,7 +464,7 @@ class BookingDetailWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const Text(
-                  "Est. drive time",
+                  'Est. drive time',
                   style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
@@ -486,7 +483,7 @@ class BookingDetailWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const Text(
-                  "Est. distance",
+                  'Est. distance',
                   style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
@@ -505,7 +502,7 @@ class BookingDetailWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const Text(
-                  "Total Amount",
+                  'Total Amount',
                   style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,

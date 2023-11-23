@@ -1,7 +1,6 @@
 import '../../../../utils/constants/app/app_constants.dart';
 import '/utils/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class D_MyRideWidget extends StatelessWidget {
   const D_MyRideWidget(
@@ -42,7 +41,7 @@ class D_MyRideWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
-                "Passenger Name :",
+                'Passenger Name :',
                 style: TextStyle(
                     color: tempColor.blackColor,
                     fontSize: 16,
@@ -106,7 +105,7 @@ class D_MyRideWidget extends StatelessWidget {
               ),
               child: const Center(
                   child: Text(
-                "STATUS: CLIENT WAITING",
+                'STATUS: CLIENT WAITING',
                 style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
@@ -133,7 +132,7 @@ class D_MyRideWidget extends StatelessWidget {
               ),
               child: const Center(
                   child: Text(
-                "VIEW DETAILS",
+                'VIEW DETAILS',
                 style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
@@ -160,7 +159,7 @@ class D_MyRideWidget extends StatelessWidget {
               ),
               child: const Center(
                   child: Text(
-                "CLICK TO ACCEPT",
+                'CLICK TO ACCEPT',
                 style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,

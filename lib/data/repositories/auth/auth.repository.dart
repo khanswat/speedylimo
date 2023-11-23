@@ -37,27 +37,40 @@ class AuthenticationRepository {
     }
   }
 
-  Future<ChangePasswordModel> changePassword({
+  Future<UserModel> RegisterPassenger({
     required dynamic body,
   }) async {
     try {
-      final data = await _authenticationAPI?.changePassword(body: body);
-      return ChangePasswordModel.fromMap(data);
+      var data = await _authenticationAPI?.registerPassenger(body: body);
+      appUser = UserModel.fromMap(data);
+
+      return appUser!;
     } catch (e) {
       rethrow;
     }
   }
 
-  Future<ForgotPasswordModel> forgotPassword({
-    required dynamic body,
-  }) async {
-    try {
-      final data = await _authenticationAPI?.forgotPassword(body: body);
-      return ForgotPasswordModel.fromMap(data);
-    } catch (e) {
-      rethrow;
-    }
-  }
+  // Future<ChangePasswordModel> changePassword({
+  //   required dynamic body,
+  // }) async {
+  //   try {
+  //     final data = await _authenticationAPI?.changePassword(body: body);
+  //     return ChangePasswordModel.fromMap(data);
+  //   } catch (e) {
+  //     rethrow;
+  //   }
+  // }
+
+  // Future<ForgotPasswordModel> forgotPassword({
+  //   required dynamic body,
+  // }) async {
+  //   try {
+  //     final data = await _authenticationAPI?.forgotPassword(body: body);
+  //     return ForgotPasswordModel.fromMap(data);
+  //   } catch (e) {
+  //     rethrow;
+  //   }
+  // }
 
   void dispose() => _controller.close();
 }

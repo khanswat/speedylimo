@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:speedylimo/presentation/widgets/adminWidget/adminContinerWidget.dart';
 import '../../../../../services/navigation/navigation_service.dart';
 import '/business_logic/cubits/cubits.dart';
 import '/presentation/presentation.dart';
@@ -19,25 +18,23 @@ class DriverHomeScreen extends StatefulWidget {
 class _DriverHomeScreenState extends State<DriverHomeScreen> {
   bool revenueclr = true;
   bool budgetclr = true;
-  final _formKey = GlobalKey<FormState>();
 
   // ignore: prefer_typing_uninitialized_variables
   var imageUni8;
   var sindex = 0;
   final List storedocs = [];
 
-  String profilePicLink = "";
+  String profilePicLink = '';
   var uids;
-  String url = "";
+  String url = '';
   bool status = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        endDrawer: NavDrawer(context),
         appBar: PreferredSize(
             preferredSize: const Size.fromHeight(80),
             child: AppBarWidget(
-              isshow: true,
+              isshow: false,
               showback: false,
               title: false,
               titlename: '',
@@ -64,121 +61,111 @@ class _DriverHomeScreenState extends State<DriverHomeScreen> {
                   child: Column(
                     children: [
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          // ignore: avoid_unnecessary_containers
-                          Container(
-                            child: const CustomLinearGradientWidget(
-                              firstText: 'MY',
-                              lastText: 'DASHBOARD',
-                              fontSize: 30,
-                            ),
-                          )
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           const CircleAvatar(
-                              radius: 55.0,
+                              radius: 50.0,
                               backgroundColor: Colors.white,
                               backgroundImage: AssetImage(
-                                "lib/assets/icons/login.png",
+                                'lib/assets/icons/login.png',
                               )),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          const Text(
-                            "Ali (Driver)",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18),
-                          ),
-                          const SizedBox(
-                            height: 2,
-                          ),
-                          SizedBox(
-                            child: ElevatedButton(
-                              onPressed: () {
-                                setState(() {
-                                  status == true
-                                      ? status = false
-                                      : status = true;
-                                });
-                              },
-                              style: ElevatedButton.styleFrom(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Text(
+                                'Ali (Driver)',
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18),
+                              ),
+                              const SizedBox(
+                                height: 2,
+                              ),
+                              SizedBox(
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      status == true
+                                          ? status = false
+                                          : status = true;
+                                    });
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                    // ignore: deprecated_member_use
+                                    primary: status == false
+                                        ? Colors.green
+                                        : Colors.grey,
+                                  ),
+                                  child: Text(
+                                    status == false
+                                        ? "YOU'RE ONLINE"
+                                        : "YOU'RE OFFLINE",
+                                    style: const TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold),
+                                  ),
                                 ),
-                                // ignore: deprecated_member_use
-                                primary: status == false
-                                    ? Colors.green
-                                    : Colors.grey,
-                              ),
-                              child: Text(
-                                status == false
-                                    ? "YOU'RE ONLINE"
-                                    : "YOU'RE OFFLINE",
-                                style: const TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                          )
+                              )
+                            ],
+                          ),
+
+                          // ignore: avoid_unnecessary_containers
                         ],
                       ),
                       const SizedBox(
                         height: 10,
                       ),
                       AdmainContinerWidget(
-                          text: "My Ride",
+                          text: 'My Ride',
                           icons: const Icon(Icons.heart_broken_rounded,
-                              color: Colors.white, size: 32),
+                              color: Colors.white, size: 30),
                           onPressed: () {
                             NavigationService.instance.navigateTo(driverMyRide);
                           }),
                       AdmainContinerWidget(
-                        text: "Accepted Rides",
+                        text: 'Accepted Rides',
                         fontSize: 16,
                         icons: const Icon(Icons.heart_broken_rounded,
-                            color: Colors.white, size: 32),
+                            color: Colors.white, size: 30),
                         onPressed: () => NavigationService.instance
                             .navigateTo(driverAcceptedRides),
                       ),
                       AdmainContinerWidget(
-                        text: "Cancelled Rides",
+                        text: 'Cancelled Rides',
                         fontSize: 16,
                         icons: const Icon(Icons.heart_broken_rounded,
-                            color: Colors.white, size: 32),
+                            color: Colors.white, size: 30),
                         onPressed: () => NavigationService.instance
                             .navigateTo(driverCancelledRides),
                       ),
                       AdmainContinerWidget(
-                        text: "Completed Rides",
+                        text: 'Completed Rides',
                         fontSize: 16,
                         icons: const Icon(Icons.view_list,
-                            color: Colors.white, size: 32),
+                            color: Colors.white, size: 30),
                         onPressed: () => NavigationService.instance
                             .navigateTo(driverCompltetRides),
                       ),
                       AdmainContinerWidget(
-                        text: "Change Password",
+                        text: 'Change Password',
                         fontSize: 16,
                         icons: const Icon(Icons.lock,
-                            color: Colors.white, size: 32),
+                            color: Colors.white, size: 30),
                         onPressed: () => NavigationService.instance
                             .navigateTo(changePasswordRoute),
                       ),
                       AdmainContinerWidget(
-                        text: "Logout",
+                        text: 'Logout',
                         fontSize: 16,
                         icons: const Icon(Icons.power_settings_new_outlined,
-                            color: Colors.white, size: 32),
-                        onPressed: () {},
+                            color: Colors.white, size: 30),
+                        onPressed: () {
+                          showCanceldialoge();
+                        },
                       ),
                     ],
                   ),
@@ -187,5 +174,31 @@ class _DriverHomeScreenState extends State<DriverHomeScreen> {
             ),
           ),
         ));
+  }
+
+  Future showCanceldialoge() {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return DialogWiget(
+            content: 'Do you want to logout?',
+            postiveButtonText: 'Yes',
+            negetiveButtonText: 'No',
+            contextt: context,
+            onTap: () {
+              // context.read<LogoutCubit>().getlogout();
+              context.read<UserCubit>().logout();
+
+              ScaffoldMessenger.of(context)
+                ..hideCurrentSnackBar()
+                ..showSnackBar(
+                  SnackBar(
+                    content: Text('Successfully Logout'),
+                  ),
+                );
+              NavigationService.instance.pushAndRemoveUntil(loginRoute);
+            },
+          );
+        });
   }
 }

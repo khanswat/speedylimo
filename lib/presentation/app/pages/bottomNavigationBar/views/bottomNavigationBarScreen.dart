@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:speedylimo/presentation/app/app.dart';
+
+import '../../../../../business_logic/cubits/cubits.dart';
 
 class BttomNavigationScreen extends StatefulWidget {
   const BttomNavigationScreen({Key? key}) : super(key: key);
@@ -10,15 +13,14 @@ class BttomNavigationScreen extends StatefulWidget {
 
 // to store nested tabs
 final PageStorageBucket bucket = PageStorageBucket();
-Widget currentScreen = const PassengerHomeScreen();
 
 class _BttomNavigationScreenState extends State<BttomNavigationScreen>
     with SingleTickerProviderStateMixin {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  // ignore: unused_field
-  static const List<Widget> _bodyView = <Widget>[
+
+  static final List<Widget> _bodyView = <Widget>[
     Text(
       'Index 0: Home',
       style: optionStyle,
@@ -61,34 +63,50 @@ class _BttomNavigationScreenState extends State<BttomNavigationScreen>
                 borderRadius: BorderRadius.circular(10),
                 color: Colors.black,
               ),
-        padding: const EdgeInsets.all(10),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             child,
-            Text(label, style: const TextStyle(fontSize: 8)),
+            SizedBox(
+              height: 5,
+            ),
+            Text(label,
+                style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold)),
           ],
         ));
   }
 
   final List<String> _labels = ['SPEEDY LIMO', 'PROFILE', 'CALL NOW'];
-  final List<Widget> screens = [
-    const PassengerHomeScreen(),
-    const ProfileScreen(),
-    const CallNowScreen(),
-  ];
+
   @override
   Widget build(BuildContext context) {
-    // ignore: no_leading_underscores_for_local_identifiers
-    List<Widget> _icons = const [
-      Icon(Icons.directions_car),
-      Icon(Icons.account_circle),
-      Icon(Icons.wifi_calling_3)
+    final data = context.read<UserCubit>().state.userData?.user;
+    var _icons = <Widget>[
+      Icon(
+        Icons.directions_car,
+        size: 30,
+      ),
+      Icon(
+        Icons.account_circle,
+        size: 30,
+      ),
+      Icon(
+        Icons.wifi_calling_3,
+        size: 30,
+      )
+    ];
+    final screens = <Widget>[
+      data!.roles![0].name == 'Passenger'
+          ? PassengerHomeScreen()
+          : DriverHomeScreen(),
+      ProfileScreen(),
+      const CallNowScreen(),
     ];
 
     return Scaffold(
       body: SizedBox(
         height: MediaQuery.of(context).size.height,
-        child: currentScreen,
+        child: screens.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: Container(
         height: 100,
@@ -99,19 +117,14 @@ class _BttomNavigationScreenState extends State<BttomNavigationScreen>
           child: Container(
             decoration: const BoxDecoration(
               gradient: LinearGradient(
-                colors: [Colors.yellow, Colors.amber],
+                colors: [Colors.blue, Color(0xff00C6FF)],
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
               ),
             ),
             child: TabBar(
                 onTap: (x) {
-                  setState(() {
-                    _selectedIndex = x;
-                    if (_selectedIndex == x) {
-                      currentScreen = screens[x];
-                    }
-                  });
+                  _onItemTapped(x);
                 },
                 labelColor: Colors.white,
                 unselectedLabelColor: Colors.white,
@@ -134,145 +147,3 @@ class _BttomNavigationScreenState extends State<BttomNavigationScreen>
     );
   }
 }
-
-
-// class HomeWidget extends StatefulWidget {
-//   const HomeWidget({super.key});
-
-//   @override
-//   State<HomeWidget> createState() => _HomeWidgetState();
-// }
-
-// int currentTab = 0; // to keep track of active tab index
-// final List<Widget> screens = [
-//   const HomeScreen(),
-//   LoginScreen(),
-//   const CallNowWidget(),
-// ]; // to store nested tabs
-// final PageStorageBucket bucket = PageStorageBucket();
-// Widget currentScreen = const HomeScreen(); // Our first view in viewport
-
-// class _HomeWidgetState extends State<HomeWidget> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: SizedBox(
-//         height: MediaQuery.of(context).size.height,
-//         child: currentScreen,
-//       ),
-//       bottomNavigationBar: Container(
-//         height: 60,
-//         decoration: const BoxDecoration(
-//             color: Colors.black,
-//             borderRadius: BorderRadius.only(
-//                 topLeft: Radius.circular(0), topRight: Radius.circular(0))),
-//         child: Row(
-//           mainAxisAlignment: MainAxisAlignment.spaceAround,
-//           children: <Widget>[
-//             Row(
-//               crossAxisAlignment: CrossAxisAlignment.start,
-//               children: <Widget>[
-//                 MaterialButton(
-//                   minWidth: 40,
-//                   onPressed: () {
-//                     setState(() {
-//                       currentScreen =
-//                           const HomeScreen(); // if user taps on this dashboard tab will be active
-//                       currentTab = 0;
-//                     });
-//                   },
-//                   child: Column(
-//                     mainAxisAlignment: MainAxisAlignment.center,
-//                     children: <Widget>[
-//                       Icon(
-//                         Icons.directions_car,
-//                         color: currentTab == 0 ? Colors.blue : Colors.white,
-//                         size: currentTab == 0 ? 30 : 25,
-//                       ),
-//                       Text(
-//                         'SPEEDY LIMO',
-//                         style: TextStyle(
-//                           color: currentTab == 0 ? Colors.blue : Colors.white,
-//                           fontSize: currentTab == 0 ? 16 : 14,
-//                         ),
-//                       ),
-//                     ],
-//                   ),
-//                 ),
-//               ],
-//             ),
-
-//             // Right Tab bar icons
-
-//             Row(
-//               crossAxisAlignment: CrossAxisAlignment.start,
-//               children: <Widget>[
-//                 MaterialButton(
-//                   minWidth: 40,
-//                   onPressed: () {
-//                     setState(() {
-//                       currentScreen =
-//                           LoginScreen(); // if user taps on this dashboard tab will be active
-//                       currentTab = 1;
-//                     });
-//                   },
-//                   child: Column(
-//                     mainAxisAlignment: MainAxisAlignment.center,
-//                     children: <Widget>[
-//                       Icon(
-//                         Icons.person_pin,
-//                         color: currentTab == 1 ? Colors.blue : Colors.white,
-//                         size: currentTab == 1 ? 30 : 25,
-//                       ),
-//                       Text(
-//                         'LOGIN/SIGNUP',
-//                         style: TextStyle(
-//                           color: currentTab == 1 ? Colors.blue : Colors.white,
-//                           fontSize: currentTab == 1 ? 16 : 14,
-//                         ),
-//                       ),
-//                     ],
-//                   ),
-//                 ),
-//               ],
-//             ),
-//             Row(
-//               crossAxisAlignment: CrossAxisAlignment.start,
-//               children: <Widget>[
-//                 MaterialButton(
-//                   minWidth: 40,
-//                   onPressed: () {
-//                     setState(() {
-//                       currentScreen = const CallNowWidget()
-//                           as Widget; // if user taps on this dashboard tab will be active
-//                       currentTab = 2;
-//                     });
-//                   },
-//                   child: Column(
-//                     mainAxisAlignment: MainAxisAlignment.center,
-//                     children: <Widget>[
-//                       Container(
-//                         child: Icon(
-//                           Icons.wifi_calling_3,
-//                           color: currentTab == 2 ? Colors.blue : Colors.white,
-//                           size: currentTab == 2 ? 30 : 25,
-//                         ),
-//                       ),
-//                       Text(
-//                         'CALL NOW',
-//                         style: TextStyle(
-//                           color: currentTab == 2 ? Colors.blue : Colors.white,
-//                           fontSize: currentTab == 2 ? 16 : 14,
-//                         ),
-//                       ),
-//                     ],
-//                   ),
-//                 ),
-//               ],
-//             )
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }

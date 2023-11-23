@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../widgets/Widget.dart';
+
 import '/business_logic/cubits/cubits.dart';
 import '/presentation/presentation.dart';
 import '/services/navigation/navigation_service.dart';
-import '/utils/constants/app/app_constants.dart';
+
 import '/utils/utils.dart';
 
 class D_MyRidesScreen extends StatefulWidget {
@@ -23,12 +23,11 @@ class _D_MyRidesScreenState extends State<D_MyRidesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        endDrawer: NavDrawer(context),
         appBar: PreferredSize(
             preferredSize: const Size.fromHeight(80),
             child: AppBarWidget(
-              isshow: true,
-              showback: false,
+              isshow: false,
+              showback: true,
               title: false,
               titlename: '',
               name: context.read<UserCubit>().state.update_name ?? '',

@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:speedylimo/presentation/widgets/adminWidget/adminContinerWidget.dart';
-
-import 'package:speedylimo/presentation/widgets/timepickerWidget/timePicker.dart';
-
 import '/business_logic/cubits/cubits.dart';
 import '/presentation/presentation.dart';
 import '/services/navigation/navigation_service.dart';
@@ -26,11 +22,10 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        endDrawer: NavDrawer(context),
         appBar: PreferredSize(
             preferredSize: const Size.fromHeight(80),
             child: AppBarWidget(
-              isshow: true,
+              isshow: false,
               showback: false,
               title: false,
               titlename: '',
@@ -116,89 +111,80 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                         height: 20,
                       ),
                       AdmainContinerWidget(
-                        text: "POSTS",
-                        icons: const Icon(Icons.menu_book_outlined,
-                            color: Colors.white, size: 32),
+                        text: 'BOOKING QUERIES',
+                        fontSize: 18,
+                        icons: const Icon(Icons.person,
+                            color: Colors.white, size: 30),
                         onPressed: () {
-                          NavigationService.instance.navigateTo(adminPost);
+                          NavigationService.instance.navigateTo(bookingQueries);
                         },
                       ),
                       AdmainContinerWidget(
-                        text: "COLLECTION",
-                        fontSize: 16,
-                        icons: const Icon(Icons.collections,
-                            color: Colors.white, size: 32),
-                        onPressed: () {},
-                      ),
-                      AdmainContinerWidget(
-                        text: "PAGES",
-                        fontSize: 16,
-                        icons: const Icon(Icons.bookmarks_rounded,
-                            color: Colors.white, size: 32),
-                        onPressed: () {},
-                      ),
-                      AdmainContinerWidget(
-                        text: "BOOKING QUERIES",
-                        fontSize: 16,
-                        icons: const Icon(Icons.person,
-                            color: Colors.white, size: 32),
-                        onPressed: () {},
-                      ),
-                      AdmainContinerWidget(
-                        text: "PENDING RIDES",
-                        fontSize: 16,
+                        text: 'PENDING RIDES',
+                        fontSize: 18,
                         icons: const Icon(Icons.double_arrow,
-                            color: Colors.white, size: 32),
-                        onPressed: () {},
+                            color: Colors.white, size: 30),
+                        onPressed: () {
+                          NavigationService.instance
+                              .navigateTo(adminpendingrides);
+                        },
                       ),
                       AdmainContinerWidget(
-                        text: "ONGOING RIDES",
-                        fontSize: 16,
+                        text: 'ONGOING RIDES',
+                        fontSize: 18,
                         icons: const Icon(Icons.double_arrow,
-                            color: Colors.white, size: 32),
-                        onPressed: () {},
+                            color: Colors.white, size: 30),
+                        onPressed: () {
+                          NavigationService.instance
+                              .navigateTo(adminOngoingRide);
+                        },
                       ),
                       AdmainContinerWidget(
-                        text: "CANCELED RIDES",
-                        fontSize: 16,
+                        text: 'CANCELED RIDES',
+                        fontSize: 18,
                         icons: const Icon(Icons.person,
-                            color: Colors.white, size: 32),
-                        onPressed: () {},
+                            color: Colors.white, size: 30),
+                        onPressed: () {
+                          NavigationService.instance
+                              .navigateTo(adminCanceledRide);
+                        },
                       ),
                       AdmainContinerWidget(
-                        text: "COMPLETED RIDES",
-                        fontSize: 16,
+                        text: 'COMPLETED RIDES',
+                        fontSize: 18,
                         icons: const Icon(Icons.task_alt_rounded,
-                            color: Colors.white, size: 32),
-                        onPressed: () {},
+                            color: Colors.white, size: 30),
+                        onPressed: () {
+                          NavigationService.instance
+                              .navigateTo(adminCompleteRide);
+                        },
                       ),
                       AdmainContinerWidget(
-                        text: "CAREER",
-                        fontSize: 16,
-                        icons: const Icon(Icons.task_alt_rounded,
-                            color: Colors.white, size: 32),
-                        onPressed: () {},
-                      ),
-                      AdmainContinerWidget(
-                        text: "USER MANAGEMENT",
-                        fontSize: 16,
+                        text: 'USER MANAGEMENT',
+                        fontSize: 18,
                         icons: const Icon(Icons.person,
-                            color: Colors.white, size: 32),
-                        onPressed: () {},
+                            color: Colors.white, size: 30),
+                        onPressed: () {
+                          NavigationService.instance.navigateTo(userManagement);
+                        },
                       ),
                       AdmainContinerWidget(
-                        text: "DOUCEMENTS",
-                        fontSize: 16,
+                        text: 'DRIVER DOCUMENTS',
+                        fontSize: 18,
                         icons: const Icon(Icons.panorama,
-                            color: Colors.white, size: 32),
-                        onPressed: () {},
+                            color: Colors.white, size: 30),
+                        onPressed: () {
+                          NavigationService.instance.navigateTo(documentScreen);
+                        },
                       ),
                       AdmainContinerWidget(
-                        text: "Logout",
-                        fontSize: 16,
+                        text: 'Logout',
+                        fontSize: 18,
                         icons: const Icon(Icons.power_settings_new_outlined,
-                            color: Colors.white, size: 32),
-                        onPressed: () {},
+                            color: Colors.white, size: 30),
+                        onPressed: () {
+                          showCanceldialoge();
+                        },
                       ),
                     ],
                   ),
@@ -207,5 +193,31 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
             ),
           ),
         ));
+  }
+
+  Future showCanceldialoge() {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return DialogWiget(
+            content: 'Do you want to logout?',
+            postiveButtonText: 'Yes',
+            negetiveButtonText: 'No',
+            contextt: context,
+            onTap: () {
+              // context.read<LogoutCubit>().getlogout();
+              context.read<UserCubit>().logout();
+
+              ScaffoldMessenger.of(context)
+                ..hideCurrentSnackBar()
+                ..showSnackBar(
+                  SnackBar(
+                    content: Text('Successfully Logout'),
+                  ),
+                );
+              NavigationService.instance.pushAndRemoveUntil(loginRoute);
+            },
+          );
+        });
   }
 }

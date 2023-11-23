@@ -1,7 +1,6 @@
 import '../../../../utils/constants/app/app_constants.dart';
 import '/utils/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class CancleAndCompleteWidget extends StatelessWidget {
   const CancleAndCompleteWidget({
@@ -42,7 +41,7 @@ class CancleAndCompleteWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
-                "Driver Name :",
+                'Driver Name :',
                 style: TextStyle(
                     color: tempColor.blackColor,
                     fontSize: 16,

@@ -1,19 +1,20 @@
 import '../../../utils/constants/app/app_constants.dart';
 import '/utils/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class DatePickerWidget extends StatefulWidget {
-  const DatePickerWidget({
-    Key? key,
-    this.controller,
-    this.initialDate,
-    this.hint = '',
-    this.labelText = '',
-    this.prefixIcon,
-    this.fillColor,
-    this.labelStyle,
-  }) : super(key: key);
+  DatePickerWidget(
+      {Key? key,
+      this.controller,
+      this.initialDate,
+      this.hint = '',
+      this.labelText = '',
+      this.prefixIcon,
+      this.fillColor,
+      this.labelStyle,
+      required this.onTap,
+      required this.selectDate})
+      : super(key: key);
 
   final TextEditingController? controller;
   final DateTime? initialDate;
@@ -22,37 +23,20 @@ class DatePickerWidget extends StatefulWidget {
   final TextStyle? labelStyle;
   final String hint;
   final String labelText;
+  final String selectDate;
+  final VoidCallback onTap;
 
   @override
   State<DatePickerWidget> createState() => _DatePickerWidgetState();
 }
 
 class _DatePickerWidgetState extends State<DatePickerWidget> {
-  DateTime selectedDate = DateTime.now();
-
-  Future<void> _selectDate(BuildContext context) async {
-    final DateTime? picked = await showDatePicker(
-        context: context,
-        initialDate: selectedDate,
-        firstDate: DateTime(2015, 8),
-        lastDate: DateTime(2101));
-    if (picked != null && picked != selectedDate) {
-      setState(() {
-        selectedDate = picked;
-      });
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Center(
       child: InkWell(
-        onTap: () async {
-          _selectDate(context);
-        },
+        onTap: widget.onTap,
         child: Container(
-          width: MediaQuery.of(context).size.width,
-          height: 52,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
             color: const Color(0xffEFEFEF),
@@ -62,19 +46,24 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
               width: 1.5, // Border width for the outline
             ),
           ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              Text("${selectedDate.toLocal()}".split(' ')[0]),
-              const SizedBox(
-                height: 20.0,
-              ),
-              const Icon(Icons.date_range),
-              // ElevatedButton(
-              //   onPressed: () => _selectDate(context),
-              //   child: const Text('Select date'),
-              // ),
-            ],
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                Text(widget.selectDate),
+                widget.selectDate != ''
+                    ? SizedBox(
+                        width: 10.0,
+                      )
+                    : Container(),
+                const Icon(Icons.calendar_month),
+                // ElevatedButton(
+                //   onPressed: () => _selectDate(context),
+                //   child: const Text('Select date'),
+                // ),
+              ],
+            ),
           ),
         ),
       ),

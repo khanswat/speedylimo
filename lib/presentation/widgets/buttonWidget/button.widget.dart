@@ -37,7 +37,7 @@ class ButtonWidget extends StatelessWidget {
               ? (isLoading == true
                   ? Theme.of(context)
                       .colorScheme
-                      .primaryVariant
+                      .primaryContainer
                       .withOpacity(0.6)
                   : Theme.of(context).primaryColor)
               : Colors.transparent,

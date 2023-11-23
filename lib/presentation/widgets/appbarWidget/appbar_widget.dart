@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:speedylimo/extensions/extension.dart';
-import '../../../utils/constants/app/app_constants.dart';
+import '/utils/constants/app/app_constants.dart';
+import '/utils/utils.dart';
 
 class AppBarWidget extends StatefulWidget {
   final bool isshow;
@@ -33,7 +34,7 @@ class _AppBarWidgetState extends State<AppBarWidget> {
             bottomLeft: Radius.circular(10.0),
             bottomRight: Radius.circular(10.0)),
         gradient: LinearGradient(
-          colors: [Colors.yellow, Colors.amber],
+          colors: [Colors.blue, Color(0xff00C6FF)],
           begin: Alignment.centerLeft,
           end: Alignment.centerRight,
         ),
@@ -55,42 +56,25 @@ class _AppBarWidgetState extends State<AppBarWidget> {
                   widget.showback
                       ? SizedBox(
                           width: 40,
-                          child: ElevatedButton(
-                              clipBehavior: Clip.none,
-                              // style: ButtonStyle(
-                              //     shape: MaterialStateProperty.all<
-                              //             RoundedRectangleBorder>(
-                              //         RoundedRectangleBorder(
-                              //             borderRadius:
-                              //                 BorderRadius.circular(15.0),
-                              //             side: BorderSide(
-                              //                 color: Colors.white)))),
-                              style: TextButton.styleFrom(
-                                shadowColor: Colors.transparent,
-                                backgroundColor: Colors.transparent,
-                                padding: EdgeInsets.zero,
-                                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                              ),
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                              child: const Center(
-                                  child: Icon(
-                                Icons.arrow_circle_left,
-                                size: 35,
-                              ))),
+                          child: Center(
+                              child: IconButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  icon: Icon(
+                                    Icons.arrow_back_ios_new_rounded,
+                                    size: 30,
+                                    color: Colors.white,
+                                  ))),
                         )
                       : Container(),
                   const SizedBox(
-                    width: 10,
+                    width: 0,
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Image.asset(
-                        "lib/assets/icons/Group 1530.png",
-                      ),
                       widget.title
                           ? Container(
                               margin: const EdgeInsets.only(top: 15),
@@ -108,6 +92,10 @@ class _AppBarWidgetState extends State<AppBarWidget> {
                   )
                 ],
               ),
+              Image.asset(
+                'lib/assets/icons/new.png',
+                scale: 1.8,
+              ),
               widget.isshow
                   ? Row(
                       children: [
@@ -118,6 +106,7 @@ class _AppBarWidgetState extends State<AppBarWidget> {
                           child: SvgPicture.asset(
                             'menu'.svg,
                             height: 15,
+                            color: Colors.white,
                           ),
                         ),
                         const SizedBox(

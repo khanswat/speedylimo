@@ -1,1 +1,14 @@
-export './admainWidger.dart';
+export './bookingQueriesDetailWidget.dart';
+export './adminBookingQueriesWidget.dart';
+export './adminContinerWidget.dart';
+export './adminPendingRideWidget.dart';
+export './adminPendingRideDetailWidget.dart';
+export './adminOngoingRideWidget.dart';
+export './adminOngoingRideDetailWidget.dart';
+export './adminCanceledRideWidget.dart';
+export './adminCanceledRideDetailWiget.dart';
+export './adminCompleteRideWidget.dart';
+export './adminCompleteRideDetailWidget.dart';
+export './userManagementWidget.dart';
+export './documentWidget.dart';
+export './documentDetailWidget.dart';

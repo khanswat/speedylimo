@@ -1,18 +1,9 @@
 import 'dart:io';
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:speedylimo/presentation/presentation.dart';
-
-import 'package:speedylimo/presentation/widgets/timepickerWidget/datepickerWidget.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
-
 import '../../../../../../../utils/constants/app/app_constants.dart';
-
-import '../../../../widgets/DropDowanWidget/dropdown_Widget.dart';
-import '../../../../widgets/careerFilepickerWidget/filePickerWidget.dart';
 import '/utils/utils.dart';
 
 class CareerScreen extends StatefulWidget {
@@ -35,14 +26,14 @@ class _CareerScreenState extends State<CareerScreen> {
   var imageUni8;
   var Paths;
 
-  pickImage(ImageSource gallery) async {
+  Future<void> pickImage(ImageSource gallery) async {
     try {
       final t = await ImagePicker().pickImage(source: ImageSource.gallery);
       if (t == null) return;
       final imageTemporary = File(t.path);
       setState(() => imageUni8 = imageTemporary.readAsBytesSync());
       String paths = imageTemporary.path;
-      print("pphhhh" + paths);
+      print('pphhhh' + paths);
       Paths = File(t.path);
       // Navigator.of(context).pop();
     } on PlatformException catch (e) {
@@ -100,7 +91,7 @@ class _CareerScreenState extends State<CareerScreen> {
                 ),
               ),
               background: Image.asset(
-                "lib/assets/icons/abput1.png",
+                'lib/assets/icons/abput1.png',
                 fit: BoxFit.cover,
               ),
             ),
@@ -137,7 +128,7 @@ class _CareerScreenState extends State<CareerScreen> {
                             height: 20,
                           ),
                           const Text(
-                            "We are always in need of driver",
+                            'We are always in need of driver',
                             textAlign: TextAlign.center,
                           ),
                         ],
@@ -251,101 +242,101 @@ class _CareerScreenState extends State<CareerScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text("Driver Permit Expiration Date"),
+                          const Text('Driver Permit Expiration Date'),
                           const SizedBox(
                             height: 10,
                           ),
-                          const DatePickerWidget(),
+                          //  DatePickerWidget(),
                           const SizedBox(
                             height: 10,
                           ),
-                          const Text("Upload Driver Permit"),
+                          const Text('Upload Driver Permit'),
                           const SizedBox(
                             height: 10,
                           ),
                           CareerFileWidget(
-                            fileText: "No file chose",
-                            buttonText: "Choose File",
+                            fileText: 'No file chose',
+                            buttonText: 'Choose File',
                             onPressed: () {},
                           ),
                           const SizedBox(
                             height: 10,
                           ),
-                          const Text("Vehicle Permit Expiration Date"),
+                          const Text('Vehicle Permit Expiration Date'),
                           const SizedBox(
                             height: 10,
                           ),
-                          const DatePickerWidget(),
+                          // const DatePickerWidget(),
                           const SizedBox(
                             height: 10,
                           ),
-                          const Text("Upload Vehicle Permit"),
+                          const Text('Upload Vehicle Permit'),
                           const SizedBox(
                             height: 10,
                           ),
                           CareerFileWidget(
-                            fileText: "No file chose",
-                            buttonText: "Choose File",
+                            fileText: 'No file chose',
+                            buttonText: 'Choose File',
                             onPressed: () {},
                           ),
                           const SizedBox(
                             height: 10,
                           ),
-                          const Text("Vehicle Registration code"),
+                          const Text('Vehicle Registration code'),
                           const SizedBox(
                             height: 10,
                           ),
-                          const DatePickerWidget(),
+                          // const DatePickerWidget(),
                           const SizedBox(
                             height: 10,
                           ),
-                          const Text("Upload Vehicle Registration"),
+                          const Text('Upload Vehicle Registration'),
                           const SizedBox(
                             height: 10,
                           ),
                           CareerFileWidget(
-                            fileText: "No file chose",
-                            buttonText: "Choose File",
+                            fileText: 'No file chose',
+                            buttonText: 'Choose File',
                             onPressed: () {},
                           ),
                           const SizedBox(
                             height: 10,
                           ),
-                          const Text("Certificate of insurance"),
+                          const Text('Certificate of insurance'),
                           const SizedBox(
                             height: 10,
                           ),
-                          const DatePickerWidget(),
+                          // const DatePickerWidget(),
                           const SizedBox(
                             height: 10,
                           ),
-                          const Text("Copy of drug test"),
+                          const Text('Copy of drug test'),
                           const SizedBox(
                             height: 10,
                           ),
                           CareerFileWidget(
-                            fileText: "No file chose",
-                            buttonText: "Choose File",
+                            fileText: 'No file chose',
+                            buttonText: 'Choose File',
                             onPressed: () {},
                           ),
                           const SizedBox(
                             height: 10,
                           ),
-                          const Text("Driver Permit Expiration Date"),
+                          const Text('Driver Permit Expiration Date'),
                           const SizedBox(
                             height: 10,
                           ),
-                          const DatePickerWidget(),
+                          // const DatePickerWidget(),
                           const SizedBox(
                             height: 10,
                           ),
-                          const Text("Upload Driver Permit"),
+                          const Text('Upload Driver Permit'),
                           const SizedBox(
                             height: 10,
                           ),
                           CareerFileWidget(
-                            fileText: "No file chose",
-                            buttonText: "Choose File",
+                            fileText: 'No file chose',
+                            buttonText: 'Choose File',
                             onPressed: () {},
                           )
                         ],
@@ -389,7 +380,7 @@ class _CareerScreenState extends State<CareerScreen> {
                                           size: 100,
                                         ),
                                         const Text(
-                                          "Upload Your Resume Here",
+                                          'Upload Your Resume Here',
                                           textAlign: TextAlign.center,
                                           style: TextStyle(fontSize: 14),
                                         ),

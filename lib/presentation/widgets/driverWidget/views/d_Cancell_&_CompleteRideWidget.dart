@@ -40,7 +40,7 @@ class D_CancleAndCompleteWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
-                "Passenger Name :",
+                'Passenger Name :',
                 style: TextStyle(
                     color: tempColor.blackColor,
                     fontSize: 16,

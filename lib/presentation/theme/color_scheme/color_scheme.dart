@@ -6,7 +6,9 @@ import '/utils/utils.dart';
 final ColorScheme darkColorScheme = ColorScheme.dark(
     primary: tempColor.purpleColor,
     secondary: tempColor.blueColor,
+    // ignore: deprecated_member_use
     primaryVariant: tempColor.lightPurpleColor,
+    // ignore: deprecated_member_use
     secondaryVariant: tempColor.lightBlueColor,
     surface: tempColor.blackColor,
     background: tempColor.greyColor,
@@ -21,7 +23,9 @@ final ColorScheme darkColorScheme = ColorScheme.dark(
 final ColorScheme lightColorScheme = ColorScheme.light(
     primary: tempColor.blueColor,
     secondary: tempColor.purpleColor,
+    // ignore: deprecated_member_use
     primaryVariant: tempColor.lightBlueColor,
+    // ignore: deprecated_member_use
     secondaryVariant: tempColor.lightPurpleColor,
     surface: tempColor.backgroundColor,
     background: tempColor.backgroundColor,

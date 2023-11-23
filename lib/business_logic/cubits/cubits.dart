@@ -1,8 +1,6 @@
 export 'theme/theme.dart';
 export 'internet/internet.dart';
 export 'loginCubit/login.cubit.dart';
-export 'op_Detail_cubit/op_detail.cubit.dart';
-export 'ip_Detail_cubit/ip_detail.cubit.dart';
 export 'userCubit/user.cubit.dart';
 export 'logoutCubit/logout.cubit.dart';
 export 'changePasswordCubit/changePassword.cubit.dart';

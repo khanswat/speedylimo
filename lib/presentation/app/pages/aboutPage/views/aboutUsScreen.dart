@@ -1,8 +1,8 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:speedylimo/presentation/presentation.dart';
 import '../../../../../../../utils/constants/app/app_constants.dart';
 import '/utils/utils.dart';
+import '/services/navigation/navigation_service.dart';
 
 class AboutUsScreen extends StatefulWidget {
   const AboutUsScreen({Key? key}) : super(key: key);
@@ -42,29 +42,42 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
             expandedHeight: 200.0,
             pinned: true,
             leading: IconButton(
-                icon: const Icon(
-                  Icons.filter_1,
-                  color: Colors.transparent,
-                ),
                 onPressed: () {
-                  // Do something
-                }),
+                  NavigationService.instance.goBack();
+                },
+                icon: Icon(
+                  Icons.arrow_back_ios_new_outlined,
+                  color: Colors.black,
+                  size: 30,
+                )),
             floating: true,
+
             // snap: true,
             // elevation: 50,
-            backgroundColor: Colors.grey,
+            backgroundColor: Color(0xffE0E0E0),
             flexibleSpace: FlexibleSpaceBar(
               centerTitle: true,
-              title: const Padding(
-                padding: EdgeInsets.only(top: 30.0),
-                child: CustomLinearGradientWidget(
-                  firstText: 'learn about',
-                  lastText: 'limo',
-                  fontSize: 30,
-                ),
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'learn about ',
+                    style: TextStyle(
+                        fontSize: 25,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    'limo',
+                    style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.blue),
+                  ),
+                ],
               ),
               background: Image.asset(
-                "lib/assets/icons/abput1.png",
+                'lib/assets/icons/abput1.png',
                 fit: BoxFit.cover,
               ),
             ),
@@ -94,19 +107,19 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                           const CustomLinearGradientWidget(
                             firstText: 'Who We',
                             lastText: 'Are',
-                            fontSize: 30,
+                            fontSize: 25,
                           ),
                           const SizedBox(
                             height: 20,
                           ),
                           const Text(
-                            "Speedy Limo offers luxury transportation services at affordable rates through its vast range of stretch limos, SUVs, party buses, vans and sedans. Travelers rely on our services for executive rides, corporate meetings, parties and other events. Since its inception, Speedy Limo has transformed into a marvelous limousine service that is now set to beat your travel expectations. If you want an unforgettable experience for your next meeting or special occasion, Speedy Limo has the ability to live up to your expectations thanks to its professional staff and dependable vehicles. We have strived to establish a culture of excellence since the very beginning, which helps us make your moments memorable without giving your pocket a second thought.",
+                            'Speedy Limo offers luxury transportation services at affordable rates through its vast range of stretch limos, SUVs, party buses, vans and sedans. Travelers rely on our services for executive rides, corporate meetings, parties and other events. Since its inception, Speedy Limo has transformed into a marvelous limousine service that is now set to beat your travel expectations. If you want an unforgettable experience for your next meeting or special occasion, Speedy Limo has the ability to live up to your expectations thanks to its professional staff and dependable vehicles. We have strived to establish a culture of excellence since the very beginning, which helps us make your moments memorable without giving your pocket a second thought.',
                             textAlign: TextAlign.justify,
                           ),
                           const SizedBox(
                             height: 30,
                           ),
-                          Image.asset("lib/assets/icons/arrows.PNG"),
+                          Image.asset('lib/assets/icons/arrows.PNG'),
                         ],
                       ),
                     ),
@@ -129,14 +142,14 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                             child: const CustomLinearGradientWidget(
                               firstText: 'Awards and',
                               lastText: 'Accolades',
-                              fontSize: 30,
+                              fontSize: 25,
                             ),
                           ),
                           const SizedBox(
                             height: 20,
                           ),
                           const Text(
-                            "For many years, Speedy Limo has established a reputation for delivering a luxurious limousine service experience for its users, making their special events even more memorable. Because of this excellent record, Speedy Limo has been bestowed with several awards for its professional service, dependability and impeccable safety.",
+                            'For many years, Speedy Limo has established a reputation for delivering a luxurious limousine service experience for its users, making their special events even more memorable. Because of this excellent record, Speedy Limo has been bestowed with several awards for its professional service, dependability and impeccable safety.',
                             textAlign: TextAlign.justify,
                           ),
                         ],
@@ -169,7 +182,7 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                       ),
                       child: Column(
                         children: [
-                          Image.asset("lib/assets/icons/one time.PNG"),
+                          Image.asset('lib/assets/icons/one time.PNG'),
                           const SizedBox(
                             height: 20,
                           ),
@@ -181,7 +194,7 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                           const SizedBox(
                             height: 20,
                           ),
-                          Image.asset("lib/assets/icons/quility.PNG")
+                          Image.asset('lib/assets/icons/quility.PNG')
                         ],
                       ),
                     ),

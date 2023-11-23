@@ -1,7 +1,6 @@
 import '../../../../utils/constants/app/app_constants.dart';
 import '/utils/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class AcceptedRidesWidget extends StatelessWidget {
   const AcceptedRidesWidget(
@@ -47,7 +46,7 @@ class AcceptedRidesWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
-                "Driver Name :",
+                'Driver Name :',
                 style: TextStyle(
                     color: tempColor.blackColor,
                     fontSize: 16,
@@ -190,7 +189,7 @@ class AcceptedRidesWidget extends StatelessWidget {
               ),
               child: const Center(
                   child: Text(
-                "STATUS: ONGOING",
+                'STATUS: ONGOING',
                 style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
@@ -217,7 +216,7 @@ class AcceptedRidesWidget extends StatelessWidget {
               ),
               child: const Center(
                   child: Text(
-                "COMPLETE RIDE",
+                'COMPLETE RIDE',
                 style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
@@ -244,7 +243,7 @@ class AcceptedRidesWidget extends StatelessWidget {
               ),
               child: const Center(
                   child: Text(
-                "CANCLE RIDE",
+                'CANCLE RIDE',
                 style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,

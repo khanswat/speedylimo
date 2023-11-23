@@ -17,3 +17,4 @@ export 'review Your Booking/reviewbooking.dart';
 export 'sideNavDrawer/sideNavigaction.dart';
 export 'signup/singup.dart';
 export 'admin/admins.dart';
+export 'map/maps.dart';

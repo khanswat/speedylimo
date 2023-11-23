@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../widgets/Widget.dart';
-import '/business_logic/cubits/cubits.dart';
+
 import '/presentation/presentation.dart';
 import '/services/navigation/navigation_service.dart';
 import '/utils/utils.dart';
@@ -27,10 +25,10 @@ class _MyRidesScreenState extends State<MyRidesScreen> {
             preferredSize: const Size.fromHeight(80),
             child: AppBarWidget(
               isshow: true,
-              showback: false,
+              showback: true,
               title: false,
               titlename: '',
-              name: context.read<UserCubit>().state.update_name ?? '',
+              name: '',
             )),
         body: ListView.builder(
           itemCount: 3, // The number of items in the list

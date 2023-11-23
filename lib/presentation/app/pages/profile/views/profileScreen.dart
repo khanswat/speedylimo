@@ -1,23 +1,46 @@
 import 'package:flutter/material.dart';
-import 'package:speedylimo/extensions/colors/colors_extension.dart';
-import 'package:speedylimo/presentation/presentation.dart';
-import 'package:speedylimo/presentation/widgets/appbarWidget/appbar_widget.dart';
-import 'package:speedylimo/presentation/widgets/proFile/proFileWidget.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:speedylimo/extensions/extension.dart';
 import 'package:speedylimo/utils/constants/app/app_constants.dart';
+import '../../../../../business_logic/bussiness.logic.dart';
+import '/presentation/presentation.dart';
 
 class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({super.key});
+  ProfileScreen({super.key});
 
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  TextEditingController nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController accountController = TextEditingController();
+  TextEditingController bankController = TextEditingController();
+  TextEditingController branchController = TextEditingController();
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+
+    nameController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
+    final data = context.read<UserCubit>().state.userData?.user;
+    nameController.text = data?.name ?? '';
+    emailController.text = data?.email ?? '';
+    phoneController.text = data?.phoneNumber ?? '';
+
     return Scaffold(
         endDrawer: NavDrawer(context),
-        appBar: const PreferredSize(
+        appBar: PreferredSize(
             preferredSize: Size.fromHeight(80),
             child: AppBarWidget(
               isshow: true,
@@ -28,10 +51,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
             )),
         body: SingleChildScrollView(
             child: Padding(
-                padding: const EdgeInsets.all(14.0),
+                padding: EdgeInsets.all(14.0),
                 child: Container(
-                    margin: const EdgeInsets.all(15.0),
-                    padding: const EdgeInsets.all(20),
+                    margin: EdgeInsets.all(15.0),
+                    padding: EdgeInsets.all(20),
                     decoration: BoxDecoration(
                       border: Border.all(
                         color: tempColor.lightGreyColor,
@@ -46,8 +69,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       children: [
                         ProfileWidget(
                           color: Colors.grey,
-                          imagePath: "lib/assets/icons/login.png",
-                          icon: const Icon(
+                          imagePath: 'login'.png,
+                          icon: Icon(
                             Icons.camera_alt,
                             color: Colors.black,
                             size: 25.0,
@@ -55,66 +78,69 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           iconBackgroundColor: Colors.white,
                           onPressed: () {},
                         ),
-                        const SizedBox(
+                        SizedBox(
                           height: 20,
                         ),
-                        const TextFieldWidget(
-                          hint: "Enter Your Name",
+                        TextFieldWidget(
+                          hint: 'Enter Your Name',
                           labelText: 'Enter Your Name',
                           validatation: true,
                           labelStyle: TextStyle(color: Colors.black),
+                          controller: nameController,
                         ),
-                        const SizedBox(
+                        SizedBox(
                           height: 10,
                         ),
-                        const TextFieldWidget(
-                          hint: "Enter Email@ address",
+                        TextFieldWidget(
+                          controller: emailController,
+                          hint: 'Enter Email@ address',
                           labelText: 'Enter Email',
                           validatation: true,
                           labelStyle: TextStyle(color: Colors.black),
                         ),
-                        const SizedBox(
+                        SizedBox(
                           height: 10,
                         ),
-                        const TextFieldWidget(
-                          hint: "Enter Your Phone Number(Optional)",
+                        TextFieldWidget(
+                          controller: phoneController,
+                          hint: 'Enter Your Phone Number(Optional)',
                           labelText: 'Enter Your Phone Number',
                           validatation: true,
                           labelStyle: TextStyle(color: Colors.black),
                         ),
-                        const SizedBox(
+                        SizedBox(
                           height: 10,
                         ),
-                        const TextFieldWidget(
-                          hint: "Enter Your Account Number",
+                        TextFieldWidget(
+                          hint: 'Enter Your Account Number',
                           labelText: 'Enter Your Account Number',
                           validatation: true,
                           labelStyle: TextStyle(color: Colors.black),
                         ),
-                        const SizedBox(
+                        SizedBox(
                           height: 10,
                         ),
-                        const TextFieldWidget(
-                          hint: "Enter Your Bank Name",
+                        TextFieldWidget(
+                          hint: 'Enter Your Bank Name',
                           labelText: 'Enter Your Bank Name',
                           validatation: true,
                           labelStyle: TextStyle(color: Colors.black),
                         ),
-                        const SizedBox(
+                        SizedBox(
                           height: 10,
                         ),
-                        const TextFieldWidget(
-                          hint: "Enter Your Branch Name",
+                        TextFieldWidget(
+                          hint: 'Enter Your Branch Name',
                           labelText: 'Enter Your Branch Name',
                           validatation: true,
                           labelStyle: TextStyle(color: Colors.black),
                         ),
-                        const SizedBox(
+                        SizedBox(
                           height: 10,
                         ),
                         ButtonWidget(
-                            childWidget: const Text(
-                              "Update",
+                            childWidget: Text(
+                              'Update'.toUpperCase(),
                               style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-
-import 'package:speedylimo/presentation/widgets/buttonWidget/button.widget.dart';
-
-import 'package:speedylimo/utils/constants/constants.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../../business_logic/cubits/cubits.dart';
 import '../../../../../services/navigation/navigation_service.dart';
+import '../../../../widgets/Widget.dart';
+import '/utils/utils.dart';
 
 class NavDrawer extends StatefulWidget {
   const NavDrawer(BuildContext context, {super.key});
@@ -26,12 +25,13 @@ class _NavDrawerState extends State<NavDrawer> {
   var sindex = 0;
   final List storedocs = [];
 
-  String profilePicLink = "";
+  String profilePicLink = '';
   var uids;
-  String url = "";
+  String url = '';
   bool status = false;
   @override
   Widget build(BuildContext context) {
+    final data = context.read<UserCubit>().state.userData?.user;
     return Form(
         key: _formKey,
         child: Drawer(
@@ -45,20 +45,18 @@ class _NavDrawerState extends State<NavDrawer> {
                   children: [
                     // ignore: avoid_unnecessary_containers
                     Container(
-                      child: const CircleAvatar(
+                      child: CircleAvatar(
                           radius: 45.0,
                           backgroundColor: Colors.white,
-                          backgroundImage: AssetImage(
-                            "lib/assets/icons/login.png",
-                          )),
+                          backgroundImage: AssetImage('login'.png)),
                     ),
                     const SizedBox(
                       height: 10,
                     ),
-                    const Text(
-                      "Ali (Passenger)",
+                    Text(
+                      ' ${data?.name ?? ''}',
                       style: TextStyle(
-                          color: Colors.black,
+                          color: Colors.white,
                           fontWeight: FontWeight.bold,
                           fontSize: 18),
                     ),
@@ -66,7 +64,7 @@ class _NavDrawerState extends State<NavDrawer> {
                 ),
                 decoration: const BoxDecoration(
                   gradient: LinearGradient(
-                    colors: [Colors.yellow, Colors.amber],
+                    colors: [Colors.blue, Color(0xff00C6FF)],
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,
                   ),
@@ -75,66 +73,110 @@ class _NavDrawerState extends State<NavDrawer> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  ListTile(
-                    leading: const Icon(
-                      Icons.explore,
-                      color: Colors.white,
-                    ),
-                    title: const Text('passenget dash bord'),
-                    onTap: () => {Navigator.of(context).pop()},
+                  Column(
+                    children: [
+                      ListTile(
+                        leading: Image.asset(
+                          'rides'.png,
+                          height: 30,
+                        ),
+                        title: const Text(
+                          'My Rides',
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 14),
+                        ),
+                        onTap: () =>
+                            NavigationService.instance.navigateTo(myride),
+                      ),
+                      ListTile(
+                        leading: Image.asset(
+                          'rides'.png,
+                          height: 30,
+                        ),
+                        title: const Text(
+                          'Accepted Rides',
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 14),
+                        ),
+                        onTap: () => NavigationService.instance
+                            .navigateTo(acceptedRides),
+                      ),
+                      ListTile(
+                        leading: Image.asset(
+                          'rides'.png,
+                          height: 30,
+                        ),
+                        title: const Text(
+                          'Cancelled Rides',
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 14),
+                        ),
+                        onTap: () =>
+                            NavigationService.instance.navigateTo(cancellRides),
+                      ),
+                      ListTile(
+                        leading: Image.asset(
+                          'rides'.png,
+                          height: 30,
+                        ),
+                        title: Text(
+                          'Completed Rides',
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 14),
+                        ),
+                        onTap: () => NavigationService.instance
+                            .navigateTo(completeRides),
+                      ),
+                    ],
                   ),
                   ListTile(
-                    leading: const Icon(
-                      Icons.heart_broken,
-                      color: Colors.black,
+                    leading: Image.asset(
+                      'changePass'.png,
+                      height: 30,
                     ),
-                    title: const Text('My Rides'),
-                    onTap: () => NavigationService.instance.navigateTo(myride),
-                  ),
-                  ListTile(
-                    leading: const Icon(
-                      Icons.heart_broken,
-                      color: Colors.black,
+                    title: const Text(
+                      'Change Password',
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14),
                     ),
-                    title: const Text('Accepted Rides'),
-                    onTap: () =>
-                        NavigationService.instance.navigateTo(acceptedRides),
-                  ),
-                  ListTile(
-                    leading: const Icon(
-                      Icons.heart_broken,
-                      color: Colors.black,
-                    ),
-                    title: const Text('Cancelled Rides'),
-                    onTap: () =>
-                        NavigationService.instance.navigateTo(cancellRides),
-                  ),
-                  ListTile(
-                    leading: const Icon(
-                      Icons.view_list,
-                      color: Colors.black,
-                    ),
-                    title: const Text('Completed Rides'),
-                    onTap: () =>
-                        NavigationService.instance.navigateTo(completeRides),
-                  ),
-                  ListTile(
-                    leading: const Icon(
-                      Icons.lock,
-                      color: Colors.black,
-                    ),
-                    title: const Text('Change Password'),
                     onTap: () => NavigationService.instance
                         .navigateTo(changePasswordRoute),
                   ),
                   ListTile(
                     leading: const Icon(
-                      Icons.power_settings_new_outlined,
+                      Icons.logout_outlined,
                       color: Colors.black,
+                      size: 30,
                     ),
                     title: const Text('Logout'),
-                    onTap: () => NavigationService.instance
-                        .navigateTo(changePasswordRoute),
+                    onTap: () {
+                      showCanceldialoge();
+                    },
+                  ),
+                  ListTile(
+                    leading: Image.asset(
+                      'changePass'.png,
+                      height: 30,
+                    ),
+                    title: const Text(
+                      'admin',
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14),
+                    ),
+                    onTap: () =>
+                        NavigationService.instance.navigateTo(adminHome),
                   ),
                 ],
               ),
@@ -195,30 +237,56 @@ class _NavDrawerState extends State<NavDrawer> {
               //     ),
               //   ],
               // ),
-              Column(
-                children: [
-                  ListTile(
-                    leading: const Icon(
-                      Icons.lock,
-                      color: Colors.white,
-                    ),
-                    title: const Text('Admin dashbord'),
-                    onTap: () =>
-                        NavigationService.instance.navigateTo(adminHome),
-                  ),
-                  ListTile(
-                    leading: const Icon(
-                      Icons.lock,
-                      color: Colors.white,
-                    ),
-                    title: const Text('driver dashbord'),
-                    onTap: () =>
-                        NavigationService.instance.navigateTo(driverHome),
-                  ),
-                ],
-              ),
+              data!.roles![0].name != 'Passenger'
+                  ? ListTile(
+                      leading: const Icon(
+                        Icons.lock,
+                        color: Colors.white,
+                      ),
+                      title: const Text('Admin dashbord'),
+                      onTap: () =>
+                          NavigationService.instance.navigateTo(adminHome),
+                    )
+                  : Container(),
+              data!.roles![0].name != 'Passenger'
+                  ? ListTile(
+                      leading: const Icon(
+                        Icons.lock,
+                        color: Colors.white,
+                      ),
+                      title: const Text('driver dashbord'),
+                      onTap: () =>
+                          NavigationService.instance.navigateTo(driverHome),
+                    )
+                  : Container(),
             ],
           ),
         ));
+  }
+
+  Future showCanceldialoge() {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return DialogWiget(
+            content: 'Do you want to logout?',
+            postiveButtonText: 'Yes',
+            negetiveButtonText: 'No',
+            contextt: context,
+            onTap: () {
+              // context.read<LogoutCubit>().getlogout();
+              context.read<UserCubit>().logout();
+
+              ScaffoldMessenger.of(context)
+                ..hideCurrentSnackBar()
+                ..showSnackBar(
+                  SnackBar(
+                    content: Text('Successfully Logout'),
+                  ),
+                );
+              NavigationService.instance.pushAndRemoveUntil(loginRoute);
+            },
+          );
+        });
   }
 }

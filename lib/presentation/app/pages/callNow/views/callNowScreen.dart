@@ -1,16 +1,11 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:intl/intl.dart';
-import 'package:speedylimo/presentation/widgets/timepickerWidget/timePicker.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 import '../../../../../services/navigation/navigation_service.dart';
-
 import '/business_logic/cubits/cubits.dart';
 import '/presentation/presentation.dart';
-
 import '/utils/constants/app/app_constants.dart';
 import '/utils/utils.dart';
 
@@ -27,8 +22,9 @@ class _CallNowScreenState extends State<CallNowScreen> {
   bool revenueclr = true;
   bool budgetclr = true;
   void launchwatsapp({@required number, @required Message}) async {
-    String url = "whatsapp://send?phone-$number@text-$Message";
-    await canLaunch(url) ? launch(url) : print("cant open");
+    // ignore: omit_local_variable_types
+    var url = 'whatsapp://send?phone-$number@text-$Message';
+    await canLaunch(url) ? launch(url) : print('cant open');
   }
 
   @override
@@ -65,42 +61,10 @@ class _CallNowScreenState extends State<CallNowScreen> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'CALL',
-                            style: TextStyle(
-                                color: tempColor.blackColor,
-                                fontSize: 26,
-                                fontWeight: FontWeight.w600,
-                                fontFamily:
-                                    'lib/assets/font/AbrilFatface-Regular.ttf'),
-                          ),
-                          const SizedBox(
-                            width: 5,
-                          ),
-                          Center(
-                              child: ShaderMask(
-                                  shaderCallback: (Rect bounds) {
-                                    return const LinearGradient(
-                                      colors: [Colors.blue, Color(0xff00C6FF)],
-                                      begin: Alignment.centerLeft,
-                                      end: Alignment.centerRight,
-                                    ).createShader(bounds);
-                                  },
-                                  child: RichText(
-                                    text: const TextSpan(
-                                      text: 'NOW',
-                                      style: TextStyle(
-                                        fontFamily:
-                                            'lib/assets/font/AbrilFatface-Regular.ttf',
-                                        fontSize: 30,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ))),
-                        ],
+                      CustomLinearGradientWidget(
+                        firstText: 'CALL',
+                        lastText: 'NOW',
+                        fontSize: 25,
                       ),
                       const SizedBox(
                         height: 20,
@@ -109,7 +73,7 @@ class _CallNowScreenState extends State<CallNowScreen> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           const Text(
-                            "Get in Touch",
+                            'Get in Touch',
                             style: TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.bold,
@@ -126,7 +90,7 @@ class _CallNowScreenState extends State<CallNowScreen> {
                           InkWell(
                             onTap: (() => launch(
                                 'https://www.google.com/maps/search/?api=1&query='
-                                "2624 Wilkinson Blvd. Charlotte, NC 28208")),
+                                '2624 Wilkinson Blvd. Charlotte, NC 28208')),
                             child: const Icon(
                               Icons.location_on,
                               color: Colors.blue,
@@ -139,7 +103,7 @@ class _CallNowScreenState extends State<CallNowScreen> {
                           const Expanded(
                             child: Text(
                               textAlign: TextAlign.justify,
-                              "2624 Wilkinson Blvd. Charlotte, NC 28208",
+                              '2624 Wilkinson Blvd. Charlotte, NC 28208',
                               style: TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.bold,
@@ -166,7 +130,7 @@ class _CallNowScreenState extends State<CallNowScreen> {
                             width: 10,
                           ),
                           const Text(
-                            "+17043766668",
+                            '+17043766668',
                             style: TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.bold,
@@ -192,7 +156,7 @@ class _CallNowScreenState extends State<CallNowScreen> {
                             width: 10,
                           ),
                           const Text(
-                            "info@myspeedylimo.co",
+                            'info@myspeedylimo.co',
                             style: TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.bold,
@@ -207,7 +171,7 @@ class _CallNowScreenState extends State<CallNowScreen> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           const Text(
-                            "© 2022 Speedy Limo. All rights reserved |",
+                            '© 2022 Speedy Limo. All rights reserved |',
                             style: TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.bold,
@@ -225,7 +189,7 @@ class _CallNowScreenState extends State<CallNowScreen> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 const Text(
-                                  "Privacy Policy | Terms & Conditions",
+                                  'Privacy Policy | Terms & Conditions',
                                   style: TextStyle(
                                       color: Colors.black,
                                       fontWeight: FontWeight.bold,
@@ -260,7 +224,7 @@ class _CallNowScreenState extends State<CallNowScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const Text(
-                          "LEARN ABOUT SPEEDY LIMO",
+                          'LEARN ABOUT SPEEDY LIMO',
                           style: TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
@@ -291,7 +255,7 @@ class _CallNowScreenState extends State<CallNowScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const Text(
-                          "GET SUPPORT",
+                          'GET SUPPORT',
                           style: TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
@@ -302,38 +266,38 @@ class _CallNowScreenState extends State<CallNowScreen> {
                     ),
                   ),
                 ),
-                InkWell(
-                  onTap: () {
-                    NavigationService.instance.navigateTo(careerRoot);
-                  },
-                  child: Container(
-                    margin: const EdgeInsets.all(15.0),
-                    padding: const EdgeInsets.all(20),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: tempColor.lightGreyColor,
-                        style: BorderStyle.solid,
-                        width: 1.5,
-                      ),
-                      color: tempColor.whiteColor,
-                      borderRadius: BorderRadius.circular(5.0),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        // ignore: avoid_unnecessary_containers
-                        const Text(
-                          "CAREER",
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 14),
-                        ),
-                        const Icon(Icons.arrow_right),
-                      ],
-                    ),
-                  ),
-                )
+                // InkWell(
+                //   onTap: () {
+                //     NavigationService.instance.navigateTo(careerRoot);
+                //   },
+                //   child: Container(
+                //     margin: const EdgeInsets.all(15.0),
+                //     padding: const EdgeInsets.all(20),
+                //     decoration: BoxDecoration(
+                //       border: Border.all(
+                //         color: tempColor.lightGreyColor,
+                //         style: BorderStyle.solid,
+                //         width: 1.5,
+                //       ),
+                //       color: tempColor.whiteColor,
+                //       borderRadius: BorderRadius.circular(5.0),
+                //     ),
+                //     child: Row(
+                //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //       children: [
+                //         // ignore: avoid_unnecessary_containers
+                //         const Text(
+                //           'CAREER',
+                //           style: TextStyle(
+                //               color: Colors.black,
+                //               fontWeight: FontWeight.bold,
+                //               fontSize: 14),
+                //         ),
+                //         const Icon(Icons.arrow_right),
+                //       ],
+                //     ),
+                //   ),
+                // )
               ],
             ),
           ),

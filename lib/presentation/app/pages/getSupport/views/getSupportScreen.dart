@@ -7,6 +7,7 @@ import 'package:speedylimo/presentation/presentation.dart';
 import '../../../../../../../utils/constants/app/app_constants.dart';
 import '/utils/utils.dart';
 import '../../../../widgets/widget.dart';
+import '/services/navigation/navigation_service.dart';
 
 class GetSupportScreen extends StatefulWidget {
   const GetSupportScreen({Key? key}) : super(key: key);
@@ -28,14 +29,14 @@ class _GetSupportScreenState extends State<GetSupportScreen> {
   var imageUni8;
   var Paths;
 
-  pickImage(ImageSource gallery) async {
+  Future<void> pickImage(ImageSource gallery) async {
     try {
       final t = await ImagePicker().pickImage(source: ImageSource.gallery);
       if (t == null) return;
       final imageTemporary = File(t.path);
       setState(() => imageUni8 = imageTemporary.readAsBytesSync());
-      String paths = imageTemporary.path;
-      print("pphhhh" + paths);
+      var paths = imageTemporary.path;
+      print('pphhhh' + paths);
       Paths = File(t.path);
       // Navigator.of(context).pop();
     } on PlatformException catch (e) {
@@ -71,29 +72,49 @@ class _GetSupportScreenState extends State<GetSupportScreen> {
             expandedHeight: 200.0,
             pinned: true,
             leading: IconButton(
-                icon: const Icon(
-                  Icons.filter_1,
-                  color: Colors.transparent,
-                ),
                 onPressed: () {
-                  // Do something
-                }),
+                  NavigationService.instance.goBack();
+                },
+                icon: Icon(
+                  Icons.arrow_back_ios_new_outlined,
+                  color: Colors.black,
+                  size: 30,
+                )),
             floating: true,
             // snap: true,
             // elevation: 50,
-            backgroundColor: Colors.grey,
+            backgroundColor: Color(0xffE0E0E0),
             flexibleSpace: FlexibleSpaceBar(
               centerTitle: true,
-              title: const Padding(
-                padding: EdgeInsets.only(top: 30.0),
-                child: CustomLinearGradientWidget(
-                  firstText: 'Get',
-                  lastText: 'Support',
-                  fontSize: 30,
-                ),
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Get ',
+                    style: TextStyle(
+                        fontSize: 25,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    'Support',
+                    style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.blue),
+                  ),
+                ],
               ),
+              // const Padding(
+              //   padding: EdgeInsets.only(top: 30.0),
+              //   child: CustomLinearGradientWidget(
+              //     firstText: 'Get',
+              //     lastText: 'Support',
+              //     fontSize: 30,
+              //   ),
+              // ),
               background: Image.asset(
-                "lib/assets/icons/abput1.png",
+                'lib/assets/icons/abput1.png',
                 fit: BoxFit.cover,
               ),
             ),
@@ -131,7 +152,7 @@ class _GetSupportScreenState extends State<GetSupportScreen> {
                             height: 20,
                           ),
                           const Text(
-                            "Need a quote? You are our number one priority. Get in touch now to book the right limo and make your occasion",
+                            'Need a quote? You are our number one priority. Get in touch now to book the right limo and make your occasion',
                             textAlign: TextAlign.center,
                           ),
                         ],
@@ -225,7 +246,7 @@ class _GetSupportScreenState extends State<GetSupportScreen> {
                           height: 15,
                         ),
                         const CustomLinearGradientWidget(
-                          lastText: "PREFERRED CONTACT METHOD:",
+                          lastText: 'PREFERRED CONTACT METHOD:',
                           fontSize: 20,
                         ),
                         const SizedBox(
@@ -243,7 +264,7 @@ class _GetSupportScreenState extends State<GetSupportScreen> {
                                 });
                               },
                             ),
-                            const Text("Email"),
+                            const Text('Email'),
                             Radio(
                               value: 2,
                               groupValue: _selectedValue,
@@ -253,7 +274,7 @@ class _GetSupportScreenState extends State<GetSupportScreen> {
                                 });
                               },
                             ),
-                            const Text("Phone"),
+                            const Text('Phone'),
                           ],
                         ),
                         const SizedBox(
@@ -344,7 +365,7 @@ class _GetSupportScreenState extends State<GetSupportScreen> {
                                           size: 100,
                                         ),
                                         const Text(
-                                          "ATTACHMENTS & SCREEN SHOTS or Drop file here",
+                                          'ATTACHMENTS & SCREEN SHOTS or Drop file here',
                                           textAlign: TextAlign.center,
                                           style: TextStyle(fontSize: 14),
                                         ),
@@ -366,7 +387,7 @@ class _GetSupportScreenState extends State<GetSupportScreen> {
                             height: 15,
                           ),
                           const Text(
-                            "Accepted file types: jpg, jpeg, gif, png, pdf, webp, webm, heif, hevc, Max. file size: 5 MB, Max. files: 5. To expedite your request, please include a screen shot of the issue you had (if possible).",
+                            'Accepted file types: jpg, jpeg, gif, png, pdf, webp, webm, heif, hevc, Max. file size: 5 MB, Max. files: 5. To expedite your request, please include a screen shot of the issue you had (if possible).',
                             textAlign: TextAlign.center,
                           ),
                           const SizedBox(
