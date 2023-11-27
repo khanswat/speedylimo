@@ -22,6 +22,7 @@ class _MyRideDetailScreenState extends State<MyRideDetailScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        endDrawer: NavDrawer(context),
         appBar: PreferredSize(
             preferredSize: const Size.fromHeight(80),
             child: AppBarWidget(

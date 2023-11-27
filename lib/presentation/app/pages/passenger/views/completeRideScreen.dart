@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '/business_logic/cubits/cubits.dart';
 import '/presentation/presentation.dart';
+import '/services/navigation/navigation_service.dart';
+import '/utils/utils.dart';
 
 class CompleteRidesScreen extends StatefulWidget {
   const CompleteRidesScreen({
@@ -24,6 +26,7 @@ class _CompleteRidesScreenState extends State<CompleteRidesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        endDrawer: NavDrawer(context),
         appBar: PreferredSize(
             preferredSize: const Size.fromHeight(80),
             child: AppBarWidget(
@@ -32,7 +35,7 @@ class _CompleteRidesScreenState extends State<CompleteRidesScreen> {
               logo: false,
               title1: 'Completed',
               title2: 'Rides',
-              name: context.read<UserCubit>().state.update_name ?? '',
+              name: '',
             )),
         body: BlocBuilder<CompletedRidesCubit, CompletedRidesState>(
           builder: (context, state) {

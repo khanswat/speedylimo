@@ -24,6 +24,7 @@ class _AcceptedRidesScreenState extends State<AcceptedRidesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        endDrawer: NavDrawer(context),
         appBar: PreferredSize(
             preferredSize: const Size.fromHeight(80),
             child: AppBarWidget(
@@ -32,7 +33,7 @@ class _AcceptedRidesScreenState extends State<AcceptedRidesScreen> {
               logo: false,
               title1: 'Accepted',
               title2: 'Rides',
-              name: context.read<UserCubit>().state.update_name ?? '',
+              name: '',
             )),
         body: BlocBuilder<AcceptedRidesCubit, AcceptedRidesState>(
           builder: (context, state) {

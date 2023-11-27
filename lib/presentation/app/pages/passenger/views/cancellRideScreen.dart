@@ -25,6 +25,7 @@ class _CancellRidesScreenState extends State<CancellRidesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        endDrawer: NavDrawer(context),
         appBar: PreferredSize(
             preferredSize: const Size.fromHeight(80),
             child: AppBarWidget(
@@ -33,7 +34,7 @@ class _CancellRidesScreenState extends State<CancellRidesScreen> {
               logo: false,
               title1: 'Cancelled',
               title2: 'Rides',
-              name: context.read<UserCubit>().state.update_name ?? '',
+              name: '',
             )),
         body: BlocBuilder<CancelRideCubit, CancelRideState>(
           builder: (context, state) {
