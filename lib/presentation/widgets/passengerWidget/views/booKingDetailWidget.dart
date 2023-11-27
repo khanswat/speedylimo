@@ -49,19 +49,7 @@ class BookingDetailWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           //todo booking Detail
-          Container(
-            margin: const EdgeInsets.all(15.0),
-            child: Column(
-              children: [
-                // ignore: avoid_unnecessary_containers
-                CustomLinearGradientWidget(
-                  firstText: 'Booking',
-                  lastText: 'Detail',
-                  fontSize: 24,
-                ),
-              ],
-            ),
-          ),
+
           Container(
             padding: EdgeInsets.all(10),
             decoration: BoxDecoration(
