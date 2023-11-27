@@ -24,8 +24,9 @@ class _D_BookingDetailScreenState extends State<D_BookingDetailScreen> {
             child: AppBarWidget(
               isshow: false,
               showback: true,
-              title: false,
-              titlename: '',
+              logo: false,
+              title1: 'Booking',
+              title2: 'Detail',
               name: context.read<UserCubit>().state.update_name ?? '',
             )),
         body: SingleChildScrollView(

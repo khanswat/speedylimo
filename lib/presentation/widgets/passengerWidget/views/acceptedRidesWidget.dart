@@ -11,8 +11,9 @@ class AcceptedRidesWidget extends StatelessWidget {
       this.time = '',
       this.totalAmount = '',
       required this.onTap,
-      required this.onTap2,
-      required this.onTap1})
+      required this.status,
+      required this.onTapcomplete,
+      required this.onTapCancel})
       : super(key: key);
 
   final String pickupTime;
@@ -20,9 +21,10 @@ class AcceptedRidesWidget extends StatelessWidget {
   final String rideID;
   final String totalAmount;
   final String time;
-  final GestureTapCallback onTap;
-  final GestureTapCallback onTap1;
-  final GestureTapCallback onTap2;
+  final String status;
+  final VoidCallback onTap;
+  final VoidCallback onTapcomplete;
+  final VoidCallback onTapCancel;
 
   @override
   Widget build(BuildContext context) {
@@ -48,20 +50,21 @@ class AcceptedRidesWidget extends StatelessWidget {
               Text(
                 'Driver Name :',
                 style: TextStyle(
-                    color: tempColor.blackColor,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    fontFamily: 'lib/assets/font/AbrilFatface-Regular.ttf'),
+                  color: tempColor.greyColor,
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               const SizedBox(
-                width: 5,
+                width: 10,
               ),
               Text(
                 driverName,
                 style: TextStyle(
-                    color: tempColor.blackColor,
-                    fontSize: 18,
-                    fontFamily: 'lib/assets/font/AbrilFatface-Regular.ttf'),
+                  color: tempColor.blackColor,
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ],
           ),
@@ -74,20 +77,21 @@ class AcceptedRidesWidget extends StatelessWidget {
               Text(
                 'Pickup Time :',
                 style: TextStyle(
-                    color: tempColor.blackColor,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
-                    fontFamily: 'lib/assets/font/AbrilFatface-Regular.ttf'),
+                  color: tempColor.greyColor,
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               const SizedBox(
-                width: 5,
+                width: 10,
               ),
               Text(
                 pickupTime,
                 style: TextStyle(
-                    color: tempColor.blackColor,
-                    fontSize: 18,
-                    fontFamily: 'lib/assets/font/AbrilFatface-Regular.ttf'),
+                  color: tempColor.blackColor,
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ],
           ),
@@ -98,22 +102,22 @@ class AcceptedRidesWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
-                'Ride ID : :',
+                'Ride ID :',
                 style: TextStyle(
-                    color: tempColor.blackColor,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
-                    fontFamily: 'lib/assets/font/AbrilFatface-Regular.ttf'),
+                  color: tempColor.greyColor,
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               const SizedBox(
-                width: 5,
+                width: 10,
               ),
               Text(
                 myride,
                 style: TextStyle(
                     color: tempColor.blackColor,
-                    fontSize: 18,
-                    fontFamily: 'lib/assets/font/AbrilFatface-Regular.ttf'),
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold),
               ),
             ],
           ),
@@ -124,22 +128,22 @@ class AcceptedRidesWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
-                'Time : ',
+                'Time :',
                 style: TextStyle(
-                    color: tempColor.blackColor,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
-                    fontFamily: 'lib/assets/font/AbrilFatface-Regular.ttf'),
+                  color: tempColor.greyColor,
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               const SizedBox(
-                width: 5,
+                width: 10,
               ),
               Text(
                 time,
                 style: TextStyle(
                     color: tempColor.blackColor,
-                    fontSize: 18,
-                    fontFamily: 'lib/assets/font/AbrilFatface-Regular.ttf'),
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold),
               ),
             ],
           ),
@@ -150,61 +154,57 @@ class AcceptedRidesWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
-                'Total Amount : ',
+                'Total Amount :',
                 style: TextStyle(
-                    color: tempColor.blackColor,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
-                    fontFamily: 'lib/assets/font/AbrilFatface-Regular.ttf'),
+                  color: tempColor.greyColor,
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               const SizedBox(
-                width: 5,
+                width: 10,
               ),
               Text(
                 totalAmount,
                 style: TextStyle(
-                    color: tempColor.blackColor,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
-                    fontFamily: 'lib/assets/font/AbrilFatface-Regular.ttf'),
+                  color: tempColor.blackColor,
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ],
           ),
           const SizedBox(
-            height: 15,
+            height: 10,
           ),
-          InkWell(
-            onTap: onTap,
-            child: Container(
-              height: 50,
-              width: 500,
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.green,
-                  style: BorderStyle.solid,
-                  width: 1.5,
-                ),
-                color: tempColor.whiteColor,
-                borderRadius: BorderRadius.circular(30.0),
+          Container(
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: Colors.green,
+                style: BorderStyle.solid,
+                width: 1.5,
               ),
-              child: const Center(
+              color: tempColor.whiteColor,
+              borderRadius: BorderRadius.circular(30.0),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Center(
                   child: Text(
-                'STATUS: ONGOING',
+                'STATUS: $status',
                 style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    fontFamily: 'lib/assets/font/AbrilFatface-Regular.ttf'),
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    color: tempColor.blackColor),
               )),
             ),
           ),
           const SizedBox(
-            height: 15,
+            height: 10,
           ),
-          InkWell(
-            onTap: onTap1,
+          GestureDetector(
+            onTap: onTapcomplete,
             child: Container(
-              height: 50,
-              width: 500,
               decoration: BoxDecoration(
                 border: Border.all(
                   color: Colors.blue,
@@ -214,24 +214,25 @@ class AcceptedRidesWidget extends StatelessWidget {
                 color: tempColor.whiteColor,
                 borderRadius: BorderRadius.circular(30.0),
               ),
-              child: const Center(
-                  child: Text(
-                'COMPLETE RIDE',
-                style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    fontFamily: 'lib/assets/font/AbrilFatface-Regular.ttf'),
-              )),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Center(
+                    child: Text(
+                  'COMPLETE RIDE',
+                  style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      color: tempColor.blackColor),
+                )),
+              ),
             ),
           ),
           const SizedBox(
-            height: 15,
+            height: 10,
           ),
-          InkWell(
-            onTap: onTap2,
+          GestureDetector(
+            onTap: onTapCancel,
             child: Container(
-              height: 50,
-              width: 500,
               decoration: BoxDecoration(
                 border: Border.all(
                   color: Colors.red,
@@ -241,14 +242,45 @@ class AcceptedRidesWidget extends StatelessWidget {
                 color: tempColor.whiteColor,
                 borderRadius: BorderRadius.circular(30.0),
               ),
-              child: const Center(
-                  child: Text(
-                'CANCLE RIDE',
-                style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    fontFamily: 'lib/assets/font/AbrilFatface-Regular.ttf'),
-              )),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Center(
+                    child: Text(
+                  'CANCLE RIDE',
+                  style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      color: tempColor.blackColor),
+                )),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          GestureDetector(
+            onTap: onTap,
+            child: Container(
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.blue,
+                  style: BorderStyle.solid,
+                  width: 1.5,
+                ),
+                color: tempColor.whiteColor,
+                borderRadius: BorderRadius.circular(30.0),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: const Center(
+                    child: Text(
+                  'VIEW DETAILS',
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                  ),
+                )),
+              ),
             ),
           )
         ],

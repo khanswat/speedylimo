@@ -21,8 +21,9 @@ class _policyTermsScreenState extends State<policyTermsScreen> {
             child: AppBarWidget(
               isshow: false,
               showback: true,
-              title: false,
-              titlename: '',
+              logo: true,
+              title1: '',
+              title2: '',
               name: '',
             )),
         body: SingleChildScrollView(

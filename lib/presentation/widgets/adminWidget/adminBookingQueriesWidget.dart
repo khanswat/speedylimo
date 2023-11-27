@@ -58,12 +58,15 @@ class BookingQueriesWidget extends StatelessWidget {
                                 'Name:  ',
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
-                                    color: Colors.blue,
+                                    color: Colors.grey,
                                     fontSize: 15),
                               ),
                               Text(
                                 name,
-                                style: TextStyle(fontSize: 15),
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ],
                           ),
@@ -84,12 +87,15 @@ class BookingQueriesWidget extends StatelessWidget {
                             'Email Address:   ',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: Colors.blue,
+                                color: Colors.grey,
                                 fontSize: 15),
                           ),
                           Text(
                             EmailAddress,
-                            style: TextStyle(fontSize: 15),
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ],
                       ),
@@ -103,12 +109,15 @@ class BookingQueriesWidget extends StatelessWidget {
                             'Phone No:  ',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: Colors.blue,
+                                color: Colors.grey,
                                 fontSize: 15),
                           ),
                           Text(
                             PhoneNo,
-                            style: TextStyle(fontSize: 15),
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ],
                       ),
@@ -122,12 +131,15 @@ class BookingQueriesWidget extends StatelessWidget {
                             'Date / Time:  ',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: Colors.blue,
+                                color: Colors.grey,
                                 fontSize: 15),
                           ),
                           Text(
                             dateTime,
-                            style: TextStyle(fontSize: 15),
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ],
                       )

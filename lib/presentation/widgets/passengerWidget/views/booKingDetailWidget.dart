@@ -44,477 +44,498 @@ class BookingDetailWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: [
-      //todo email form
-      Container(
-        margin: const EdgeInsets.all(15.0),
-        padding: const EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          // border: Border.all(
-          //   color: tempColor.greyColor,
-          //   style: BorderStyle.solid,
-          //   width: 1.5,
-          // ),
-          color: tempColor.whiteColor,
-          borderRadius: BorderRadius.circular(5.0),
-        ),
-        child: Column(
-          children: [
-            // ignore: avoid_unnecessary_containers
-            Container(
-              child: const CustomLinearGradientWidget(
-                firstText: 'Booking',
-                lastText: 'Detail',
-                fontSize: 30,
-              ),
-            ),
+    return Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          //todo booking Detail
 
-            // const Text(
-            //   "We are always in need of driver",
-            //   textAlign: TextAlign.center,
-            // ),
-          ],
-        ),
-      ),
-      Container(
-        margin: const EdgeInsets.all(15.0),
-        padding: const EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          border: Border.all(
-            color: tempColor.greyColor,
-            style: BorderStyle.solid,
-            width: 1.5,
-          ),
-          color: tempColor.whiteColor,
-          borderRadius: BorderRadius.circular(5.0),
-        ),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+          Container(
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: tempColor.greyColor,
+                style: BorderStyle.solid,
+                width: 1.5,
+              ),
+              color: tempColor.whiteColor,
+              borderRadius: BorderRadius.circular(5.0),
+            ),
+            child: Column(
               children: [
-                const Text(
-                  'Passenger Name :',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15),
-                ),
-                Text(
-                  passengerName,
-                  style: const TextStyle(
-                    color: Colors.black,
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                const Text(
-                  'Booking Type : ',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15),
-                ),
-                Text(
-                  bookingType,
-                  style: const TextStyle(
-                    color: Colors.black,
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                const Text(
-                  'Ride Status : ',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15),
-                ),
-                Container(
-                  child: rideStatus,
-                )
-              ],
-            ),
-          ],
-        ),
-      ),
-      Container(
-        margin: const EdgeInsets.all(15.0),
-        padding: const EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          border: Border.all(
-            color: tempColor.greyColor,
-            style: BorderStyle.solid,
-            width: 1.5,
-          ),
-          color: tempColor.whiteColor,
-          borderRadius: BorderRadius.circular(5.0),
-        ),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                const Text(
-                  'No of Passengers :',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15),
-                ),
-                Text(
-                  noPassenger,
-                  style: const TextStyle(
-                    color: Colors.black,
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                const Text(
-                  'No of Bags: ',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15),
-                ),
-                Text(
-                  noBages,
-                  style: const TextStyle(
-                    color: Colors.black,
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                const Text(
-                  'Pickup Time : ',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15),
-                ),
-                Text(
-                  pickupTime,
-                  style: const TextStyle(
-                    color: Colors.black,
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-      Container(
-        margin: const EdgeInsets.all(15.0),
-        padding: const EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          border: Border.all(
-            color: tempColor.greyColor,
-            style: BorderStyle.solid,
-            width: 1.5,
-          ),
-          color: tempColor.whiteColor,
-          borderRadius: BorderRadius.circular(5.0),
-        ),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                // ignore: avoid_unnecessary_containers
-                Container(
-                  child: const Text(
-                    'DropOff Time / Trip Duration',
-                    style: TextStyle(
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Passenger Name :',
+                      style: TextStyle(
+                          color: tempColor.greyColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      passengerName,
+                      style: TextStyle(
                         color: Colors.black,
+                        fontSize: 14,
                         fontWeight: FontWeight.bold,
-                        fontSize: 15),
-                  ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Booking Type :',
+                      style: TextStyle(
+                          color: tempColor.greyColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      bookingType,
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Ride Status :',
+                      style: TextStyle(
+                          color: tempColor.greyColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Container(
+                      child: rideStatus,
+                    )
+                  ],
                 ),
               ],
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Container(
+            padding: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: tempColor.greyColor,
+                style: BorderStyle.solid,
+                width: 1.5,
+              ),
+              color: tempColor.whiteColor,
+              borderRadius: BorderRadius.circular(5.0),
+            ),
+            child: Column(
               children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      'No of Passengers :',
+                      style: TextStyle(
+                          color: tempColor.greyColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      noPassenger,
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      'No of Bags :',
+                      style: TextStyle(
+                          color: tempColor.greyColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      noBages,
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Pickup Time :',
+                      style: TextStyle(
+                          color: tempColor.greyColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      pickupTime,
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Container(
+            padding: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: tempColor.greyColor,
+                style: BorderStyle.solid,
+                width: 1.5,
+              ),
+              color: tempColor.whiteColor,
+              borderRadius: BorderRadius.circular(5.0),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Container(
+                      child: Text(
+                        'DropOff Time / Trip Duration',
+                        style: TextStyle(
+                            color: tempColor.greyColor,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 10,
+                ),
                 Text(
                   droffTime,
-                  style: const TextStyle(color: Colors.black, fontSize: 15),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-      Container(
-        margin: const EdgeInsets.all(15.0),
-        padding: const EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          border: Border.all(
-            color: tempColor.greyColor,
-            style: BorderStyle.solid,
-            width: 1.5,
-          ),
-          color: tempColor.whiteColor,
-          borderRadius: BorderRadius.circular(5.0),
-        ),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                // ignore: avoid_unnecessary_containers
-                Container(
-                  child: const Text(
-                    'Pickup location',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15),
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ],
             ),
-            const SizedBox(
-              height: 10,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text(
-                  pickupLocation,
-                  style: const TextStyle(color: Colors.black, fontSize: 15),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-
-      Container(
-        margin: const EdgeInsets.all(15.0),
-        padding: const EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          border: Border.all(
-            color: tempColor.greyColor,
-            style: BorderStyle.solid,
-            width: 1.5,
           ),
-          color: tempColor.whiteColor,
-          borderRadius: BorderRadius.circular(5.0),
-        ),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                // ignore: avoid_unnecessary_containers
-                Container(
-                  child: const Text(
-                    'Drop off location',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15),
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text(
-                  drpOffLocstion,
-                  style: const TextStyle(color: Colors.black, fontSize: 15),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-      Container(
-        margin: const EdgeInsets.all(15.0),
-        padding: const EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          border: Border.all(
-            color: tempColor.greyColor,
-            style: BorderStyle.solid,
-            width: 1.5,
+          SizedBox(
+            height: 10,
           ),
-          color: tempColor.whiteColor,
-          borderRadius: BorderRadius.circular(5.0),
-        ),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+          Container(
+            padding: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: tempColor.greyColor,
+                style: BorderStyle.solid,
+                width: 1.5,
+              ),
+              color: tempColor.whiteColor,
+              borderRadius: BorderRadius.circular(5.0),
+            ),
+            child: Column(
               children: [
-                // ignore: avoid_unnecessary_containers
-                Container(
-                  child: const Text(
-                    'Special Instructions',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15),
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    // ignore: avoid_unnecessary_containers
+                    Container(
+                      child: Text(
+                        'Pickup location',
+                        style: TextStyle(
+                            color: tempColor.greyColor,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: Text(
+                        pickupLocation,
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
-            const SizedBox(
-              height: 10,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text(
-                  specialInstructions,
-                  style: const TextStyle(color: Colors.black, fontSize: 15),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-      Container(
-          margin: const EdgeInsets.all(15.0),
-          padding: const EdgeInsets.all(20),
-          decoration: BoxDecoration(
-            // border: Border.all(
-            //   color: tempColor.greyColor,
-            //   style: BorderStyle.solid,
-            //   width: 1.5,
-            // ),
-            color: tempColor.whiteColor,
-            borderRadius: BorderRadius.circular(5.0),
           ),
-          child: const CustomLinearGradientWidget(
-            firstText: 'Billing',
-            lastText: 'Detail',
-            fontSize: 30,
-          )),
-      Container(
-          margin: const EdgeInsets.all(15.0),
-          padding: const EdgeInsets.all(20),
-          decoration: BoxDecoration(
-            border: Border.all(
-              color: tempColor.greyColor,
-              style: BorderStyle.solid,
-              width: 1.5,
-            ),
-            color: tempColor.whiteColor,
-            borderRadius: BorderRadius.circular(5.0),
+          SizedBox(
+            height: 10,
           ),
-          child: Column(children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          Container(
+            padding: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: tempColor.greyColor,
+                style: BorderStyle.solid,
+                width: 1.5,
+              ),
+              color: tempColor.whiteColor,
+              borderRadius: BorderRadius.circular(5.0),
+            ),
+            child: Column(
               children: [
-                const Text(
-                  'Trip Type',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    // ignore: avoid_unnecessary_containers
+                    Container(
+                      child: Text(
+                        'Drop off location',
+                        style: TextStyle(
+                            color: tempColor.greyColor,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14),
+                      ),
+                    ),
+                  ],
                 ),
-                Text(
-                  tripType,
-                  style: const TextStyle(color: Colors.black, fontSize: 15),
+                SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: Text(
+                        drpOffLocstion,
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
-            const SizedBox(
-              height: 10,
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Container(
+            padding: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: tempColor.greyColor,
+                style: BorderStyle.solid,
+                width: 1.5,
+              ),
+              color: tempColor.whiteColor,
+              borderRadius: BorderRadius.circular(5.0),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            child: Column(
               children: [
-                const Text(
-                  'Est. drive time',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Container(
+                      child: Text(
+                        'Special Instructions',
+                        style: TextStyle(
+                            color: tempColor.greyColor,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15),
+                      ),
+                    ),
+                  ],
                 ),
-                Text(
-                  estDriveTime,
-                  style: const TextStyle(color: Colors.black, fontSize: 15),
+                SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: Text(
+                        specialInstructions,
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
-            const SizedBox(
-              height: 10,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(
-                  'Est. distance',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15),
+          ),
+          //todo billing Detail
+          Container(
+              margin: const EdgeInsets.all(15.0),
+              child: const CustomLinearGradientWidget(
+                firstText: 'Billing',
+                lastText: 'Detail',
+                fontSize: 24,
+              )),
+          SizedBox(
+            height: 10,
+          ),
+          Container(
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: tempColor.greyColor,
+                  style: BorderStyle.solid,
+                  width: 1.5,
                 ),
-                Text(
-                  estDistance,
-                  style: TextStyle(color: Colors.black, fontSize: 15),
+                color: tempColor.whiteColor,
+                borderRadius: BorderRadius.circular(5.0),
+              ),
+              child: Column(children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Trip Type',
+                      style: TextStyle(
+                          color: tempColor.greyColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14),
+                    ),
+                    Text(
+                      tripType,
+                      style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(
-                  'Total Amount',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15),
+                const SizedBox(
+                  height: 10,
                 ),
-                Text(
-                  totslAmount,
-                  style: const TextStyle(color: Colors.black, fontSize: 15),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Est. drive time',
+                      style: TextStyle(
+                          color: tempColor.greyColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14),
+                    ),
+                    Text(
+                      estDriveTime,
+                      style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-          ])),
-    ]);
+                const SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Est. distance',
+                      style: TextStyle(
+                          color: tempColor.greyColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14),
+                    ),
+                    Text(
+                      estDistance,
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Total Amount',
+                      style: TextStyle(
+                          color: tempColor.greyColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14),
+                    ),
+                    Text(
+                      totslAmount,
+                      style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+              ])),
+        ]);
   }
 }

@@ -36,8 +36,9 @@ class _DriverHomeScreenState extends State<DriverHomeScreen> {
             child: AppBarWidget(
               isshow: false,
               showback: false,
-              title: false,
-              titlename: '',
+              logo: true,
+              title1: '',
+              title2: '',
               name: context.read<UserCubit>().state.update_name ?? '',
             )),
         body: SingleChildScrollView(
@@ -120,49 +121,50 @@ class _DriverHomeScreenState extends State<DriverHomeScreen> {
                         height: 10,
                       ),
                       AdmainContinerWidget(
-                          text: 'My Ride',
+                          text: 'My Rides',
+                          fontSize: 14,
                           icons: const Icon(Icons.heart_broken_rounded,
-                              color: Colors.white, size: 30),
+                              color: Colors.white, size: 25),
                           onPressed: () {
                             NavigationService.instance.navigateTo(driverMyRide);
                           }),
                       AdmainContinerWidget(
                         text: 'Accepted Rides',
-                        fontSize: 16,
+                        fontSize: 14,
                         icons: const Icon(Icons.heart_broken_rounded,
-                            color: Colors.white, size: 30),
+                            color: Colors.white, size: 25),
                         onPressed: () => NavigationService.instance
                             .navigateTo(driverAcceptedRides),
                       ),
                       AdmainContinerWidget(
                         text: 'Cancelled Rides',
-                        fontSize: 16,
+                        fontSize: 14,
                         icons: const Icon(Icons.heart_broken_rounded,
-                            color: Colors.white, size: 30),
+                            color: Colors.white, size: 25),
                         onPressed: () => NavigationService.instance
                             .navigateTo(driverCancelledRides),
                       ),
                       AdmainContinerWidget(
                         text: 'Completed Rides',
-                        fontSize: 16,
+                        fontSize: 14,
                         icons: const Icon(Icons.view_list,
-                            color: Colors.white, size: 30),
+                            color: Colors.white, size: 25),
                         onPressed: () => NavigationService.instance
                             .navigateTo(driverCompltetRides),
                       ),
                       AdmainContinerWidget(
                         text: 'Change Password',
-                        fontSize: 16,
+                        fontSize: 14,
                         icons: const Icon(Icons.lock,
-                            color: Colors.white, size: 30),
+                            color: Colors.white, size: 25),
                         onPressed: () => NavigationService.instance
                             .navigateTo(changePasswordRoute),
                       ),
                       AdmainContinerWidget(
                         text: 'Logout',
-                        fontSize: 16,
+                        fontSize: 14,
                         icons: const Icon(Icons.power_settings_new_outlined,
-                            color: Colors.white, size: 30),
+                            color: Colors.white, size: 25),
                         onPressed: () {
                           showCanceldialoge();
                         },

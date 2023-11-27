@@ -1,7 +1,7 @@
 export 'views/acceptedRideBookingDetail.dart';
 export 'views/acceptedRidesScreen.dart';
-export 'views/bookingDetailScreen.dart';
-export 'views/cancellRide.dart';
+export 'views/myRide_Detail_Screen.dart';
+export 'views/cancellRideScreen.dart';
 export 'views/cancellRideDetailScreen.dart';
 export 'views/completeRideScreen.dart';
 export 'views/completeRideDetaileScreen.dart';

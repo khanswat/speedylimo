@@ -5,3 +5,7 @@ export 'userCubit/user.cubit.dart';
 export 'logoutCubit/logout.cubit.dart';
 export 'changePasswordCubit/changePassword.cubit.dart';
 export 'forgotPassword_Cubit/forgotPassword.cubit.dart';
+export 'myRides/myRides.cubit.dart';
+export 'acceptedRides/acceptedRides.cubit.dart';
+export 'cancelRides/cancel.ride.cubit.dart';
+export 'completedRides/completed.rides.cubit.dart';

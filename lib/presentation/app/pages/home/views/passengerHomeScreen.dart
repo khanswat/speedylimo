@@ -65,14 +65,15 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
           child: AppBarWidget(
             isshow: true,
             showback: false,
-            title: false,
-            titlename: '',
+            logo: true,
+            title1: '',
+            title2: '',
             name: '',
           )),
       body: Theme(
         data: Theme.of(
           context,
-        ).copyWith(colorScheme: ColorScheme.light(primary: Colors.amber)),
+        ).copyWith(colorScheme: ColorScheme.light(primary: Colors.blue)),
         child: Container(
           child: Column(
             children: [
@@ -80,8 +81,8 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                 height: 10,
               ),
               CustomLinearGradientWidget(
-                firstText: 'Confirm Your',
-                lastText: 'Details',
+                firstText: 'BOOK',
+                lastText: 'NOW',
                 fontSize: 24,
               ),
               Expanded(

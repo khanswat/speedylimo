@@ -27,8 +27,9 @@ class _D_CancellRidesScreenState extends State<D_CancellRidesScreen> {
             child: AppBarWidget(
               isshow: false,
               showback: true,
-              title: false,
-              titlename: '',
+              logo: false,
+              title1: 'Cancelled',
+              title2: 'Rides',
               name: context.read<UserCubit>().state.update_name ?? '',
             )),
         body: ListView.builder(

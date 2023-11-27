@@ -8,14 +8,17 @@ class AppBarWidget extends StatefulWidget {
   final bool isshow;
   final String name;
   final bool showback;
-  final bool title;
-  final String titlename;
+  final bool logo;
+  final String title1;
+  final String title2;
+
   const AppBarWidget(
       {Key? key,
       required this.isshow,
       required this.name,
-      required this.title,
-      required this.titlename,
+      required this.logo,
+      required this.title1,
+      required this.title2,
       required this.showback})
       : super(key: key);
 
@@ -51,11 +54,11 @@ class _AppBarWidgetState extends State<AppBarWidget> {
             children: [
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   widget.showback
                       ? SizedBox(
-                          width: 40,
+                          width: 30,
                           child: Center(
                               child: IconButton(
                                   onPressed: () {
@@ -68,34 +71,36 @@ class _AppBarWidgetState extends State<AppBarWidget> {
                                   ))),
                         )
                       : Container(),
-                  const SizedBox(
-                    width: 0,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      widget.title
-                          ? Container(
-                              margin: const EdgeInsets.only(top: 15),
-                              child: Text(
-                                widget.titlename,
-                                style: TextStyle(
-                                  color: tempColor.whiteColor,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            )
-                          : Container()
-                    ],
-                  )
                 ],
               ),
-              Image.asset(
-                'lib/assets/icons/new.png',
-                scale: 1.8,
-              ),
+              widget.logo
+                  ? Image.asset(
+                      'lib/assets/icons/updatelogo.png',
+                      scale: 1.8,
+                    )
+                  : Row(
+                      children: [
+                        Text(
+                          widget.title1,
+                          style: TextStyle(
+                            color: tempColor.blackColor,
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 8,
+                        ),
+                        Text(
+                          widget.title2,
+                          style: TextStyle(
+                            color: tempColor.whiteColor,
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
               widget.isshow
                   ? Row(
                       children: [
@@ -114,7 +119,7 @@ class _AppBarWidgetState extends State<AppBarWidget> {
                         ),
                       ],
                     )
-                  : Container()
+                  : Container(),
             ],
           ),
         ],

@@ -36,8 +36,9 @@ class _CallNowScreenState extends State<CallNowScreen> {
             child: AppBarWidget(
               isshow: true,
               showback: false,
-              title: false,
-              titlename: '',
+              logo: true,
+              title1: '',
+              title2: '',
               name: context.read<UserCubit>().state.update_name ?? '',
             )),
         body: SingleChildScrollView(

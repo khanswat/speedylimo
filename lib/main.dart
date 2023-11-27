@@ -66,19 +66,11 @@ class _MyAppState extends State<MyApp> {
                 navigatorKey: NavigationService.instance.navigatorKey,
                 builder: (context, child) {
                   return MultiBlocListener(listeners: [
-                    // BlocListener<AuthenticationBloc, AuthenticationState>(
-                    //     listener: (context, state) {
-                    //   switch (state.status) {
-                    //     case AuthenticationStatus.authenticated:
-                    //       NavigationService.instance.navigateTo(HomeRoute);
-                    //       break;
-                    //     case AuthenticationStatus.unauthenticated:
-                    //       NavigationService.instance.navigateTo(LoginRoute);
-                    //       break;
-                    //     default:
-                    //       break;
-                    //   }
-                    // }),
+                    BlocProvider(create: (context) => UserCubit()),
+                    BlocProvider(create: (context) => MyRidesCubit()),
+                    BlocProvider(create: (context) => AcceptedRidesCubit()),
+                    BlocProvider(create: (context) => CancelRideCubit()),
+                    BlocProvider(create: (context) => CompletedRidesCubit()),
                     BlocListener<InternetCubit, InternetState>(
                         listener: (context, state) {
                       if (state is InternetConnected) {

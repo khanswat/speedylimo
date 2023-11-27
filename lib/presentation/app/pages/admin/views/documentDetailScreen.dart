@@ -54,85 +54,31 @@ class _DocumentDetailScreenState extends State<DocumentDetailScreen> {
             child: AppBarWidget(
               isshow: false,
               showback: true,
-              title: false,
-              titlename: '',
+              logo: false,
+              title1: 'Driver',
+              title2: 'Documents',
               name: '',
             )),
-        body: Column(
-          children: [
-            Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                      margin: const EdgeInsets.all(15.0),
-                      padding: const EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: tempColor.lightGreyColor,
-                          style: BorderStyle.solid,
-                          width: 1.5,
-                        ),
-                        color: tempColor.whiteColor,
-                        borderRadius: BorderRadius.circular(5.0),
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            width: MediaQuery.of(context).size.width,
-                            height: 40,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.white,
-                              // border: Border.all(
-                              //   color: tempColor.lightGreyColor,
-                              //   // Border color for the outline
-                              //   width: 1.5, // Border width for the outline
-                              // ),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Expanded(
-                                    child: CustomLinearGradientWidget(
-                                  firstText: 'Driver',
-                                  lastText: 'Documents',
-                                  fontSize: 25,
-                                )),
-                              ],
-                            ),
-                          ),
-                        ],
-                      )),
-                ],
-              ),
-            ),
-            Expanded(
-              child: ListView.builder(
-                  itemCount: 3, // The number of items in the list
-                  itemBuilder: (
-                    context,
-                    index,
-                  ) {
-                    // Build and return each item based on its index
-                    return DocumentDetailWidget(
-                      name: 'Naveed Ullah',
-                      image: 'lib/assets/icons/login.png',
-                      onPress: () {},
-                      onPress1: () {},
-                      onPress2: () {
-                        NavigationService.instance
-                            .navigateTo(editNewUserScreen);
-                      },
-                      onPress3: () {
-                        showCanceldialoge();
-                      },
-                    );
-                  }),
-            ),
-          ],
-        ));
+        body: ListView.builder(
+            itemCount: 3, // The number of items in the list
+            itemBuilder: (
+              context,
+              index,
+            ) {
+              // Build and return each item based on its index
+              return DocumentDetailWidget(
+                name: 'Naveed Ullah',
+                image: 'lib/assets/icons/login.png',
+                onPress: () {},
+                onPress1: () {},
+                onPress2: () {
+                  NavigationService.instance.navigateTo(editNewUserScreen);
+                },
+                onPress3: () {
+                  showCanceldialoge();
+                },
+              );
+            }));
   }
 
   Future showCanceldialoge() {

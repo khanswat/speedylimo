@@ -27,8 +27,9 @@ class _D_CompleteRideDetailScreenState
             child: AppBarWidget(
               isshow: false,
               showback: true,
-              title: false,
-              titlename: '',
+              logo: false,
+              title1: 'Booking',
+              title2: 'Detail',
               name: context.read<UserCubit>().state.update_name ?? '',
             )),
         body: SingleChildScrollView(

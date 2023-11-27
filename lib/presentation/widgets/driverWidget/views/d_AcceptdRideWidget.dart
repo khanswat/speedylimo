@@ -47,8 +47,8 @@ class D_AcceptedRidesWidget extends StatelessWidget {
               Text(
                 'Driver Name :',
                 style: TextStyle(
-                    color: tempColor.blackColor,
-                    fontSize: 16,
+                    color: tempColor.greyColor,
+                    fontSize: 14,
                     fontWeight: FontWeight.w600,
                     fontFamily: 'lib/assets/font/AbrilFatface-Regular.ttf'),
               ),
@@ -59,7 +59,8 @@ class D_AcceptedRidesWidget extends StatelessWidget {
                 passengerName,
                 style: TextStyle(
                     color: tempColor.blackColor,
-                    fontSize: 18,
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
                     fontFamily: 'lib/assets/font/AbrilFatface-Regular.ttf'),
               ),
             ],
@@ -73,9 +74,9 @@ class D_AcceptedRidesWidget extends StatelessWidget {
               Text(
                 'Pickup Time :',
                 style: TextStyle(
-                    color: tempColor.blackColor,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
+                    color: tempColor.greyColor,
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
                     fontFamily: 'lib/assets/font/AbrilFatface-Regular.ttf'),
               ),
               const SizedBox(
@@ -85,7 +86,8 @@ class D_AcceptedRidesWidget extends StatelessWidget {
                 pickupTime,
                 style: TextStyle(
                     color: tempColor.blackColor,
-                    fontSize: 18,
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
                     fontFamily: 'lib/assets/font/AbrilFatface-Regular.ttf'),
               ),
             ],
@@ -99,9 +101,9 @@ class D_AcceptedRidesWidget extends StatelessWidget {
               Text(
                 'Ride ID : :',
                 style: TextStyle(
-                    color: tempColor.blackColor,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
+                    color: tempColor.greyColor,
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
                     fontFamily: 'lib/assets/font/AbrilFatface-Regular.ttf'),
               ),
               const SizedBox(
@@ -111,7 +113,8 @@ class D_AcceptedRidesWidget extends StatelessWidget {
                 myride,
                 style: TextStyle(
                     color: tempColor.blackColor,
-                    fontSize: 18,
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
                     fontFamily: 'lib/assets/font/AbrilFatface-Regular.ttf'),
               ),
             ],
@@ -122,8 +125,6 @@ class D_AcceptedRidesWidget extends StatelessWidget {
           InkWell(
             onTap: onTap,
             child: Container(
-              height: 50,
-              width: 500,
               decoration: BoxDecoration(
                 border: Border.all(
                   color: Colors.blue,
@@ -133,14 +134,17 @@ class D_AcceptedRidesWidget extends StatelessWidget {
                 color: tempColor.whiteColor,
                 borderRadius: BorderRadius.circular(30.0),
               ),
-              child: const Center(
-                  child: Text(
-                'VIEW DETAILS',
-                style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    fontFamily: 'lib/assets/font/AbrilFatface-Regular.ttf'),
-              )),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: const Center(
+                    child: Text(
+                  'VIEW DETAILS',
+                  style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                      fontFamily: 'lib/assets/font/AbrilFatface-Regular.ttf'),
+                )),
+              ),
             ),
           ),
           const SizedBox(
@@ -149,8 +153,6 @@ class D_AcceptedRidesWidget extends StatelessWidget {
           InkWell(
             onTap: onTap1,
             child: Container(
-              height: 50,
-              width: 500,
               decoration: BoxDecoration(
                 border: Border.all(
                   color: Colors.green,
@@ -160,14 +162,17 @@ class D_AcceptedRidesWidget extends StatelessWidget {
                 color: tempColor.whiteColor,
                 borderRadius: BorderRadius.circular(30.0),
               ),
-              child: const Center(
-                  child: Text(
-                'STATUS: ONGOING',
-                style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    fontFamily: 'lib/assets/font/AbrilFatface-Regular.ttf'),
-              )),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: const Center(
+                    child: Text(
+                  'STATUS: ONGOING',
+                  style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                      fontFamily: 'lib/assets/font/AbrilFatface-Regular.ttf'),
+                )),
+              ),
             ),
           ),
           const SizedBox(
@@ -176,8 +181,6 @@ class D_AcceptedRidesWidget extends StatelessWidget {
           InkWell(
             onTap: onTap2,
             child: Container(
-              height: 50,
-              width: 500,
               decoration: BoxDecoration(
                 border: Border.all(
                   color: Colors.red,
@@ -187,14 +190,17 @@ class D_AcceptedRidesWidget extends StatelessWidget {
                 color: tempColor.whiteColor,
                 borderRadius: BorderRadius.circular(30.0),
               ),
-              child: const Center(
-                  child: Text(
-                'CLICK TO CANCLE RIDE',
-                style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    fontFamily: 'lib/assets/font/AbrilFatface-Regular.ttf'),
-              )),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: const Center(
+                    child: Text(
+                  'CLICK TO CANCLE RIDE',
+                  style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                      fontFamily: 'lib/assets/font/AbrilFatface-Regular.ttf'),
+                )),
+              ),
             ),
           ),
           const SizedBox(
@@ -203,8 +209,6 @@ class D_AcceptedRidesWidget extends StatelessWidget {
           InkWell(
             onTap: onTap3,
             child: Container(
-              height: 50,
-              width: 500,
               decoration: BoxDecoration(
                 border: Border.all(
                   color: Colors.green,
@@ -214,14 +218,17 @@ class D_AcceptedRidesWidget extends StatelessWidget {
                 color: tempColor.whiteColor,
                 borderRadius: BorderRadius.circular(30.0),
               ),
-              child: const Center(
-                  child: Text(
-                'COMPLETE RIDE',
-                style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    fontFamily: 'lib/assets/font/AbrilFatface-Regular.ttf'),
-              )),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: const Center(
+                    child: Text(
+                  'COMPLETE RIDE',
+                  style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                      fontFamily: 'lib/assets/font/AbrilFatface-Regular.ttf'),
+                )),
+              ),
             ),
           )
         ],

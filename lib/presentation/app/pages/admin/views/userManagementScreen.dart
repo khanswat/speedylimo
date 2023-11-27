@@ -28,8 +28,9 @@ class _UserManagementScreenState extends State<UserManagementScreen> {
             child: AppBarWidget(
               isshow: false,
               showback: true,
-              title: false,
-              titlename: '',
+              logo: false,
+              title1: 'Users',
+              title2: 'Management',
               name: context.read<UserCubit>().state.update_name ?? '',
             )),
         body: Column(
@@ -50,103 +51,75 @@ class _UserManagementScreenState extends State<UserManagementScreen> {
                         color: tempColor.whiteColor,
                         borderRadius: BorderRadius.circular(5.0),
                       ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            width: MediaQuery.of(context).size.width,
-                            height: 40,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.white,
-                              // border: Border.all(
-                              //   color: tempColor.lightGreyColor,
-                              //   // Border color for the outline
-                              //   width: 1.5, // Border width for the outline
-                              // ),
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.white,
+                          // border: Border.all(
+                          //   color: tempColor.lightGreyColor,
+                          //   // Border color for the outline
+                          //   width: 1.5, // Border width for the outline
+                          // ),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const SizedBox(
+                              width: 5,
                             ),
-                            child: CustomLinearGradientWidget(
-                              firstText: 'Users',
-                              lastText: 'Management',
-                              fontSize: 25,
+                            Expanded(
+                                child: ButtonWidget(
+                              onPressed: () {
+                                NavigationService.instance
+                                    .navigateTo(createNewUserScreen);
+                              },
+                              childWidget: Text(
+                                'CREATE NEW USER',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 14),
+                              ),
+                            )),
+                            const SizedBox(
+                              width: 10,
                             ),
-                          ),
-                          SizedBox(
-                            height: 6,
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width,
-                            height: 40,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.white,
-                              // border: Border.all(
-                              //   color: tempColor.lightGreyColor,
-                              //   // Border color for the outline
-                              //   width: 1.5, // Border width for the outline
-                              // ),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const SizedBox(
-                                  width: 5,
-                                ),
-                                Expanded(
-                                    child: ButtonWidget(
-                                  onPressed: () {
-                                    NavigationService.instance
-                                        .navigateTo(createNewUserScreen);
-                                  },
-                                  childWidget: Text(
-                                    'CREATE NEW USER',
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 14),
+                            Expanded(
+                              child: Container(
+                                height: 40,
+                                width: MediaQuery.of(context).size.width,
+                                color: Colors.white,
+                                child: Center(
+                                    child: TextFormField(
+                                  textAlign: TextAlign.start,
+                                  style: const TextStyle(
+                                    color: Colors.black,
+                                  ),
+                                  decoration: InputDecoration(
+                                    hintText: 'Search',
+                                    contentPadding: EdgeInsets.zero,
+                                    hintStyle: TextStyle(
+                                      color: Colors.grey,
+                                    ),
+                                    prefixIcon: Icon(Icons.search),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                      borderSide: const BorderSide(
+                                          color: Colors.blue, width: 1.0),
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                      borderSide: const BorderSide(
+                                          color: Colors.grey, width: 1.0),
+                                    ),
                                   ),
                                 )),
-                                const SizedBox(
-                                  width: 10,
-                                ),
-                                Expanded(
-                                  child: Container(
-                                    height: 40,
-                                    width: MediaQuery.of(context).size.width,
-                                    color: Colors.white,
-                                    child: Center(
-                                        child: TextFormField(
-                                      textAlign: TextAlign.start,
-                                      style: const TextStyle(
-                                        color: Colors.black,
-                                      ),
-                                      decoration: InputDecoration(
-                                        hintText: 'Search',
-                                        contentPadding: EdgeInsets.zero,
-                                        hintStyle: TextStyle(
-                                          color: Colors.grey,
-                                        ),
-                                        prefixIcon: Icon(Icons.search),
-                                        focusedBorder: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          borderSide: const BorderSide(
-                                              color: Colors.blue, width: 1.0),
-                                        ),
-                                        enabledBorder: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          borderSide: const BorderSide(
-                                              color: Colors.grey, width: 1.0),
-                                        ),
-                                      ),
-                                    )),
-                                  ),
-                                ),
-                              ],
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       )),
                 ],
               ),

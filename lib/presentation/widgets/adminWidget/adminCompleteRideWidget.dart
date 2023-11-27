@@ -59,12 +59,13 @@ class AdminCompletedRideWidget extends StatelessWidget {
                             'Order ID:',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: Colors.blue,
+                                color: Colors.grey,
                                 fontSize: 14),
                           ),
                           Text(
                             orderid,
-                            style: TextStyle(fontSize: 15),
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 15),
                           ),
                         ],
                       ),
@@ -78,12 +79,13 @@ class AdminCompletedRideWidget extends StatelessWidget {
                             'Passenger Name:',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: Colors.blue,
+                                color: Colors.grey,
                                 fontSize: 15),
                           ),
                           Text(
                             passengerName,
-                            style: TextStyle(fontSize: 15),
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 15),
                           ),
                         ],
                       ),
@@ -97,12 +99,13 @@ class AdminCompletedRideWidget extends StatelessWidget {
                             'Driver Name:',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: Colors.blue,
+                                color: Colors.grey,
                                 fontSize: 15),
                           ),
                           Text(
                             driverName,
-                            style: TextStyle(fontSize: 15),
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 15),
                           ),
                         ],
                       ),
@@ -116,12 +119,13 @@ class AdminCompletedRideWidget extends StatelessWidget {
                             'Completed By:',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: Colors.blue,
+                                color: Colors.grey,
                                 fontSize: 15),
                           ),
                           Text(
                             Completedby,
-                            style: TextStyle(fontSize: 15),
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 15),
                           ),
                         ],
                       ),
@@ -135,7 +139,7 @@ class AdminCompletedRideWidget extends StatelessWidget {
                             'Ride Type:',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: Colors.blue,
+                                color: Colors.grey,
                                 fontSize: 15),
                           ),
                           Row(
@@ -175,7 +179,7 @@ class AdminCompletedRideWidget extends StatelessWidget {
                             'Payment Status:',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: Colors.blue,
+                                color: Colors.grey,
                                 fontSize: 15),
                           ),
                           CircleAvatar(
@@ -203,7 +207,7 @@ class AdminCompletedRideWidget extends StatelessWidget {
                             'Actions:',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: Colors.blue,
+                                color: Colors.grey,
                                 fontSize: 15),
                           ),
                           Container(

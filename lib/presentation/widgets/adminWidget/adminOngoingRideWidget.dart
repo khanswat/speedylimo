@@ -57,12 +57,15 @@ class AdminOngoingRideWidget extends StatelessWidget {
                             'Order ID:',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: Colors.blue,
+                                color: Colors.grey,
                                 fontSize: 15),
                           ),
                           Text(
                             orderid,
-                            style: TextStyle(fontSize: 15),
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ],
                       ),
@@ -76,12 +79,15 @@ class AdminOngoingRideWidget extends StatelessWidget {
                             'Passenger Name:',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: Colors.blue,
+                                color: Colors.grey,
                                 fontSize: 15),
                           ),
                           Text(
                             passengerName,
-                            style: TextStyle(fontSize: 15),
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ],
                       ),
@@ -95,12 +101,15 @@ class AdminOngoingRideWidget extends StatelessWidget {
                             'Driver Name:',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: Colors.blue,
+                                color: Colors.grey,
                                 fontSize: 15),
                           ),
                           Text(
                             driverName,
-                            style: TextStyle(fontSize: 15),
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ],
                       ),
@@ -114,7 +123,7 @@ class AdminOngoingRideWidget extends StatelessWidget {
                             'Ride Type:',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: Colors.blue,
+                                color: Colors.grey,
                                 fontSize: 15),
                           ),
                           Row(
@@ -154,7 +163,7 @@ class AdminOngoingRideWidget extends StatelessWidget {
                             'Payment Status:',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: Colors.blue,
+                                color: Colors.grey,
                                 fontSize: 15),
                           ),
                           CircleAvatar(
@@ -182,7 +191,7 @@ class AdminOngoingRideWidget extends StatelessWidget {
                             'Actions:',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: Colors.blue,
+                                color: Colors.grey,
                                 fontSize: 15),
                           ),
                           Container(

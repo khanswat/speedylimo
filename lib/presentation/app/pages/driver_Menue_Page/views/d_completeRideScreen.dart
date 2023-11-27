@@ -27,8 +27,9 @@ class _D_CompletedRidesScreenState extends State<D_CompletedRidesScreen> {
             child: AppBarWidget(
               isshow: false,
               showback: true,
-              title: false,
-              titlename: '',
+              logo: false,
+              title1: 'Completed',
+              title2: 'Rides',
               name: context.read<UserCubit>().state.update_name ?? '',
             )),
         body: ListView.builder(

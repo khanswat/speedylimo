@@ -57,12 +57,13 @@ class UserManagementWidget extends StatelessWidget {
                             'No:',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: Colors.blue,
+                                color: Colors.grey,
                                 fontSize: 15),
                           ),
                           Text(
                             No,
-                            style: TextStyle(fontSize: 15),
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 15),
                           ),
                         ],
                       ),
@@ -76,12 +77,13 @@ class UserManagementWidget extends StatelessWidget {
                             'Name:',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: Colors.blue,
+                                color: Colors.grey,
                                 fontSize: 15),
                           ),
                           Text(
                             Name,
-                            style: TextStyle(fontSize: 15),
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 15),
                           ),
                         ],
                       ),
@@ -95,12 +97,13 @@ class UserManagementWidget extends StatelessWidget {
                             'Email:',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: Colors.blue,
+                                color: Colors.grey,
                                 fontSize: 15),
                           ),
                           Text(
                             Email,
-                            style: TextStyle(fontSize: 15),
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 15),
                           ),
                         ],
                       ),
@@ -114,7 +117,7 @@ class UserManagementWidget extends StatelessWidget {
                             'Rolrs:',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: Colors.blue,
+                                color: Colors.grey,
                                 fontSize: 15),
                           ),
                           Container(
@@ -151,7 +154,7 @@ class UserManagementWidget extends StatelessWidget {
                             'Actions:',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: Colors.blue,
+                                color: Colors.grey,
                                 fontSize: 15),
                           ),
                           Container(

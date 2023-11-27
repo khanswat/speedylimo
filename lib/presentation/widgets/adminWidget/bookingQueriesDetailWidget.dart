@@ -71,12 +71,15 @@ class BookingQueriesDetailWidget extends StatelessWidget {
                       'Name:',
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.black,
+                          color: Colors.grey,
                           fontSize: 15),
                     ),
                     Text(
                       name,
-                      style: TextStyle(fontSize: 15),
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ],
                 ),
@@ -90,14 +93,18 @@ class BookingQueriesDetailWidget extends StatelessWidget {
                       'Email Address:',
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.black,
+                          color: Colors.grey,
                           fontSize: 15),
                     ),
                     GestureDetector(
                       onTap: () => launchGmail(),
                       child: Text(
                         EmailAddress,
-                        style: TextStyle(fontSize: 15, color: Colors.blue),
+                        style: TextStyle(
+                          fontSize: 15,
+                          color: Colors.blue,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ],
@@ -112,14 +119,17 @@ class BookingQueriesDetailWidget extends StatelessWidget {
                       'Contact Email:',
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.black,
+                          color: Colors.grey,
                           fontSize: 15),
                     ),
                     GestureDetector(
                       onTap: () => launch('Gmail:$ContactEmail'),
                       child: Text(
                         ContactEmail,
-                        style: TextStyle(fontSize: 15, color: Colors.blue),
+                        style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.blue),
                       ),
                     ),
                   ],
@@ -134,12 +144,15 @@ class BookingQueriesDetailWidget extends StatelessWidget {
                       'Phone No:',
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.black,
+                          color: Colors.grey,
                           fontSize: 15),
                     ),
                     Text(
                       PhoneNo,
-                      style: TextStyle(fontSize: 15),
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ],
                 ),
@@ -153,13 +166,16 @@ class BookingQueriesDetailWidget extends StatelessWidget {
                       'Contact Method:',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        color: Colors.black,
+                        color: Colors.grey,
                         fontSize: 15,
                       ),
                     ),
                     Text(
                       ContactMethod,
-                      style: TextStyle(fontSize: 15),
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ],
                 ),
@@ -173,12 +189,15 @@ class BookingQueriesDetailWidget extends StatelessWidget {
                       'Company Name:',
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.black,
+                          color: Colors.grey,
                           fontSize: 15),
                     ),
                     Text(
                       CompanyName,
-                      style: TextStyle(fontSize: 15),
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ],
                 ),
@@ -192,12 +211,15 @@ class BookingQueriesDetailWidget extends StatelessWidget {
                       'Summary:',
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.black,
+                          color: Colors.grey,
                           fontSize: 15),
                     ),
                     Text(
                       Summary,
-                      style: TextStyle(fontSize: 15),
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ],
                 ),
@@ -211,12 +233,15 @@ class BookingQueriesDetailWidget extends StatelessWidget {
                       'Request Detail:',
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.black,
+                          color: Colors.grey,
                           fontSize: 15),
                     ),
                     Text(
                       RequestDetail,
-                      style: TextStyle(fontSize: 15),
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ],
                 ),
@@ -230,7 +255,7 @@ class BookingQueriesDetailWidget extends StatelessWidget {
                       'File:',
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.black,
+                          color: Colors.grey,
                           fontSize: 15),
                     ),
                     Container(child: File),
@@ -246,12 +271,15 @@ class BookingQueriesDetailWidget extends StatelessWidget {
                       'Date / Time:',
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.black,
+                          color: Colors.grey,
                           fontSize: 15),
                     ),
                     Text(
                       datetime,
-                      style: TextStyle(fontSize: 15),
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ],
                 ),

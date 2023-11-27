@@ -26,8 +26,9 @@ class _D_CancellRideDetailScreenState extends State<D_CancellRideDetailScreen> {
             child: AppBarWidget(
               isshow: false,
               showback: true,
-              title: false,
-              titlename: '',
+              logo: false,
+              title1: 'Booking',
+              title2: 'Detail',
               name: context.read<UserCubit>().state.update_name ?? '',
             )),
         body: SingleChildScrollView(

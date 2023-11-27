@@ -29,52 +29,25 @@ class _ShowUserScreenState extends State<ShowUserScreen> {
             child: AppBarWidget(
               isshow: false,
               showback: true,
-              title: false,
-              titlename: '',
+              logo: true,
+              title1: '',
+              title2: '',
               name: context.read<UserCubit>().state.update_name ?? '',
             )),
         body: Column(
           children: [
+            SizedBox(
+              height: 20,
+            ),
             Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                      margin: const EdgeInsets.all(15.0),
-                      padding: const EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: tempColor.lightGreyColor,
-                          style: BorderStyle.solid,
-                          width: 1.5,
-                        ),
-                        color: tempColor.whiteColor,
-                        borderRadius: BorderRadius.circular(5.0),
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            width: MediaQuery.of(context).size.width,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.white,
-                              // border: Border.all(
-                              //   color: tempColor.lightGreyColor,
-                              //   // Border color for the outline
-                              //   width: 1.5, // Border width for the outline
-                              // ),
-                            ),
-                            child: const CustomLinearGradientWidget(
-                              firstText: 'Show',
-                              lastText: 'User',
-                              fontSize: 25,
-                            ),
-                          ),
-                        ],
-                      )),
-                ],
+              child: const CustomLinearGradientWidget(
+                firstText: 'Show',
+                lastText: 'User',
+                fontSize: 25,
               ),
+            ),
+            SizedBox(
+              height: 10,
             ),
             Container(
                 margin: const EdgeInsets.all(15.0),
@@ -100,12 +73,13 @@ class _ShowUserScreenState extends State<ShowUserScreen> {
                             'Name:',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: Colors.blue,
+                                color: Colors.grey,
                                 fontSize: 15),
                           ),
                           Text(
                             Name,
-                            style: TextStyle(fontSize: 15),
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 15),
                           ),
                         ],
                       ),
@@ -119,12 +93,13 @@ class _ShowUserScreenState extends State<ShowUserScreen> {
                             'Email:',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: Colors.blue,
+                                color: Colors.grey,
                                 fontSize: 15),
                           ),
                           Text(
                             Email,
-                            style: TextStyle(fontSize: 15),
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 15),
                           ),
                         ],
                       ),
@@ -138,7 +113,7 @@ class _ShowUserScreenState extends State<ShowUserScreen> {
                             'Roles:',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: Colors.blue,
+                                color: Colors.grey,
                                 fontSize: 15),
                           ),
                           Container(

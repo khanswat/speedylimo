@@ -45,8 +45,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
             child: AppBarWidget(
               isshow: true,
               showback: false,
-              title: false,
-              titlename: '',
+              logo: true,
+              title1: '',
+              title2: '',
               name: '',
             )),
         body: SingleChildScrollView(

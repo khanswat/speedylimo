@@ -83,217 +83,221 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
 
       Center(
           child: SingleChildScrollView(
+              physics: NeverScrollableScrollPhysics(),
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisSize: MainAxisSize.min,
                   children: [
-            Image.asset(
-              'lib/assets/icons/Group 1530.png',
-              color: Colors.white,
-            ),
-            Padding(
-                padding: const EdgeInsets.only(top: 70),
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Container(
-                          margin: const EdgeInsets.all(15.0),
-                          padding: const EdgeInsets.all(20),
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              color: tempColor.lightGreyColor,
-                              style: BorderStyle.solid,
-                              width: 1.5,
-                            ),
-                            color: tempColor.whiteColor,
-                            borderRadius: BorderRadius.circular(5.0),
-                          ),
-                          child: Column(children: [
-                            const CustomLinearGradientWidget(
-                              firstText: 'Change',
-                              lastText: 'Password',
-                              fontSize: 30,
-                            ),
+                    Image.asset(
+                      'lib/assets/icons/Group 1530.png',
+                      color: Colors.white,
+                    ),
+                    Padding(
+                        padding: const EdgeInsets.only(top: 70),
+                        child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Container(
+                                  margin: const EdgeInsets.all(15.0),
+                                  padding: const EdgeInsets.all(20),
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                      color: tempColor.lightGreyColor,
+                                      style: BorderStyle.solid,
+                                      width: 1.5,
+                                    ),
+                                    color: tempColor.whiteColor,
+                                    borderRadius: BorderRadius.circular(5.0),
+                                  ),
+                                  child: Column(children: [
+                                    const CustomLinearGradientWidget(
+                                      firstText: 'Change',
+                                      lastText: 'Password',
+                                      fontSize: 30,
+                                    ),
 
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            //todo oldPass field
-                            // BlocBuilder<ChangePasswordCubit, ChangePasswordstate>(
-                            //   buildWhen: (previous, current) =>
-                            //       previous.oldpassword != current.oldpassword,
-                            //   builder: (context, state) {
-                            //     return
-                            TextFieldWidget(
-                              controller: oldPassController,
-                              withLabel: true,
-                              hint: 'Old Password',
-                              labelText: 'Old Password',
-                              labelStyle: const TextStyle(
-                                color: Colors.black,
-                              ),
-                              hintStyle: const TextStyle(
-                                color: Colors.black,
-                              ),
-                              obscureText: _oldPass,
-                              validatation: true,
-                              // validator: state.oldpassword.invalid
-                              //     ? 'Incorrect Password'
-                              //     : null,
-                              // onChanged: (oldpasword) => context
-                              //     .read<ChangePasswordCubit>()
-                              //     .oldpasswordChanged(oldpasword ?? ''),
-                              icon: GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    _oldPass = !_oldPass;
-                                  });
-                                },
-                                child: Icon(_oldPass
-                                    ? Icons.visibility_off
-                                    : Icons.visibility),
-                              ),
-                              //     );
-                              //   },
-                            ),
-                            const SizedBox(
-                              height: 15,
-                            ),
-                            //todo newPass field
-                            // BlocBuilder<ChangePasswordCubit, ChangePasswordstate>(
-                            //   buildWhen: (previous, current) =>
-                            //       previous.newpassword != current.newpassword,
-                            //   builder: (context, state) {
-                            //    return
-                            TextFieldWidget(
-                              controller: newPassController,
-                              withLabel: true,
-                              hint: 'New Password',
-                              hintStyle: const TextStyle(
-                                color: Colors.black,
-                              ),
-                              labelText: 'New Password',
-                              labelStyle: const TextStyle(
-                                color: Colors.black,
-                              ),
-                              obscureText: _newPass,
-                              validatation: true,
-                              // validator: state.newpassword.invalid
-                              //     ? 'Incorrect Password'
-                              //     : null,
-                              // onChanged: (newpasword) => context
-                              //     .read<ChangePasswordCubit>()
-                              //     .newpasswordChanged(newpasword ?? ''),
-                              icon: GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    _newPass = !_newPass;
-                                  });
-                                },
-                                child: Icon(_newPass
-                                    ? Icons.visibility_off
-                                    : Icons.visibility),
-                              ),
-                              //   );
-                              // },
-                            ),
-                            const SizedBox(
-                              height: 15,
-                            ),
-                            //todo confirmPass field
-                            // BlocBuilder<ChangePasswordCubit, ChangePasswordstate>(
-                            //   buildWhen: (previous, current) =>
-                            //       previous.confirmpassword !=
-                            //       current.confirmpassword,
-                            //   builder: (context, state) {
-                            //     return
-                            TextFieldWidget(
-                              controller: confirmPassController,
-                              withLabel: true,
-                              hint: 'Confirm Password',
+                                    const SizedBox(
+                                      height: 20,
+                                    ),
+                                    //todo oldPass field
+                                    // BlocBuilder<ChangePasswordCubit, ChangePasswordstate>(
+                                    //   buildWhen: (previous, current) =>
+                                    //       previous.oldpassword != current.oldpassword,
+                                    //   builder: (context, state) {
+                                    //     return
+                                    TextFieldWidget(
+                                      controller: oldPassController,
+                                      withLabel: true,
+                                      hint: 'Old Password',
+                                      labelText: 'Old Password',
+                                      labelStyle: const TextStyle(
+                                        color: Colors.black,
+                                      ),
+                                      hintStyle: const TextStyle(
+                                        color: Colors.black,
+                                      ),
+                                      obscureText: _oldPass,
+                                      validatation: true,
+                                      // validator: state.oldpassword.invalid
+                                      //     ? 'Incorrect Password'
+                                      //     : null,
+                                      // onChanged: (oldpasword) => context
+                                      //     .read<ChangePasswordCubit>()
+                                      //     .oldpasswordChanged(oldpasword ?? ''),
+                                      icon: GestureDetector(
+                                        onTap: () {
+                                          setState(() {
+                                            _oldPass = !_oldPass;
+                                          });
+                                        },
+                                        child: Icon(_oldPass
+                                            ? Icons.visibility_off
+                                            : Icons.visibility),
+                                      ),
+                                      //     );
+                                      //   },
+                                    ),
+                                    const SizedBox(
+                                      height: 15,
+                                    ),
+                                    //todo newPass field
+                                    // BlocBuilder<ChangePasswordCubit, ChangePasswordstate>(
+                                    //   buildWhen: (previous, current) =>
+                                    //       previous.newpassword != current.newpassword,
+                                    //   builder: (context, state) {
+                                    //    return
+                                    TextFieldWidget(
+                                      controller: newPassController,
+                                      withLabel: true,
+                                      hint: 'New Password',
+                                      hintStyle: const TextStyle(
+                                        color: Colors.black,
+                                      ),
+                                      labelText: 'New Password',
+                                      labelStyle: const TextStyle(
+                                        color: Colors.black,
+                                      ),
+                                      obscureText: _newPass,
+                                      validatation: true,
+                                      // validator: state.newpassword.invalid
+                                      //     ? 'Incorrect Password'
+                                      //     : null,
+                                      // onChanged: (newpasword) => context
+                                      //     .read<ChangePasswordCubit>()
+                                      //     .newpasswordChanged(newpasword ?? ''),
+                                      icon: GestureDetector(
+                                        onTap: () {
+                                          setState(() {
+                                            _newPass = !_newPass;
+                                          });
+                                        },
+                                        child: Icon(_newPass
+                                            ? Icons.visibility_off
+                                            : Icons.visibility),
+                                      ),
+                                      //   );
+                                      // },
+                                    ),
+                                    const SizedBox(
+                                      height: 15,
+                                    ),
+                                    //todo confirmPass field
+                                    // BlocBuilder<ChangePasswordCubit, ChangePasswordstate>(
+                                    //   buildWhen: (previous, current) =>
+                                    //       previous.confirmpassword !=
+                                    //       current.confirmpassword,
+                                    //   builder: (context, state) {
+                                    //     return
+                                    TextFieldWidget(
+                                      controller: confirmPassController,
+                                      withLabel: true,
+                                      hint: 'Confirm Password',
 
-                              hintStyle: const TextStyle(
-                                color: Colors.black,
-                              ),
-                              labelText: 'Confirm Password',
-                              labelStyle: const TextStyle(
-                                color: Colors.black,
-                              ),
-                              obscureText: _confirmPass,
-                              validatation: true,
-                              // validator: state.confirmpassword.invalid
-                              //     ? 'Incorrect Password'
-                              //     : null,
-                              // onChanged: (confirmpasword) => context
-                              //     .read<ChangePasswordCubit>()
-                              //     .confirmpasswordChanged(confirmpasword ?? ''),
-                              icon: GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    _confirmPass = !_confirmPass;
-                                  });
-                                },
-                                child: Icon(_confirmPass
-                                    ? Icons.visibility_off
-                                    : Icons.visibility),
-                              ),
-                              //   );
-                              // },
-                            ),
-                            const SizedBox(
-                              height: 15,
-                            ),
-                            //todo login Button
-                            // BlocBuilder<ChangePasswordCubit, ChangePasswordstate>(
-                            //   buildWhen: (previous, current) =>
-                            //       previous.status != current.status,
-                            //   builder: (context, state) {
-                            //     return
-                            ButtonWidget(
-                              key: const Key('loginForm_continue_raisedButton'),
-                              // isLoading: state.status.isSubmissionInProgress
-                              //     ? false
-                              //     : (state.status.isValidated &&
-                              //             !state.status.isSubmissionInProgress
-                              //         ? false
-                              //         : true),
-                              // isOutline: state.status.isSubmissionInProgress
-                              //     ? true
-                              //     : false,
-                              // childWidget: state.status.isSubmissionInProgress
-                              //     ? const
-                              //  child:  Center(
-                              //         child: SizedBox(
-                              //             height: 30,
-                              //             width: 30,
-                              //             child: CircularProgressIndicator()),
-                              //       )
-                              //     : Text(
-                              //         'Continue',
-                              //         style: TextStyle(
-                              //             color: tempColor.whiteColor,
-                              //             fontSize: 14,
-                              //             fontWeight: FontWeight.w600,
-                              //             fontFamily: 'Montserrat-Regular'),
-                              //       ),
-                              onPressed: () {
-                                // context
-                                //     .read<ChangePasswordCubit>()
-                                //     .ChangePassword(
-                                //         oldPassController.text,
-                                //         confirmPassController.text,
-                                //         newPassController.text);
-                              },
-                              cornerRadius: 5.0,
-                              childWidget: const Text(
-                                'SUBMITTED',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            )
-                          ])),
-                    ]))
-          ])))
+                                      hintStyle: const TextStyle(
+                                        color: Colors.black,
+                                      ),
+                                      labelText: 'Confirm Password',
+                                      labelStyle: const TextStyle(
+                                        color: Colors.black,
+                                      ),
+                                      obscureText: _confirmPass,
+                                      validatation: true,
+                                      // validator: state.confirmpassword.invalid
+                                      //     ? 'Incorrect Password'
+                                      //     : null,
+                                      // onChanged: (confirmpasword) => context
+                                      //     .read<ChangePasswordCubit>()
+                                      //     .confirmpasswordChanged(confirmpasword ?? ''),
+                                      icon: GestureDetector(
+                                        onTap: () {
+                                          setState(() {
+                                            _confirmPass = !_confirmPass;
+                                          });
+                                        },
+                                        child: Icon(_confirmPass
+                                            ? Icons.visibility_off
+                                            : Icons.visibility),
+                                      ),
+                                      //   );
+                                      // },
+                                    ),
+                                    const SizedBox(
+                                      height: 15,
+                                    ),
+                                    //todo login Button
+                                    // BlocBuilder<ChangePasswordCubit, ChangePasswordstate>(
+                                    //   buildWhen: (previous, current) =>
+                                    //       previous.status != current.status,
+                                    //   builder: (context, state) {
+                                    //     return
+                                    ButtonWidget(
+                                      key: const Key(
+                                          'loginForm_continue_raisedButton'),
+                                      // isLoading: state.status.isSubmissionInProgress
+                                      //     ? false
+                                      //     : (state.status.isValidated &&
+                                      //             !state.status.isSubmissionInProgress
+                                      //         ? false
+                                      //         : true),
+                                      // isOutline: state.status.isSubmissionInProgress
+                                      //     ? true
+                                      //     : false,
+                                      // childWidget: state.status.isSubmissionInProgress
+                                      //     ? const
+                                      //  child:  Center(
+                                      //         child: SizedBox(
+                                      //             height: 30,
+                                      //             width: 30,
+                                      //             child: CircularProgressIndicator()),
+                                      //       )
+                                      //     : Text(
+                                      //         'Continue',
+                                      //         style: TextStyle(
+                                      //             color: tempColor.whiteColor,
+                                      //             fontSize: 14,
+                                      //             fontWeight: FontWeight.w600,
+                                      //             fontFamily: 'Montserrat-Regular'),
+                                      //       ),
+                                      onPressed: () {
+                                        // context
+                                        //     .read<ChangePasswordCubit>()
+                                        //     .ChangePassword(
+                                        //         oldPassController.text,
+                                        //         confirmPassController.text,
+                                        //         newPassController.text);
+                                      },
+                                      cornerRadius: 5.0,
+                                      childWidget: const Text(
+                                        'SUBMITTED',
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    )
+                                  ])),
+                            ]))
+                  ])))
     ])));
     // );
   }

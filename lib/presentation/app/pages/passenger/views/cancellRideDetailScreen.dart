@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../../data/data.dart';
 import '/business_logic/cubits/cubits.dart';
 import '/presentation/presentation.dart';
 
 class CancellRideDetailScreen extends StatefulWidget {
+  final CancelRideData data;
   const CancellRideDetailScreen({
+    required this.data,
     Key? key,
   }) : super(key: key);
 
@@ -20,35 +23,36 @@ class _CancellRideDetailScreenState extends State<CancellRideDetailScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        endDrawer: NavDrawer(context),
         appBar: PreferredSize(
             preferredSize: const Size.fromHeight(80),
             child: AppBarWidget(
-              isshow: true,
+              isshow: false,
               showback: true,
-              title: false,
-              titlename: '',
+              logo: false,
+              title1: 'Booking',
+              title2: 'Detail',
               name: context.read<UserCubit>().state.update_name ?? '',
             )),
         body: SingleChildScrollView(
             child: Padding(
                 padding: const EdgeInsets.all(14.0),
                 child: BookingDetailWidget(
-                  bookingType: ' Point to point',
-                  droffTime: '',
-                  drpOffLocstion: 'Magni labore ea aper',
-                  estDistance: '6.835081 miles',
-                  estDriveTime: 'h 0 m 23 s 2',
-                  noBages: ' 2',
-                  noPassenger: ' 2',
-                  passengerName: ' Asad ( Passenger )',
-                  pickupLocation: 'Dubai - United Arab Emirates',
-                  pickupTime: ' 05:23 am 23/01/05',
-                  specialInstructions: 'Dolore soluta lorem',
-                  totslAmount: 'USD 100',
-                  tripType: 'As directed',
+                  bookingType: widget.data.asDirected ?? '',
+                  droffTime: widget.data.time ?? '',
+                  drpOffLocstion: widget.data.dropoffLocation ?? '',
+                  estDistance: '${widget.data.totalTripMiles ?? ''} miles',
+                  estDriveTime: widget.data.totalTripTime ?? '',
+                  noBages: widget.data.bags ?? '',
+                  noPassenger: widget.data.passenger ?? '',
+                  passengerName: '${widget.data.usertype?.name}',
+                  pickupLocation: widget.data.pickupLocation ?? '',
+                  pickupTime: widget.data.pickupTime ?? '',
+                  specialInstructions: widget.data.specialInstruction ?? '',
+                  totslAmount: 'USD ${widget.data.totalTripAmount ?? ''}',
+                  tripType: widget.data.bookingType == '2'
+                      ? 'As Directed'
+                      : 'Point To Point',
                   rideStatus: Container(
-                    width: 90,
                     decoration: BoxDecoration(
                       border: Border.all(
                         color: Colors.red,
@@ -58,9 +62,10 @@ class _CancellRideDetailScreenState extends State<CancellRideDetailScreen> {
                       color: Colors.red,
                       borderRadius: BorderRadius.circular(5.0),
                     ),
-                    child: const Center(
+                    child: Padding(
+                      padding: EdgeInsets.all(2),
                       child: Text(
-                        ' Cancelled',
+                        'Cancelled',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 15,

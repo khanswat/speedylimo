@@ -28,8 +28,9 @@ class _D_AcceptedRidesScreenState extends State<D_AcceptedRidesScreen> {
             child: AppBarWidget(
               isshow: false,
               showback: true,
-              title: false,
-              titlename: '',
+              logo: false,
+              title1: 'Accepted',
+              title2: 'Rides',
               name: context.read<UserCubit>().state.update_name ?? '',
             )),
         body: ListView.builder(
@@ -41,10 +42,10 @@ class _D_AcceptedRidesScreenState extends State<D_AcceptedRidesScreen> {
               rideID: '#63',
               pickupTime: '12:04 pm 23/01/04',
               onTap: () {
-                NavigationService.instance.navigateTo(acceptedRidesDetail);
+                NavigationService.instance.navigateTo(driverMyRidesDetails);
               },
               onTap1: () {
-                NavigationService.instance.navigateTo(acceptedRidesDetail);
+                NavigationService.instance.navigateTo(driverMyRidesDetails);
               },
               onTap2: () {},
               onTap3: () {},

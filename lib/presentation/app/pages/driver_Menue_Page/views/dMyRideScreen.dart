@@ -28,8 +28,9 @@ class _D_MyRidesScreenState extends State<D_MyRidesScreen> {
             child: AppBarWidget(
               isshow: false,
               showback: true,
-              title: false,
-              titlename: '',
+              logo: false,
+              title1: 'My',
+              title2: 'Rides',
               name: context.read<UserCubit>().state.update_name ?? '',
             )),
         body: ListView.builder(

@@ -90,12 +90,15 @@ class AdminOngoingRideDetailWidget extends StatelessWidget {
                       'Passenger Name:',
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.black,
+                          color: Colors.grey,
                           fontSize: 15),
                     ),
                     Text(
                       PassengerName,
-                      style: TextStyle(fontSize: 15),
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ],
                 ),
@@ -109,14 +112,17 @@ class AdminOngoingRideDetailWidget extends StatelessWidget {
                       'Driver Name:',
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.black,
+                          color: Colors.grey,
                           fontSize: 15),
                     ),
                     GestureDetector(
                       onTap: () {},
                       child: Text(
                         Drivername,
-                        style: TextStyle(color: Colors.black, fontSize: 15),
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                            fontSize: 15),
                       ),
                     ),
                   ],
@@ -131,7 +137,7 @@ class AdminOngoingRideDetailWidget extends StatelessWidget {
                       'Ride Type:',
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.black,
+                          color: Colors.grey,
                           fontSize: 15),
                     ),
                     Container(
@@ -168,12 +174,13 @@ class AdminOngoingRideDetailWidget extends StatelessWidget {
                       'Extra Note:',
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.black,
+                          color: Colors.grey,
                           fontSize: 15),
                     ),
                     Text(
                       ExtraNote,
-                      style: TextStyle(fontSize: 15),
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                     ),
                   ],
                 ),
@@ -220,12 +227,13 @@ class AdminOngoingRideDetailWidget extends StatelessWidget {
                       'Payment ID:',
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.black,
+                          color: Colors.grey,
                           fontSize: 15),
                     ),
                     Text(
                       PaymentID,
-                      style: TextStyle(fontSize: 15),
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                     ),
                   ],
                 ),
@@ -239,7 +247,7 @@ class AdminOngoingRideDetailWidget extends StatelessWidget {
                       'Payment Status:',
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.black,
+                          color: Colors.grey,
                           fontSize: 15),
                     ),
                     CircleAvatar(
@@ -300,7 +308,7 @@ class AdminOngoingRideDetailWidget extends StatelessWidget {
                       'Passengers:',
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.black,
+                          color: Colors.grey,
                           fontSize: 15),
                     ),
                     Text(
@@ -320,7 +328,7 @@ class AdminOngoingRideDetailWidget extends StatelessWidget {
                       'Bags:',
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.black,
+                          color: Colors.grey,
                           fontSize: 15),
                     ),
                     Center(
@@ -344,7 +352,7 @@ class AdminOngoingRideDetailWidget extends StatelessWidget {
                       'Time:',
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.black,
+                          color: Colors.grey,
                           fontSize: 15),
                     ),
                     Text(
@@ -364,7 +372,7 @@ class AdminOngoingRideDetailWidget extends StatelessWidget {
                       'Status:',
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.black,
+                          color: Colors.grey,
                           fontSize: 15),
                     ),
                     Container(
@@ -460,7 +468,7 @@ class AdminOngoingRideDetailWidget extends StatelessWidget {
                         'PickUp:',
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: Colors.black,
+                            color: Colors.grey,
                             fontSize: 15),
                       ),
                     ),
@@ -485,7 +493,7 @@ class AdminOngoingRideDetailWidget extends StatelessWidget {
                         'DropOff:',
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: Colors.black,
+                            color: Colors.grey,
                             fontSize: 15),
                       ),
                     ),

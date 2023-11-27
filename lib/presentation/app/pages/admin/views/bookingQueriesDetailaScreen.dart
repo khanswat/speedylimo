@@ -29,61 +29,41 @@ class _BookingQueriesDetailScreenState
             child: AppBarWidget(
               isshow: false,
               showback: true,
-              title: false,
-              titlename: '',
+              logo: false,
+              title1: 'Booking',
+              title2: 'Queries',
               name: context.read<UserCubit>().state.update_name ?? '',
             )),
         body: SingleChildScrollView(
-          child: Column(
-            children: [
-              Center(
-                child: Container(
-                  margin: const EdgeInsets.all(15.0),
-                  padding: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: tempColor.lightGreyColor,
-                      style: BorderStyle.solid,
-                      width: 1.5,
-                    ),
-                    color: tempColor.whiteColor,
-                    borderRadius: BorderRadius.circular(5.0),
-                  ),
-                  child: const CustomLinearGradientWidget(
-                    firstText: 'Booking',
-                    lastText: 'Queries',
-                    fontSize: 25,
-                  ),
+          child: BookingQueriesDetailWidget(
+            name: 'Amber Bray',
+            EmailAddress: 'hylurowy@mailinator.com',
+            PhoneNo: '+1 (464) 859-6386',
+            ContactMethod: 'phone',
+            CompanyName: 'Baird Conway LLC',
+            ContactEmail: 'kugexozy@mailinator.com',
+            RequestDetail: 'Excepteur velit tem',
+            Summary: 'Qui aut eos esse vol',
+            datetime: '2022-11-04 08:25:37',
+            File: Container(
+              child: Row(children: [
+                Image.asset(
+                  'lib/assets/icons/pdf.png',
+                  color: Colors.blue,
+                  scale: 12,
                 ),
-              ),
-              BookingQueriesDetailWidget(
-                name: 'Amber Bray',
-                EmailAddress: 'hylurowy@mailinator.com',
-                PhoneNo: '+1 (464) 859-6386',
-                ContactMethod: 'phone',
-                CompanyName: 'Baird Conway LLC',
-                ContactEmail: 'kugexozy@mailinator.com',
-                RequestDetail: 'Excepteur velit tem',
-                Summary: 'Qui aut eos esse vol',
-                datetime: '2022-11-04 08:25:37',
-                File: Container(
-                  child: Row(children: [
-                    Image.asset(
-                      'lib/assets/icons/pdf.png',
-                      color: Colors.blue,
-                      scale: 13,
-                    ),
-                    GestureDetector(
-                      onTap: () {},
-                      child: Text(
-                        ' click me to Open',
-                        style: TextStyle(color: Colors.blue, fontSize: 15),
-                      ),
-                    )
-                  ]),
-                ),
-              ),
-            ],
+                GestureDetector(
+                  onTap: () {},
+                  child: Text(
+                    ' Click me to Open',
+                    style: TextStyle(
+                        color: Colors.blue,
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold),
+                  ),
+                )
+              ]),
+            ),
           ),
         ));
   }

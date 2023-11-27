@@ -27,8 +27,9 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
             child: AppBarWidget(
               isshow: false,
               showback: false,
-              title: false,
-              titlename: '',
+              logo: true,
+              title1: ' ',
+              title2: ' ',
               name: context.read<UserCubit>().state.update_name ?? '',
             )),
         body: SingleChildScrollView(
@@ -112,18 +113,18 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                       ),
                       AdmainContinerWidget(
                         text: 'BOOKING QUERIES',
-                        fontSize: 18,
+                        fontSize: 14,
                         icons: const Icon(Icons.person,
-                            color: Colors.white, size: 30),
+                            color: Colors.white, size: 25),
                         onPressed: () {
                           NavigationService.instance.navigateTo(bookingQueries);
                         },
                       ),
                       AdmainContinerWidget(
                         text: 'PENDING RIDES',
-                        fontSize: 18,
+                        fontSize: 14,
                         icons: const Icon(Icons.double_arrow,
-                            color: Colors.white, size: 30),
+                            color: Colors.white, size: 25),
                         onPressed: () {
                           NavigationService.instance
                               .navigateTo(adminpendingrides);
@@ -131,9 +132,9 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                       ),
                       AdmainContinerWidget(
                         text: 'ONGOING RIDES',
-                        fontSize: 18,
+                        fontSize: 14,
                         icons: const Icon(Icons.double_arrow,
-                            color: Colors.white, size: 30),
+                            color: Colors.white, size: 25),
                         onPressed: () {
                           NavigationService.instance
                               .navigateTo(adminOngoingRide);
@@ -141,9 +142,9 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                       ),
                       AdmainContinerWidget(
                         text: 'CANCELED RIDES',
-                        fontSize: 18,
+                        fontSize: 14,
                         icons: const Icon(Icons.person,
-                            color: Colors.white, size: 30),
+                            color: Colors.white, size: 25),
                         onPressed: () {
                           NavigationService.instance
                               .navigateTo(adminCanceledRide);
@@ -151,9 +152,9 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                       ),
                       AdmainContinerWidget(
                         text: 'COMPLETED RIDES',
-                        fontSize: 18,
+                        fontSize: 14,
                         icons: const Icon(Icons.task_alt_rounded,
-                            color: Colors.white, size: 30),
+                            color: Colors.white, size: 25),
                         onPressed: () {
                           NavigationService.instance
                               .navigateTo(adminCompleteRide);
@@ -161,27 +162,27 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                       ),
                       AdmainContinerWidget(
                         text: 'USER MANAGEMENT',
-                        fontSize: 18,
+                        fontSize: 14,
                         icons: const Icon(Icons.person,
-                            color: Colors.white, size: 30),
+                            color: Colors.white, size: 25),
                         onPressed: () {
                           NavigationService.instance.navigateTo(userManagement);
                         },
                       ),
                       AdmainContinerWidget(
                         text: 'DRIVER DOCUMENTS',
-                        fontSize: 18,
+                        fontSize: 14,
                         icons: const Icon(Icons.panorama,
-                            color: Colors.white, size: 30),
+                            color: Colors.white, size: 25),
                         onPressed: () {
                           NavigationService.instance.navigateTo(documentScreen);
                         },
                       ),
                       AdmainContinerWidget(
                         text: 'Logout',
-                        fontSize: 18,
+                        fontSize: 14,
                         icons: const Icon(Icons.power_settings_new_outlined,
-                            color: Colors.white, size: 30),
+                            color: Colors.white, size: 25),
                         onPressed: () {
                           showCanceldialoge();
                         },

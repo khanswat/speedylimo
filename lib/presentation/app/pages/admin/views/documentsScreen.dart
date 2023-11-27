@@ -57,8 +57,9 @@ class _DocumentScreenState extends State<DocumentScreen> {
             child: AppBarWidget(
               isshow: false,
               showback: true,
-              title: false,
-              titlename: '',
+              logo: false,
+              title1: 'Driver',
+              title2: 'Documents',
               name: '',
             )),
         body: Column(
@@ -94,56 +95,35 @@ class _DocumentScreenState extends State<DocumentScreen> {
                               //   width: 1.5, // Border width for the outline
                               // ),
                             ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const SizedBox(
-                                  width: 5,
+                            child: Container(
+                              height: 40,
+                              width: MediaQuery.of(context).size.width,
+                              color: Colors.white,
+                              child: Center(
+                                  child: TextFormField(
+                                textAlign: TextAlign.start,
+                                style: const TextStyle(
+                                  color: Colors.black,
                                 ),
-                                Expanded(
-                                    child: CustomLinearGradientWidget(
-                                  firstText: 'Driver',
-                                  lastText: 'Documents',
-                                  fontSize: 18,
-                                )),
-                                const SizedBox(
-                                  width: 10,
-                                ),
-                                Expanded(
-                                  child: Container(
-                                    height: 40,
-                                    width: MediaQuery.of(context).size.width,
-                                    color: Colors.white,
-                                    child: Center(
-                                        child: TextFormField(
-                                      textAlign: TextAlign.start,
-                                      style: const TextStyle(
-                                        color: Colors.black,
-                                      ),
-                                      decoration: InputDecoration(
-                                        hintText: 'Search',
-                                        contentPadding: EdgeInsets.zero,
-                                        hintStyle: TextStyle(
-                                          color: Colors.grey,
-                                        ),
-                                        prefixIcon: Icon(Icons.search),
-                                        focusedBorder: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          borderSide: const BorderSide(
-                                              color: Colors.blue, width: 1.0),
-                                        ),
-                                        enabledBorder: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          borderSide: const BorderSide(
-                                              color: Colors.grey, width: 1.0),
-                                        ),
-                                      ),
-                                    )),
+                                decoration: InputDecoration(
+                                  hintText: 'Search',
+                                  contentPadding: EdgeInsets.zero,
+                                  hintStyle: TextStyle(
+                                    color: Colors.grey,
+                                  ),
+                                  prefixIcon: Icon(Icons.search),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide: const BorderSide(
+                                        color: Colors.blue, width: 1.0),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide: const BorderSide(
+                                        color: Colors.grey, width: 1.0),
                                   ),
                                 ),
-                              ],
+                              )),
                             ),
                           ),
                         ],

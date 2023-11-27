@@ -10,7 +10,7 @@ export 'callNow/callNow.dart';
 export 'careerPage/career.dart';
 export 'driver_Menue_page/driver.dart';
 export 'getSupport/getsupport.dart';
-export 'passenger_Menue_pages/passenger.dart';
+export 'passenger/passenger.dart';
 export 'policy &Terms/policy.dart';
 export 'profile/profile.dart';
 export 'review Your Booking/reviewbooking.dart';
