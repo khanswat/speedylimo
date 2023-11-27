@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:intl/intl.dart';
@@ -7,6 +10,8 @@ import '../../../../widgets/timepickerWidget/timePicker.dart';
 import '../../../../widgets/widget.dart';
 import '../../pages.dart';
 import 'package:speedylimo/extensions/colors/colors_extension.dart';
+
+import 'package:http/http.dart' as http;
 
 class PassengerHomeScreen extends StatefulWidget {
   @override
@@ -20,11 +25,17 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
   int BagCount = 0;
   bool color = true;
   bool isChecked = false;
+  bool isLoading = false;
   List<Widget> containers = [];
   int index = 0;
   PickResult? fromLocation;
   PickResult? toLocation;
   PickResult? stopLocation;
+  var TotalPrice;
+  var TotalDistance;
+  double speed = 10.0;
+  var totalDriveTime;
+  var price;
   String get apiKey => 'AIzaSyAlWLuEzszKgldMmuo9JjtKLxe9MGk75_k';
   String? formattedDate;
   var selectedDate = DateTime.now();
@@ -56,6 +67,25 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
           formattedDate = DateFormat('dd MMM, yyyy').format(selectedDate);
         });
       }
+    }
+
+    Future<double> getDistance(
+        String origin, String destination, String apiKey) async {
+      final response = await http.get(Uri.parse(
+        'https://maps.googleapis.com/maps/api/directions/json?origin=$origin&destination=$destination&key=$apiKey',
+      ));
+
+      if (response.statusCode == 200) {
+        final data = json.decode(response.body);
+        return data['routes'][0]['legs'][0]['distance']['value'] /
+            1000.0; // Distance in kilometers
+      } else {
+        throw Exception('Failed to load distance');
+      }
+    }
+
+    double calculatePrice(double distance) {
+      return distance * 0.1;
     }
 
     return Scaffold(
@@ -201,20 +231,23 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                                                                   fromLocation
                                                                           ?.formattedAddress ??
                                                                       '',
-                                                              tolocation: toLocation
-                                                                      ?.formattedAddress ??
-                                                                  '',
+                                                              tolocation:
+                                                                  toLocation?.formattedAddress ??
+                                                                      '',
                                                               pickupdate:
                                                                   formattedDate ??
                                                                       '',
                                                               pickuptime:
-                                                                  selectedTime
-                                                                      .format(
-                                                                          context),
+                                                                  selectedTime.format(
+                                                                      context),
                                                               passengers:
                                                                   passengerCount,
                                                               bags: BagCount,
-                                                              price: '1200',
+                                                              price: TotalPrice,
+                                                              distance:
+                                                                  TotalDistance,
+                                                              speed:
+                                                                  totalDriveTime,
                                                               note:
                                                                   descriptionController
                                                                       .text,
@@ -734,7 +767,7 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                           ),
                           //todo point to  point container
                           Container(
-                            child: isChecked == true
+                            child: isChecked != true
                                 ? Column(
                                     children: [
                                       Container(
@@ -1099,17 +1132,15 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                                     Expanded(
                                       child: Container(
                                         height: 40,
-                                        width:
-                                            MediaQuery.of(context).size.width,
                                         decoration: BoxDecoration(
                                           color: Colors.white70,
                                           border: Border.all(width: 0.5),
                                           borderRadius:
                                               BorderRadius.circular(5.0),
                                         ),
-                                        child: const Center(
+                                        child: Center(
                                             child: Text(
-                                          'Price ',
+                                          'Price:  \$${price ?? ' --- '}',
                                           style: TextStyle(
                                               color: Colors.black,
                                               fontWeight: FontWeight.bold),
@@ -1120,8 +1151,35 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                                       width: 10,
                                     ),
                                     Expanded(
-                                      child: InkWell(
-                                        onTap: () {},
+                                      child: GestureDetector(
+                                        onTap: () async {
+                                          final origin =
+                                              '${fromLocation!.geometry!.location.lat},${fromLocation!.geometry!.location.lng}'; // San Francisco, CA
+                                          final destination =
+                                              '${toLocation!.geometry!.location.lat},${toLocation!.geometry!.location.lng}';
+                                          try {
+                                            TotalDistance = await getDistance(
+                                                origin, destination, apiKey);
+                                            TotalPrice =
+                                                calculatePrice(TotalDistance);
+
+                                            print(
+                                                'Distance: $TotalDistance km');
+                                            print(
+                                                'Price: \$${TotalPrice.toStringAsFixed(2)}');
+                                            print(
+                                                'Total Drive Time: $totalDriveTime');
+
+                                            setState(() {
+                                              totalDriveTime =
+                                                  TotalDistance / speed;
+                                              price =
+                                                  TotalPrice.toStringAsFixed(2);
+                                            });
+                                          } catch (e) {
+                                            print('Error: $e');
+                                          }
+                                        },
                                         child: Container(
                                           height: 40,
                                           width:

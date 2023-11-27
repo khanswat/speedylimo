@@ -49,9 +49,9 @@ class _AcceptedRidesScreenState extends State<AcceptedRidesScreen> {
                   // Build and return each item based on its index
                   return AcceptedRidesWidget(
                     driverName: data[index].usertypeDriver?.name ?? '',
-                    rideID: '${data[index].usertype?.id}',
-                    pickupTime: data[index].pickupTime ?? '',
-                    time: data[index].time ?? '',
+                    rideID: '#${data[index].id}',
+                    pickupTime: '${data[index].pickupTime ?? ''}',
+                    time: data[index].pickupTime ?? '',
                     status: 'Ongoing'.toUpperCase(),
                     totalAmount: 'USD ${data[index].totalTripAmount ?? ''}',
                     onTap: () {

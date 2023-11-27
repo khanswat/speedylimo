@@ -15,6 +15,8 @@ class ReviewYourBookingScreen extends StatefulWidget {
   final dynamic bags;
   final dynamic price;
   final dynamic note;
+  final dynamic distance;
+  final dynamic speed;
   ReviewYourBookingScreen(
       {Key? key,
       this.fromlocation,
@@ -24,6 +26,8 @@ class ReviewYourBookingScreen extends StatefulWidget {
       this.pickupdate,
       this.pickuptime,
       this.price,
+      this.distance,
+      this.speed,
       this.stoplocation,
       this.tolocation})
       : super(key: key);
@@ -59,6 +63,10 @@ class _ReviewYourBookingScreenState extends State<ReviewYourBookingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double totalTimeInSeconds = widget.speed;
+    // Convert total time to hours and minutes
+    int hours = totalTimeInSeconds ~/ 3600;
+    int minutes = ((totalTimeInSeconds % 3600) ~/ 60).toInt();
     return Scaffold(
         appBar: PreferredSize(
             preferredSize: const Size.fromHeight(80),

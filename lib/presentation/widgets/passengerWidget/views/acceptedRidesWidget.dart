@@ -113,7 +113,7 @@ class AcceptedRidesWidget extends StatelessWidget {
                 width: 10,
               ),
               Text(
-                myride,
+                rideID,
                 style: TextStyle(
                     color: tempColor.blackColor,
                     fontSize: 14,
