@@ -100,15 +100,7 @@ class _DriverHomeScreenState extends State<DriverHomeScreen> {
                                   builder: (context, state) {
                                     return ElevatedButton(
                                       onPressed: () {
-                                        context
-                                            .read<StatusCubit>()
-                                            .getStatus()
-                                            .then((value) {
-                                          context
-                                              .read<UserCubit>()
-                                              .state
-                                              .statusDriver;
-                                        });
+                                        context.read<StatusCubit>().getStatus();
                                       },
                                       style: ElevatedButton.styleFrom(
                                         shape: RoundedRectangleBorder(
