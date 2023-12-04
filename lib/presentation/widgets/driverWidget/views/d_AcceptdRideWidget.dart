@@ -7,11 +7,10 @@ class D_AcceptedRidesWidget extends StatelessWidget {
     Key? key,
     this.pickupTime = '',
     this.passengerName = '',
-    this.rideID = '',
+    required this.rideID,
     required this.onTap,
-    required this.onTap2,
-    required this.onTap1,
-    required this.onTap3,
+    required this.completeWidget,
+    required this.cancelWidget,
   }) : super(key: key);
 
   final String pickupTime;
@@ -19,9 +18,9 @@ class D_AcceptedRidesWidget extends StatelessWidget {
   final String rideID;
 
   final GestureTapCallback onTap;
-  final GestureTapCallback onTap1;
-  final GestureTapCallback onTap2;
-  final GestureTapCallback onTap3;
+
+  final Widget completeWidget;
+  final Widget cancelWidget;
 
   @override
   Widget build(BuildContext context) {
@@ -45,11 +44,11 @@ class D_AcceptedRidesWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
-                'Driver Name :',
+                'Passenger Name :',
                 style: TextStyle(
                     color: tempColor.greyColor,
                     fontSize: 14,
-                    fontWeight: FontWeight.w600,
+                    fontWeight: FontWeight.bold,
                     fontFamily: 'lib/assets/font/AbrilFatface-Regular.ttf'),
               ),
               const SizedBox(
@@ -110,7 +109,7 @@ class D_AcceptedRidesWidget extends StatelessWidget {
                 width: 5,
               ),
               Text(
-                myride,
+                rideID,
                 style: TextStyle(
                     color: tempColor.blackColor,
                     fontSize: 14,
@@ -150,87 +149,36 @@ class D_AcceptedRidesWidget extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          InkWell(
-            onTap: onTap1,
-            child: Container(
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.green,
-                  style: BorderStyle.solid,
-                  width: 1.5,
-                ),
-                color: tempColor.whiteColor,
-                borderRadius: BorderRadius.circular(30.0),
+          Container(
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: Colors.green,
+                style: BorderStyle.solid,
+                width: 1.5,
               ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: const Center(
-                    child: Text(
-                  'STATUS: ONGOING',
-                  style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600,
-                      fontFamily: 'lib/assets/font/AbrilFatface-Regular.ttf'),
-                )),
-              ),
+              color: tempColor.whiteColor,
+              borderRadius: BorderRadius.circular(30.0),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: const Center(
+                  child: Text(
+                'STATUS: ONGOING',
+                style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    fontFamily: 'lib/assets/font/AbrilFatface-Regular.ttf'),
+              )),
             ),
           ),
           const SizedBox(
             height: 10,
           ),
-          InkWell(
-            onTap: onTap2,
-            child: Container(
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.red,
-                  style: BorderStyle.solid,
-                  width: 1.5,
-                ),
-                color: tempColor.whiteColor,
-                borderRadius: BorderRadius.circular(30.0),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: const Center(
-                    child: Text(
-                  'CLICK TO CANCLE RIDE',
-                  style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600,
-                      fontFamily: 'lib/assets/font/AbrilFatface-Regular.ttf'),
-                )),
-              ),
-            ),
-          ),
+          cancelWidget,
           const SizedBox(
             height: 10,
           ),
-          InkWell(
-            onTap: onTap3,
-            child: Container(
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.green,
-                  style: BorderStyle.solid,
-                  width: 1.5,
-                ),
-                color: tempColor.whiteColor,
-                borderRadius: BorderRadius.circular(30.0),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: const Center(
-                    child: Text(
-                  'COMPLETE RIDE',
-                  style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600,
-                      fontFamily: 'lib/assets/font/AbrilFatface-Regular.ttf'),
-                )),
-              ),
-            ),
-          )
+          completeWidget
         ],
       ),
     );

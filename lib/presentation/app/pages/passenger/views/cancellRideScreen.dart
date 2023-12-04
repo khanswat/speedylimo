@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:speedylimo/utils/utils.dart';
 
+import '../../../../../utils/constants/app/app_constants.dart';
 import '/business_logic/cubits/cubits.dart';
 import '/presentation/presentation.dart';
 
@@ -49,7 +51,7 @@ class _CancellRidesScreenState extends State<CancellRidesScreen> {
                 itemBuilder: (context, index) {
                   // Build and return each item based on its index
                   return CancleAndCompleteWidget(
-                    driverName: data[index].usertypeDriver?.name ?? '',
+                    driverName: 'No param available',
                     pickupTime: data[index].pickupTime ?? '',
                     totalAmount: 'USD ${data[index].totalTripAmount ?? ''}',
                     status: 'Cancelled'.toUpperCase(),
@@ -64,7 +66,28 @@ class _CancellRidesScreenState extends State<CancellRidesScreen> {
                 },
               );
             } else {
-              return Container();
+              return Container(
+                child: Center(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(
+                        Icons.warning_amber_outlined,
+                        color: Colors.amber,
+                        size: 60,
+                      ),
+                      Text(
+                        'No rides available for you',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w400,
+                            color: tempColor.blackColor),
+                      )
+                    ],
+                  ),
+                ),
+              );
             }
           },
         ));

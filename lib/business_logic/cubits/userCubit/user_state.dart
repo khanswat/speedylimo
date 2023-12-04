@@ -10,20 +10,21 @@ import '/data/data.dart';
 class UserState extends Equatable {
   UserState(
       {this.update_name,
-      this.doctorId,
-      this.designation,
+      this.priceModel,
       this.email,
       this.phoneNo,
       this.userData,
       this.username,
       this.pickResult,
+      this.statusDriver,
       this.photo});
 
   final String? update_name;
-  final String? doctorId;
-  final String? designation;
+
   final String? phoneNo;
   final String? username;
+  final String? statusDriver;
+  final PriceModel? priceModel;
 
   var photo;
   final UserData? userData;
@@ -34,38 +35,39 @@ class UserState extends Equatable {
   @override
   List<Object?> get props => [
         update_name,
-        doctorId,
-        designation,
+        priceModel,
         photo,
         email,
         username,
         phoneNo,
         userData,
         pickResult,
+        statusDriver
       ];
 
   UserState copyWith(
       {String? update_name,
-      String? doctorId,
-      String? designation,
+      PriceModel? priceModel,
       String? username,
       String? phoneNo,
       dynamic fromLocation,
       dynamic toLocation,
       UserData? userData,
       PickResult? pickResult,
+      String? statusDriver,
       var photo,
       String? email}) {
     return UserState(
-        update_name: update_name ?? this.update_name,
-        designation: designation ?? this.designation,
-        photo: photo ?? this.photo,
-        email: email ?? this.email,
-        userData: userData ?? this.userData,
-        phoneNo: phoneNo ?? this.phoneNo,
-        username: username ?? this.username,
-        pickResult: pickResult ?? this.pickResult,
-        doctorId: doctorId ?? this.doctorId);
+      update_name: update_name ?? this.update_name,
+      priceModel: priceModel ?? this.priceModel,
+      photo: photo ?? this.photo,
+      email: email ?? this.email,
+      userData: userData ?? this.userData,
+      phoneNo: phoneNo ?? this.phoneNo,
+      username: username ?? this.username,
+      statusDriver: statusDriver ?? this.statusDriver,
+      pickResult: pickResult ?? this.pickResult,
+    );
   }
 
   UserState copyWithLogout({
@@ -77,12 +79,11 @@ class UserState extends Equatable {
   Map<String, dynamic> toMap() {
     return {
       'update_name': update_name,
-      'doctor_Id': doctorId,
-      'designation': designation,
       'photo': photo,
       'email': email,
       'username': username,
       'phoneNo': phoneNo,
+      'statusDriver': statusDriver,
       'user': userData?.toMap(),
     };
   }
@@ -90,12 +91,11 @@ class UserState extends Equatable {
   factory UserState.fromMap(Map<String, dynamic> map) {
     return UserState(
       update_name: map['update_name'],
-      doctorId: map['doctor_Id'],
-      designation: map['designation'],
       photo: map['photo'],
       email: map['email'],
       phoneNo: map['phoneNo'],
       username: map['username'],
+      statusDriver: map['statusDriver'],
       userData: map['user'] != null ? UserData.fromMap(map['user']) : null,
     );
   }

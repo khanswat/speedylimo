@@ -57,6 +57,14 @@ class _MyAppState extends State<MyApp> {
           BlocProvider(create: (context) => UserCubit()),
           BlocProvider(
               create: (context) => InternetCubit(connectivity: Connectivity())),
+          BlocProvider(create: (context) => UserCubit()),
+          BlocProvider(create: (context) => MyRidesCubit()),
+          BlocProvider(create: (context) => AcceptedRidesCubit()),
+          BlocProvider(create: (context) => CancelRideCubit()),
+          BlocProvider(create: (context) => CompletedRidesCubit()),
+          BlocProvider(create: (context) => PriceCubit()),
+          BlocProvider(create: (context) => EditProfileCubit()),
+          BlocProvider(create: (context) => StatusCubit()),
         ],
         child: BlocBuilder<ThemeCubit, ThemeState>(
           builder: (context, state) {
@@ -66,11 +74,6 @@ class _MyAppState extends State<MyApp> {
                 navigatorKey: NavigationService.instance.navigatorKey,
                 builder: (context, child) {
                   return MultiBlocListener(listeners: [
-                    BlocProvider(create: (context) => UserCubit()),
-                    BlocProvider(create: (context) => MyRidesCubit()),
-                    BlocProvider(create: (context) => AcceptedRidesCubit()),
-                    BlocProvider(create: (context) => CancelRideCubit()),
-                    BlocProvider(create: (context) => CompletedRidesCubit()),
                     BlocListener<InternetCubit, InternetState>(
                         listener: (context, state) {
                       if (state is InternetConnected) {

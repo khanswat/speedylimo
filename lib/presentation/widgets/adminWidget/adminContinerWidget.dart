@@ -22,13 +22,8 @@ class AdmainContinerWidget extends StatelessWidget {
       onTap: onPressed,
       child: Container(
         margin: const EdgeInsets.all(5.0),
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.all(15),
         decoration: BoxDecoration(
-          border: Border.all(
-            color: tempColor.lightGreyColor,
-            style: BorderStyle.solid,
-            width: 1.5,
-          ),
           gradient: const LinearGradient(
             colors: [Colors.blue, Color(0xff00C6FF)],
             begin: Alignment.centerLeft,
@@ -39,17 +34,18 @@ class AdmainContinerWidget extends StatelessWidget {
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(child: icons),
-            const SizedBox(
-              width: 10,
-            ),
-            Text(
-              text,
-              style: const TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18),
+            Expanded(flex: 1, child: Container(child: icons)),
+            Expanded(
+              flex: 3,
+              child: Text(
+                text,
+                style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18),
+              ),
             ),
           ],
         ),

@@ -8,7 +8,7 @@ class D_MyRideWidget extends StatelessWidget {
       this.pickupTime = '',
       this.passengerName = '',
       required this.onTap,
-      required this.onTap2,
+      required this.acceptRide,
       required this.onTap1})
       : super(key: key);
 
@@ -17,7 +17,8 @@ class D_MyRideWidget extends StatelessWidget {
 
   final GestureTapCallback onTap;
   final GestureTapCallback onTap1;
-  final GestureTapCallback onTap2;
+
+  final Widget acceptRide;
 
   @override
   Widget build(BuildContext context) {
@@ -147,31 +148,7 @@ class D_MyRideWidget extends StatelessWidget {
           const SizedBox(
             height: 15,
           ),
-          InkWell(
-            onTap: onTap2,
-            child: Container(
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.green,
-                  style: BorderStyle.solid,
-                  width: 1.5,
-                ),
-                color: tempColor.whiteColor,
-                borderRadius: BorderRadius.circular(30.0),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: const Center(
-                    child: Text(
-                  'CLICK TO ACCEPT',
-                  style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600,
-                      fontFamily: 'lib/assets/font/AbrilFatface-Regular.ttf'),
-                )),
-              ),
-            ),
-          )
+          acceptRide
         ],
       ),
     );

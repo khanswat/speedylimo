@@ -21,3 +21,15 @@ class MyRidesLoaded extends MyRidesState {
   @override
   List<Object> get props => [myRidesData];
 }
+
+class DriverAcceptLoading extends MyRidesState {}
+
+class DriverAcceptLoaded extends MyRidesState {
+  final CompletedModel completedModel;
+  DriverAcceptLoaded({required this.completedModel});
+}
+
+class DriverAcceptError extends MyRidesState {
+  final message;
+  DriverAcceptError(this.message);
+}

@@ -43,20 +43,15 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => CancellRidesScreen());
     case driverMyRide:
       return MaterialPageRoute(builder: (context) => D_MyRidesScreen());
-    case driverMyRidesDetails:
-      return MaterialPageRoute(builder: (context) => D_BookingDetailScreen());
+
     case driverAcceptedRides:
       return MaterialPageRoute(builder: (context) => D_AcceptedRidesScreen());
     case driverCancelledRides:
       return MaterialPageRoute(builder: (context) => D_CancellRidesScreen());
-    case driverCancelledRidesDetail:
-      return MaterialPageRoute(
-          builder: (context) => D_CancellRideDetailScreen());
+
     case driverCompltetRides:
       return MaterialPageRoute(builder: (context) => D_CompletedRidesScreen());
-    case driverCompleteRidesDetail:
-      return MaterialPageRoute(
-          builder: (context) => D_CompleteRideDetailScreen());
+
     case adminHome:
       return MaterialPageRoute(builder: (context) => AdminHomeScreen());
     case driverHome:

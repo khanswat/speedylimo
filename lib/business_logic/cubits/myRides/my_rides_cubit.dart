@@ -20,4 +20,22 @@ class MyRidesCubit extends Cubit<MyRidesState> {
       emit(MyRidesError(''));
     }
   }
+
+  Future getDriverAccept({required rideID}) async {
+    try {
+      final body = {
+        'ride_id': rideID,
+      };
+      emit(MyRidesInitial());
+      final res = await UserRepository.instance.postAccept(body: body);
+
+      if (res.status == 200) {
+        emit(DriverAcceptLoaded(completedModel: res));
+      } else {
+        emit(DriverAcceptError(res.message ?? ''));
+      }
+    } catch (e) {
+      emit(DriverAcceptError(''));
+    }
+  }
 }

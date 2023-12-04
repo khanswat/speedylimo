@@ -12,8 +12,8 @@ class AcceptedRidesWidget extends StatelessWidget {
       this.totalAmount = '',
       required this.onTap,
       required this.status,
-      required this.onTapcomplete,
-      required this.onTapCancel})
+      required this.AcceptWidget,
+      required this.cancelWidget})
       : super(key: key);
 
   final String pickupTime;
@@ -23,8 +23,8 @@ class AcceptedRidesWidget extends StatelessWidget {
   final String time;
   final String status;
   final VoidCallback onTap;
-  final VoidCallback onTapcomplete;
-  final VoidCallback onTapCancel;
+  final Widget AcceptWidget;
+  final Widget cancelWidget;
 
   @override
   Widget build(BuildContext context) {
@@ -202,59 +202,36 @@ class AcceptedRidesWidget extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          GestureDetector(
-            onTap: onTapcomplete,
-            child: Container(
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.blue,
-                  style: BorderStyle.solid,
-                  width: 1.5,
-                ),
-                color: tempColor.whiteColor,
-                borderRadius: BorderRadius.circular(30.0),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Center(
-                    child: Text(
-                  'COMPLETE RIDE',
-                  style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      color: tempColor.blackColor),
-                )),
-              ),
-            ),
-          ),
+          AcceptWidget,
           const SizedBox(
             height: 10,
           ),
-          GestureDetector(
-            onTap: onTapCancel,
-            child: Container(
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.red,
-                  style: BorderStyle.solid,
-                  width: 1.5,
-                ),
-                color: tempColor.whiteColor,
-                borderRadius: BorderRadius.circular(30.0),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Center(
-                    child: Text(
-                  'CANCLE RIDE',
-                  style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      color: tempColor.blackColor),
-                )),
-              ),
-            ),
-          ),
+          cancelWidget,
+          // GestureDetector(
+          //   onTap: onTapCancel,
+          //   child: Container(
+          //     decoration: BoxDecoration(
+          //       border: Border.all(
+          //         color: Colors.red,
+          //         style: BorderStyle.solid,
+          //         width: 1.5,
+          //       ),
+          //       color: tempColor.whiteColor,
+          //       borderRadius: BorderRadius.circular(30.0),
+          //     ),
+          //     child: Padding(
+          //       padding: const EdgeInsets.all(8.0),
+          //       child: Center(
+          //           child: Text(
+          //         'CANCLE RIDE',
+          //         style: TextStyle(
+          //             fontSize: 14,
+          //             fontWeight: FontWeight.bold,
+          //             color: tempColor.blackColor),
+          //       )),
+          //     ),
+          //   ),
+          // ),
           SizedBox(
             height: 10,
           ),

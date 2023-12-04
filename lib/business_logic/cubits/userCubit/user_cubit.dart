@@ -12,8 +12,16 @@ class UserCubit extends Cubit<UserState> with HydratedMixin {
     emit(state.copyWith(userData: userData));
   }
 
+  void updatePrice(PriceModel priceModel) {
+    emit(state.copyWith(priceModel: priceModel));
+  }
+
   void myCurrentAddress(pickResult) {
     emit(state.copyWith(pickResult: pickResult));
+  }
+
+  void stausDriver(status) {
+    emit(state.copyWith(statusDriver: status));
   }
 
   void logout() async {

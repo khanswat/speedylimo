@@ -5,3 +5,4 @@ export 'views/d_CancellRideDetailScreen.dart';
 export 'views/d_CompleteRideScreen.dart';
 export 'views/d_CompletedRideDetailScreen.dart';
 export 'views/dMyRideScreen.dart';
+export 'views/d_AcceptedRideDetailScreen.dart';

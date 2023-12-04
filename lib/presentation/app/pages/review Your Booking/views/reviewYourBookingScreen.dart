@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../../../../../utils/constants/app/app_constants.dart';
 import '../../../../widgets/Widget.dart';
 import 'package:speedylimo/presentation/presentation.dart';
-import '../../../../widgets/linearGradientWidget/customLinearGradient.Widget.dart';
 import '/utils/utils.dart';
 
 class ReviewYourBookingScreen extends StatefulWidget {
@@ -16,7 +15,7 @@ class ReviewYourBookingScreen extends StatefulWidget {
   final dynamic price;
   final dynamic note;
   final dynamic distance;
-  final dynamic speed;
+  final dynamic totalDriveTime;
   ReviewYourBookingScreen(
       {Key? key,
       this.fromlocation,
@@ -27,7 +26,7 @@ class ReviewYourBookingScreen extends StatefulWidget {
       this.pickuptime,
       this.price,
       this.distance,
-      this.speed,
+      this.totalDriveTime,
       this.stoplocation,
       this.tolocation})
       : super(key: key);
@@ -63,10 +62,10 @@ class _ReviewYourBookingScreenState extends State<ReviewYourBookingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    double totalTimeInSeconds = widget.speed;
+    // double totalTimeInSeconds = widget.speed;
     // Convert total time to hours and minutes
-    int hours = totalTimeInSeconds ~/ 3600;
-    int minutes = ((totalTimeInSeconds % 3600) ~/ 60).toInt();
+    // int hours = totalTimeInSeconds ~/ 3600;
+    // int minutes = ((totalTimeInSeconds % 3600) ~/ 60).toInt();
     return Scaffold(
         appBar: PreferredSize(
             preferredSize: const Size.fromHeight(80),
@@ -444,7 +443,7 @@ class _ReviewYourBookingScreenState extends State<ReviewYourBookingScreen> {
                           fontSize: 15),
                     ),
                     Text(
-                      'Est. drive time',
+                      widget.totalDriveTime,
                       style: TextStyle(color: Colors.black, fontSize: 15),
                     ),
                   ],
@@ -463,7 +462,7 @@ class _ReviewYourBookingScreenState extends State<ReviewYourBookingScreen> {
                           fontSize: 15),
                     ),
                     Text(
-                      '0.00 miles',
+                      '${widget.distance} miles',
                       style: TextStyle(color: Colors.black, fontSize: 15),
                     ),
                   ],
@@ -482,7 +481,7 @@ class _ReviewYourBookingScreenState extends State<ReviewYourBookingScreen> {
                           fontSize: 15),
                     ),
                     Text(
-                      'USD 0.00',
+                      'USD ${widget.price ?? ''}',
                       style: TextStyle(color: Colors.black, fontSize: 15),
                     ),
                   ],

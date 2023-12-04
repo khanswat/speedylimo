@@ -11,9 +11,49 @@ class UserAPI {
   //   }
   // }
 
+  Future<dynamic> profile({required body}) async {
+    try {
+      return await HTTP.instance.iPost(ApiRoutes.updateProfile_Url, data: body);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   Future<dynamic> getMyRides() async {
     try {
       return await HTTP.instance.iGet(ApiRoutes.MyRidesUrl);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<dynamic> getPrice({required body}) async {
+    try {
+      return await HTTP.instance.iPost(ApiRoutes.priceUrl, data: body);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<dynamic> getCompleteRide({required body}) async {
+    try {
+      return await HTTP.instance.iPost(ApiRoutes.completeRideUrl, data: body);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<dynamic> getcancelRide({required body}) async {
+    try {
+      return await HTTP.instance.iPost(ApiRoutes.cancelUrl, data: body);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<dynamic> getcompleteRide({required body}) async {
+    try {
+      return await HTTP.instance.iPost(ApiRoutes.cancelUrl, data: body);
     } catch (e) {
       rethrow;
     }
@@ -38,6 +78,14 @@ class UserAPI {
   Future<dynamic> getCompletedRides() async {
     try {
       return await HTTP.instance.iGet(ApiRoutes.CompletedRidesUrl);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<dynamic> getStatus() async {
+    try {
+      return await HTTP.instance.iGet(ApiRoutes.status_Url);
     } catch (e) {
       rethrow;
     }

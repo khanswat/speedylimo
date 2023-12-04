@@ -27,7 +27,13 @@ class _DriverHomeScreenState extends State<DriverHomeScreen> {
   String profilePicLink = '';
   var uids;
   String url = '';
-  bool status = false;
+  String? data;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,8 +79,14 @@ class _DriverHomeScreenState extends State<DriverHomeScreen> {
                           Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              const Text(
-                                'Ali (Driver)',
+                              Text(
+                                context
+                                        .read<UserCubit>()
+                                        .state
+                                        .userData
+                                        ?.user
+                                        ?.name ??
+                                    '',
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.bold,
@@ -84,31 +96,48 @@ class _DriverHomeScreenState extends State<DriverHomeScreen> {
                                 height: 2,
                               ),
                               SizedBox(
-                                child: ElevatedButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      status == true
-                                          ? status = false
-                                          : status = true;
-                                    });
+                                child: BlocBuilder<StatusCubit, StatusState>(
+                                  builder: (context, state) {
+                                    return ElevatedButton(
+                                      onPressed: () {
+                                        context
+                                            .read<StatusCubit>()
+                                            .getStatus()
+                                            .then((value) {
+                                          context
+                                              .read<UserCubit>()
+                                              .state
+                                              .statusDriver;
+                                        });
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                        ),
+                                        // ignore: deprecated_member_use
+                                        primary: context
+                                                    .read<UserCubit>()
+                                                    .state
+                                                    .statusDriver ==
+                                                'User is now online.'
+                                            ? Colors.green
+                                            : Colors.grey,
+                                      ),
+                                      child: Text(
+                                        context
+                                                    .read<UserCubit>()
+                                                    .state
+                                                    .statusDriver ==
+                                                'User is now online.'
+                                            ? "YOU'RE ONLINE"
+                                            : "YOU'RE OFFLINE",
+                                        style: const TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    );
                                   },
-                                  style: ElevatedButton.styleFrom(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(20),
-                                    ),
-                                    // ignore: deprecated_member_use
-                                    primary: status == false
-                                        ? Colors.green
-                                        : Colors.grey,
-                                  ),
-                                  child: Text(
-                                    status == false
-                                        ? "YOU'RE ONLINE"
-                                        : "YOU'RE OFFLINE",
-                                    style: const TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold),
-                                  ),
                                 ),
                               )
                             ],
@@ -123,47 +152,62 @@ class _DriverHomeScreenState extends State<DriverHomeScreen> {
                       AdmainContinerWidget(
                           text: 'My Rides',
                           fontSize: 14,
-                          icons: const Icon(Icons.heart_broken_rounded,
-                              color: Colors.white, size: 25),
+                          icons: Image.asset(
+                            'rides'.png,
+                            height: 25,
+                            color: tempColor.whiteColor,
+                          ),
                           onPressed: () {
                             NavigationService.instance.navigateTo(driverMyRide);
                           }),
                       AdmainContinerWidget(
                         text: 'Accepted Rides',
                         fontSize: 14,
-                        icons: const Icon(Icons.heart_broken_rounded,
-                            color: Colors.white, size: 25),
+                        icons: Image.asset(
+                          'rides'.png,
+                          height: 25,
+                          color: tempColor.whiteColor,
+                        ),
                         onPressed: () => NavigationService.instance
                             .navigateTo(driverAcceptedRides),
                       ),
                       AdmainContinerWidget(
                         text: 'Cancelled Rides',
                         fontSize: 14,
-                        icons: const Icon(Icons.heart_broken_rounded,
-                            color: Colors.white, size: 25),
+                        icons: Image.asset(
+                          'rides'.png,
+                          height: 25,
+                          color: tempColor.whiteColor,
+                        ),
                         onPressed: () => NavigationService.instance
                             .navigateTo(driverCancelledRides),
                       ),
                       AdmainContinerWidget(
                         text: 'Completed Rides',
                         fontSize: 14,
-                        icons: const Icon(Icons.view_list,
-                            color: Colors.white, size: 25),
+                        icons: Image.asset(
+                          'rides'.png,
+                          height: 25,
+                          color: tempColor.whiteColor,
+                        ),
                         onPressed: () => NavigationService.instance
                             .navigateTo(driverCompltetRides),
                       ),
                       AdmainContinerWidget(
                         text: 'Change Password',
                         fontSize: 14,
-                        icons: const Icon(Icons.lock,
-                            color: Colors.white, size: 25),
+                        icons: Image.asset(
+                          'changePass'.png,
+                          height: 25,
+                          color: tempColor.whiteColor,
+                        ),
                         onPressed: () => NavigationService.instance
                             .navigateTo(changePasswordRoute),
                       ),
                       AdmainContinerWidget(
                         text: 'Logout',
                         fontSize: 14,
-                        icons: const Icon(Icons.power_settings_new_outlined,
+                        icons: const Icon(Icons.logout_outlined,
                             color: Colors.white, size: 25),
                         onPressed: () {
                           showCanceldialoge();

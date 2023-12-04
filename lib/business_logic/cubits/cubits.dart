@@ -9,3 +9,6 @@ export 'myRides/myRides.cubit.dart';
 export 'acceptedRides/acceptedRides.cubit.dart';
 export 'cancelRides/cancel.ride.cubit.dart';
 export 'completedRides/completed.rides.cubit.dart';
+export 'priceCubit/price.cubit.dart';
+export 'statusCubit/status.cubit.dart';
+export 'editprofileCubit/edit.profile.dart';

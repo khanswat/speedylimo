@@ -8,7 +8,7 @@ export 'bookNow/bookNow.dart';
 export 'bottomNavigationBar/bottomNavigatonbar.dart';
 export 'callNow/callNow.dart';
 export 'careerPage/career.dart';
-export 'driver_Menue_page/driver.dart';
+export 'driver/driver.dart';
 export 'getSupport/getsupport.dart';
 export 'passenger/passenger.dart';
 export 'policy &Terms/policy.dart';

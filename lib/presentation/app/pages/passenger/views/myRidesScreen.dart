@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:speedylimo/utils/constants/app/app_constants.dart';
+import 'package:speedylimo/utils/utils.dart';
 import '/business_logic/cubits/cubits.dart';
 
 import '/presentation/presentation.dart';
@@ -65,7 +67,28 @@ class _MyRidesScreenState extends State<MyRidesScreen> {
                 },
               );
             } else {
-              return Container();
+              return Container(
+                child: Center(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(
+                        Icons.warning_amber_outlined,
+                        color: Colors.amber,
+                        size: 60,
+                      ),
+                      Text(
+                        'No rides available for you',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w400,
+                            color: tempColor.blackColor),
+                      )
+                    ],
+                  ),
+                ),
+              );
             }
           },
         ));

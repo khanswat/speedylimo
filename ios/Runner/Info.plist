@@ -32,6 +32,8 @@
 	<string>This app needs access to location when in the background.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>This app needs your location to test the location feature of the Google Maps location picker plugin.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This app needs permission to access your photo library to choose photo for prescription or profile photo.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>

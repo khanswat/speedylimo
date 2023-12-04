@@ -4,7 +4,7 @@ class ProfileWidget extends StatelessWidget {
   const ProfileWidget({
     Key? key,
     this.controller,
-    this.imagePath = '',
+    this.imagePath,
     this.iconBackgroundColor,
     this.icon,
     this.onTab,
@@ -18,7 +18,7 @@ class ProfileWidget extends StatelessWidget {
   final Color? color;
   final Function? onTab;
   final Color? iconBackgroundColor;
-  final String imagePath;
+  final Widget? imagePath;
 
   @override
   Widget build(BuildContext context) {
@@ -35,16 +35,7 @@ class ProfileWidget extends StatelessWidget {
                 ),
               ),
               child: CircleAvatar(
-                radius: 65,
-                backgroundColor: Colors.white,
-                child: CircleAvatar(
-                  radius: 60.0,
-                  backgroundColor: Colors.white,
-                  backgroundImage: AssetImage(
-                    imagePath,
-                  ),
-                ),
-              ),
+                  radius: 65, backgroundColor: Colors.white, child: imagePath),
             ),
             Positioned(
               bottom: 10.0,

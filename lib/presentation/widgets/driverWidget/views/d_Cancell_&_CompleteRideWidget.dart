@@ -42,9 +42,10 @@ class D_CancleAndCompleteWidget extends StatelessWidget {
               Text(
                 'Passenger Name :',
                 style: TextStyle(
-                    color: tempColor.greyColor,
-                    fontSize: 14,
-                    fontFamily: 'lib/assets/font/AbrilFatface-Regular.ttf'),
+                  color: tempColor.greyColor,
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               const SizedBox(
                 width: 5,
@@ -52,10 +53,10 @@ class D_CancleAndCompleteWidget extends StatelessWidget {
               Text(
                 passengerName,
                 style: TextStyle(
-                    color: tempColor.blackColor,
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'lib/assets/font/AbrilFatface-Regular.ttf'),
+                  color: tempColor.blackColor,
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ],
           ),
