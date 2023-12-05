@@ -1289,7 +1289,7 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                                                     ),
                                               onPressed: () async {
                                                 final origin =
-                                                    '${fromLocation!.geometry!.location.lat},${fromLocation!.geometry!.location.lng}'; // San Francisco, CA
+                                                    '${fromLocation!.geometry!.location.lat},${fromLocation?.geometry?.location.lng}'; // San Francisco, CA
                                                 final destination =
                                                     '${toLocation!.geometry!.location.lat},${toLocation!.geometry!.location.lng}';
                                                 try {
