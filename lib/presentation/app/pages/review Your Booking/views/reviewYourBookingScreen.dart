@@ -16,6 +16,7 @@ class ReviewYourBookingScreen extends StatefulWidget {
   final dynamic note;
   final dynamic distance;
   final dynamic totalDriveTime;
+  final dynamic bookStatus;
   ReviewYourBookingScreen(
       {Key? key,
       this.fromlocation,
@@ -26,6 +27,7 @@ class ReviewYourBookingScreen extends StatefulWidget {
       this.pickuptime,
       this.price,
       this.distance,
+      this.bookStatus,
       this.totalDriveTime,
       this.stoplocation,
       this.tolocation})
@@ -424,7 +426,7 @@ class _ReviewYourBookingScreenState extends State<ReviewYourBookingScreen> {
                           fontSize: 15),
                     ),
                     Text(
-                      'As directed',
+                      widget.bookStatus == 0 ? 'Point to Point' : 'As Directed',
                       style: TextStyle(color: Colors.black, fontSize: 15),
                     ),
                   ],

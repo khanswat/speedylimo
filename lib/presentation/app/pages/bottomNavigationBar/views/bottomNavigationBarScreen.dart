@@ -96,7 +96,7 @@ class _BttomNavigationScreenState extends State<BttomNavigationScreen>
       )
     ];
     final screens = <Widget>[
-      data!.roles![0].name == 'Passenger'
+      data?.roles?[0].name == 'Passenger'
           ? PassengerHomeScreen()
           : DriverHomeScreen(),
       ProfileScreen(),

@@ -51,7 +51,7 @@ class _CancellRidesScreenState extends State<CancellRidesScreen> {
                 itemBuilder: (context, index) {
                   // Build and return each item based on its index
                   return CancleAndCompleteWidget(
-                    driverName: 'No param available',
+                    driverName: data[index].usertypeDriver?.name ?? '',
                     pickupTime: data[index].pickupTime ?? '',
                     totalAmount: 'USD ${data[index].totalTripAmount ?? ''}',
                     status: 'Cancelled'.toUpperCase(),

@@ -67,7 +67,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 final data = context.read<LoginCubit>().state.userModel?.data!;
                 context.read<UserCubit>().updateUser(data!);
                 _sharedPrefs.setToken(data.token ?? '');
-                NavigationService.instance.pushAndReplac(bottomBarRoute);
+                data.user?.roles![0].name == 'Admin'
+                    ? NavigationService.instance.pushAndReplac(adminHome)
+                    : NavigationService.instance.pushAndReplac(bottomBarRoute);
               }
             },
             child: Container(

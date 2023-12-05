@@ -67,7 +67,7 @@ class BookingDetailWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
-                      'Passenger Name :',
+                      'Driver Name :',
                       style: TextStyle(
                           color: tempColor.greyColor,
                           fontWeight: FontWeight.bold,

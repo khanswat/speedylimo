@@ -80,7 +80,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           endDrawer:
               context.read<UserCubit>().state.userData?.user?.roles![0].name !=
                       'Passenger'
-                  ? Container()
+                  ? null
                   : NavDrawer(context),
           appBar: PreferredSize(
               preferredSize: Size.fromHeight(80),

@@ -30,11 +30,24 @@ class _CallNowScreenState extends State<CallNowScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        endDrawer: NavDrawer(context),
+        endDrawer:
+            context.read<UserCubit>().state.userData?.user?.roles![0].name !=
+                    'Passenger'
+                ? null
+                : NavDrawer(context),
         appBar: PreferredSize(
             preferredSize: Size.fromHeight(80),
             child: AppBarWidget(
-              isshow: true,
+              isshow: context
+                          .read<UserCubit>()
+                          .state
+                          .userData
+                          ?.user
+                          ?.roles![0]
+                          .name !=
+                      'Passenger'
+                  ? false
+                  : true,
               showback: false,
               logo: true,
               title1: '',

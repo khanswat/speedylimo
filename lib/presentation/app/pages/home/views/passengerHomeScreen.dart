@@ -1,13 +1,13 @@
+import 'dart:async';
 import 'dart:convert';
-import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:speedylimo/business_logic/cubits/cubits.dart';
+import 'package:speedylimo/services/navigation/navigation_service.dart';
 import '../../../../../utils/constants/app/app_constants.dart';
 import '../../../../widgets/timepickerWidget/datepickerWidget.dart';
 import '../../../../widgets/timepickerWidget/timePicker.dart';
@@ -35,9 +35,9 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
   PickResult? fromLocation;
   PickResult? toLocation;
   PickResult? stopLocation;
+  int? bookTypeStatus;
 
   var TotalDistance;
-  double speed = 60.0;
   var totalDriveTime;
 
   String get apiKey => 'AIzaSyAlWLuEzszKgldMmuo9JjtKLxe9MGk75_k';
@@ -45,25 +45,6 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
   var selectedDate = DateTime.now();
   var selectedTime = TimeOfDay.now();
   TextEditingController descriptionController = TextEditingController();
-
-  // // Function to calculate the distance between two LatLng points using Haversine formula
-  // dynamic calculateDistance(var lat1, var lon1, var lat2, var lon2) {
-  //   const R = 6371000.0; // Earth radius in meters
-
-  //   var dLat = radians(lat2 - lat1);
-  //   var dLon = radians(lon2 - lon1);
-
-  //   var a = sin(dLat / 2) * sin(dLat / 2) +
-  //       cos(radians(lat1)) * cos(radians(lat2)) * sin(dLon / 2) * sin(dLon / 2);
-
-  //   var c = 2 * atan2(sqrt(a), sqrt(1 - a));
-
-  //   return R * c;
-  // }
-
-  // double radians(double degrees) {
-  //   return degrees * (pi / 180);
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -94,16 +75,22 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
     }
 
     void getTotalDistance(
-        String origin, String destination, String apiKey) async {
+        String origin, String destination, String stop, String apiKey) async {
       try {
         var response = await http.get(Uri.parse(
-          'https://maps.googleapis.com/maps/api/distancematrix/json??units=imperial&destinations=$destination&origins=$origin&key=$apiKey',
+          'https://maps.googleapis.com/maps/api/distancematrix/json??units=imperial&destinations=$destination&origins=$origin&waypoints=$stop&key=$apiKey',
         ));
 
         if (response.statusCode == 200) {
           Map<String, dynamic> data = json.decode(response.body);
           if (data['status'] == 'OK') {
-            TotalDistance = data['rows'][0]['elements'][0]['distance']['text'];
+            int totalDistance =
+                data['rows'][0]['elements'][0]['distance']['value'];
+            ;
+            // Convert the distance to kilometers or miles based on your preference
+            TotalDistance = totalDistance / 1000.0;
+
+            return TotalDistance;
           } else {
             print("Error: ${data['status']}");
           }
@@ -116,10 +103,10 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
     }
 
     void getDistanceMatrix(
-        String origin, String destination, String apiKey) async {
+        String origin, String destination, String stop, String apiKey) async {
       try {
         var response = await http.get(Uri.parse(
-          'https://maps.googleapis.com/maps/api/distancematrix/json??units=imperial&destinations=$destination&origins=$origin&key=$apiKey',
+          'https://maps.googleapis.com/maps/api/distancematrix/json??units=imperial&destinations=$destination&origins=$origin&waypoints=$stop&key=$apiKey',
         ));
 
         if (response.statusCode == 200) {
@@ -330,13 +317,14 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                                                                 totalDriveTime:
                                                                     totalDriveTime ??
                                                                         0,
-                                                                note:
-                                                                    descriptionController
-                                                                        .text,
+                                                                note: descriptionController
+                                                                    .text,
                                                                 stoplocation:
                                                                     stopLocation
                                                                             ?.formattedAddress ??
-                                                                        '');
+                                                                        '',
+                                                                bookStatus:
+                                                                    bookTypeStatus);
                                                           },
                                                         ));
                                                       },
@@ -786,6 +774,7 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                                       setState(() {
                                         color = false;
                                         isChecked = true;
+                                        bookTypeStatus = 0;
                                       });
                                     },
                                     child: Container(
@@ -800,7 +789,7 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                                             style: TextStyle(
                                                 color: Colors.white,
                                                 fontWeight: FontWeight.bold,
-                                                fontSize: 18),
+                                                fontSize: 14),
                                           ),
                                         ),
                                       ),
@@ -834,6 +823,7 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                                       setState(() {
                                         color = true;
                                         isChecked = false;
+                                        bookTypeStatus = 1;
                                       });
                                     },
                                     child: Container(
@@ -862,7 +852,7 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                             ),
                             //todo point to  point container
                             Container(
-                              child: isChecked != true
+                              child: isChecked == false
                                   ? Column(
                                       children: [
                                         Container(
@@ -962,7 +952,7 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                         content: Column(
                           children: <Widget>[
                             Container(
-                              padding: const EdgeInsets.all(10),
+                              padding: EdgeInsets.all(10),
                               decoration: BoxDecoration(
                                 border: Border.all(
                                   color: tempColor.lightGreyColor,
@@ -996,141 +986,154 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                                       borderRadius: BorderRadius.circular(5.0),
                                     ),
                                     child: Center(
-                                        child: TextButton(
-                                      onPressed: () {
-                                        containers.add(Column(
-                                          children: [
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Expanded(
-                                                  flex: 3,
-                                                  child: GestureDetector(
-                                                      onTap: () {
-                                                        Navigator.push(context,
-                                                            MaterialPageRoute(
-                                                          builder: (context) {
-                                                            return PlacePicker(
-                                                              apiKey: apiKey,
+                                        child: Builder(builder: (context) {
+                                      return TextButton(
+                                        onPressed: () {
+                                          containers.add(Column(
+                                            children: [
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Expanded(
+                                                    flex: 3,
+                                                    child: Builder(
+                                                        builder: (context) {
+                                                      return GestureDetector(
+                                                          onTap: () async {
+                                                            await Navigator.push(
+                                                                context,
+                                                                MaterialPageRoute(
+                                                              builder:
+                                                                  (context) {
+                                                                return PlacePicker(
+                                                                  apiKey:
+                                                                      apiKey,
 
-                                                              initialPosition:
-                                                                  LatLng(
+                                                                  initialPosition: LatLng(
                                                                       -33.8567844,
                                                                       151.213108),
-                                                              useCurrentLocation:
-                                                                  true,
-                                                              selectInitialPosition:
-                                                                  true,
+                                                                  useCurrentLocation:
+                                                                      true,
+                                                                  selectInitialPosition:
+                                                                      true,
 
-                                                              //usePlaceDetailSearch: true,
-                                                              onPlacePicked:
-                                                                  (result) {
-                                                                setState(() {
-                                                                  stopLocation =
-                                                                      result;
-                                                                });
+                                                                  //usePlaceDetailSearch: true,
+                                                                  onPlacePicked:
+                                                                      (result) {
+                                                                    setState(
+                                                                        () {
+                                                                      stopLocation =
+                                                                          result;
+                                                                    });
 
-                                                                Navigator.of(
-                                                                        context)
-                                                                    .pop();
+                                                                    NavigationService
+                                                                        .instance
+                                                                        .goBack();
+                                                                  },
+                                                                );
                                                               },
-                                                            );
+                                                            ));
                                                           },
-                                                        ));
-                                                      },
-                                                      child: Container(
-                                                        color: tempColor
-                                                            .whiteColor,
-                                                        child: InputDecorator(
-                                                          decoration:
-                                                              InputDecoration(
-                                                            labelText:
-                                                                'enter stop point'
-                                                                    .toUpperCase(),
-                                                            border:
-                                                                OutlineInputBorder(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .all(
-                                                                Radius.circular(
-                                                                  5,
+                                                          child: Container(
+                                                            color: tempColor
+                                                                .whiteColor,
+                                                            child:
+                                                                InputDecorator(
+                                                              decoration:
+                                                                  InputDecoration(
+                                                                labelText:
+                                                                    'enter stop point'
+                                                                        .toUpperCase(),
+                                                                border:
+                                                                    OutlineInputBorder(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .all(
+                                                                    Radius
+                                                                        .circular(
+                                                                      5,
+                                                                    ),
+                                                                  ),
                                                                 ),
                                                               ),
+                                                              child: Text(
+                                                                  '${stopLocation?.formattedAddress ?? 'Enter Point'}'),
                                                             ),
+                                                          ));
+                                                    }),
+                                                  ),
+                                                  const SizedBox(
+                                                    width: 10,
+                                                  ),
+                                                  Expanded(
+                                                    child: InkWell(
+                                                      onTap: () {
+                                                        setState(() {
+                                                          containers
+                                                              .removeAt(index);
+                                                          stopLocation = null;
+                                                        });
+                                                      },
+                                                      child: Container(
+                                                        height: 40,
+                                                        width: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .width /
+                                                            2,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      5.0),
+                                                          gradient:
+                                                              LinearGradient(
+                                                            colors: [
+                                                              Colors.blue,
+                                                              Color(0xff00C6FF)
+                                                            ],
+                                                            begin: Alignment
+                                                                .centerLeft,
+                                                            end: Alignment
+                                                                .centerRight,
                                                           ),
+                                                        ),
+                                                        child: const Center(
                                                           child: Text(
-                                                              '${stopLocation?.formattedAddress ?? 'Enter Point'}'),
-                                                        ),
-                                                      )),
-                                                ),
-                                                const SizedBox(
-                                                  width: 10,
-                                                ),
-                                                Expanded(
-                                                  child: InkWell(
-                                                    onTap: () {
-                                                      setState(() {
-                                                        containers
-                                                            .removeAt(index);
-                                                      });
-                                                    },
-                                                    child: Container(
-                                                      height: 40,
-                                                      width:
-                                                          MediaQuery.of(context)
-                                                                  .size
-                                                                  .width /
-                                                              2,
-                                                      decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(5.0),
-                                                        gradient:
-                                                            LinearGradient(
-                                                          colors: [
-                                                            Colors.blue,
-                                                            Color(0xff00C6FF)
-                                                          ],
-                                                          begin: Alignment
-                                                              .centerLeft,
-                                                          end: Alignment
-                                                              .centerRight,
-                                                        ),
-                                                      ),
-                                                      child: const Center(
-                                                        child: Text(
-                                                          'Remove',
-                                                          style: TextStyle(
-                                                              color:
-                                                                  Colors.white,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
-                                                              fontSize: 14),
+                                                            'Remove',
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .white,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                fontSize: 14),
+                                                          ),
                                                         ),
                                                       ),
                                                     ),
                                                   ),
-                                                ),
-                                              ],
-                                            ),
-                                            const SizedBox(
-                                              height: 10,
-                                            )
-                                          ],
-                                        ));
-                                        setState(() {});
-                                      },
-                                      child: const Text(
-                                        '+ ADD STOP ',
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    )),
+                                                ],
+                                              ),
+                                              const SizedBox(
+                                                height: 10,
+                                              )
+                                            ],
+                                          ));
+                                          setState(() {});
+                                        },
+                                        child: const Text(
+                                          '+ ADD STOP ',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      );
+                                    })),
                                   ),
                                   SizedBox(
                                     height: 20,
@@ -1181,9 +1184,9 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                                   const SizedBox(
                                     height: 10,
                                   ),
-                                  Column(
-                                    children: containers,
-                                  ),
+                                  Builder(builder: (context) {
+                                    return Column(children: containers);
+                                  }),
                                   GestureDetector(
                                     onTap: () {
                                       Navigator.push(context, MaterialPageRoute(
@@ -1264,7 +1267,12 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                                                       .isSubmissionInProgress
                                                   ? false
                                                   : (!state.status
-                                                          .isSubmissionInProgress
+                                                              .isSubmissionInProgress &&
+                                                          fromLocation
+                                                                  ?.geometry
+                                                                  ?.location
+                                                                  .lat !=
+                                                              null
                                                       ? false
                                                       : true),
                                               isOutline: state.status
@@ -1289,26 +1297,32 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                                                     ),
                                               onPressed: () async {
                                                 final origin =
-                                                    '${fromLocation!.geometry!.location.lat},${fromLocation?.geometry?.location.lng}'; // San Francisco, CA
+                                                    '${fromLocation!.geometry!.location.lat},${fromLocation!.geometry!.location.lng}'; // San Francisco, CA
                                                 final destination =
-                                                    '${toLocation!.geometry!.location.lat},${toLocation!.geometry!.location.lng}';
+                                                    '${toLocation?.geometry?.location.lat ?? 0.0},${toLocation!.geometry!.location.lng}';
+                                                final stop =
+                                                    '${stopLocation?.geometry?.location.lat ?? 0.0},${stopLocation?.geometry?.location.lng ?? 0.0}';
                                                 try {
                                                   //todo for total ditance
 
-                                                  getTotalDistance(origin,
-                                                      destination, apiKey);
+                                                  getTotalDistance(
+                                                      origin,
+                                                      destination,
+                                                      stop,
+                                                      apiKey);
 
                                                   //todo for total time
-                                                  getDistanceMatrix(origin,
-                                                      destination, apiKey);
+                                                  getDistanceMatrix(
+                                                      origin,
+                                                      destination,
+                                                      stop,
+                                                      apiKey);
 
                                                   //todo calculate API CALL
                                                   await context
                                                       .read<PriceCubit>()
                                                       .getPrice(
-                                                          miles:
-                                                              TotalDistance ??
-                                                                  0.0)
+                                                          miles: TotalDistance)
                                                       .then((value) => {
                                                             setState(
                                                               () {},

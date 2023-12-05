@@ -46,7 +46,7 @@ class _CompleteRideDetailScreenState extends State<CompleteRideDetailScreen> {
                   estDriveTime: widget.data.totalTripTime ?? '',
                   noBages: widget.data.bags ?? '',
                   noPassenger: widget.data.passenger ?? '',
-                  passengerName: widget.data.usertype?.name ?? '',
+                  passengerName: widget.data.usertypeDriver?.name ?? '',
                   pickupLocation: widget.data.pickupLocation ?? '',
                   pickupTime: widget.data.pickupTime ?? '',
                   specialInstructions: widget.data.specialInstruction ?? '',

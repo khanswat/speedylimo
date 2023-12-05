@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../business_logic/cubits/cubits.dart';
 import '../../../../../data/data.dart';
 import '../../../../../services/services.dart';
 import '/utils/utils.dart';
@@ -33,7 +35,17 @@ class _SplashScreenState extends State<SplashScreen>
                   NavigationService.instance.navigateTo(loginRoute);
                 })
               : Future.delayed(Duration(seconds: 2), () {
-                  NavigationService.instance.pushAndRemoveUntil(bottomBarRoute);
+                  context
+                              .read<UserCubit>()
+                              .state
+                              .userData
+                              ?.user
+                              ?.roles?[0]
+                              .name ==
+                          'Admin'
+                      ? NavigationService.instance.pushAndRemoveUntil(adminHome)
+                      : NavigationService.instance
+                          .pushAndRemoveUntil(bottomBarRoute);
                 });
         });
       },

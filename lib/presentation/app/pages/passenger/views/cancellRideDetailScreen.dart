@@ -46,9 +46,7 @@ class _CancellRideDetailScreenState extends State<CancellRideDetailScreen> {
                   estDriveTime: widget.data.totalTripTime ?? '',
                   noBages: widget.data.bags ?? '',
                   noPassenger: widget.data.passenger ?? '',
-                  passengerName:
-                      context.read<UserCubit>().state.userData?.user?.name ??
-                          '',
+                  passengerName: widget.data.usertypeDriver?.name ?? '',
                   pickupLocation: widget.data.pickupLocation ?? '',
                   pickupTime: widget.data.pickupTime ?? '',
                   specialInstructions: widget.data.specialInstruction ?? '',

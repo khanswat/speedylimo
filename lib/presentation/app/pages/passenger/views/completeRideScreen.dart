@@ -50,7 +50,7 @@ class _CompleteRidesScreenState extends State<CompleteRidesScreen> {
                 itemBuilder: (context, index) {
                   // Build and return each item based on its index
                   return CancleAndCompleteWidget(
-                    driverName: data[index].usertype?.name ?? '',
+                    driverName: data[index].usertypeDriver?.name ?? '',
                     pickupTime: data[index].pickupTime ?? '',
                     totalAmount: 'USD ${data[index].totalTripAmount ?? ''}',
                     status: 'COMPLETED'.toUpperCase(),
