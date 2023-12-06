@@ -163,7 +163,7 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                 CustomLinearGradientWidget(
                   firstText: 'BOOK',
                   lastText: 'NOW',
-                  fontSize: 24,
+                  fontSize: 18,
                 ),
                 Expanded(
                   child: Stepper(
@@ -176,15 +176,15 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                         children: <Widget>[
                           _currentStep == 0
                               ? TextButton(
-                                  onPressed: continued,
+                                  onPressed:
+                                      fromLocation != null ? continued : null,
                                   child: Container(
                                     margin: EdgeInsets.only(top: 10),
                                     decoration: BoxDecoration(
                                       gradient: LinearGradient(
-                                        colors: [
-                                          Colors.blue,
-                                          Color(0xff00C6FF)
-                                        ],
+                                        colors: fromLocation != null
+                                            ? [Colors.blue, Color(0xff00C6FF)]
+                                            : [Colors.grey, Colors.grey],
                                         begin: Alignment.centerLeft,
                                         end: Alignment.centerRight,
                                       ),
@@ -214,10 +214,15 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                                             child: Container(
                                               decoration: BoxDecoration(
                                                 gradient: LinearGradient(
-                                                  colors: [
-                                                    Colors.blue,
-                                                    Color(0xff00C6FF)
-                                                  ],
+                                                  colors: bookTypeStatus != null
+                                                      ? [
+                                                          Colors.blue,
+                                                          Color(0xff00C6FF)
+                                                        ]
+                                                      : [
+                                                          Colors.grey,
+                                                          Colors.grey
+                                                        ],
                                                   begin: Alignment.centerLeft,
                                                   end: Alignment.centerRight,
                                                 ),
@@ -265,9 +270,7 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
                                               InkWell(
-                                                onTap: fromLocation
-                                                            ?.formattedAddress ==
-                                                        null
+                                                onTap: fromLocation == null
                                                     ? () {
                                                         ScaffoldMessenger.of(
                                                             context)
@@ -433,7 +436,7 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                       Step(
                         title: Text(
                           'WHEN IS YOUR TRIPS?',
-                          style: TextStyle(color: Colors.blue),
+                          style: TextStyle(color: Colors.blue, fontSize: 14),
                         ),
                         content: Column(
                           children: <Widget>[
@@ -567,14 +570,14 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                                   const CustomLinearGradientWidget(
                                     firstText: 'PICKUP',
                                     lastText: 'DATE:',
-                                    fontSize: 18,
+                                    fontSize: 14,
                                   ),
                                   Container(
                                     // color: const Color(0xff585858),
                                     child: DatePickerWidget(
                                       fillColor: Colors.white70,
-                                      labelStyle:
-                                          TextStyle(color: Colors.black),
+                                      labelStyle: TextStyle(
+                                          color: Colors.blue, fontSize: 14),
                                       selectDate: formattedDate ??
                                           '${selectedDate.toLocal()}'
                                               .split(' ')[0],
@@ -608,7 +611,7 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                                   const CustomLinearGradientWidget(
                                     firstText: 'PICKUP',
                                     lastText: ' TIME:',
-                                    fontSize: 18,
+                                    fontSize: 14,
                                   ),
                                   Container(
                                     // color: const Color(0xff585858),
@@ -649,9 +652,9 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       const CustomLinearGradientWidget(
-                                        firstText: '# of',
+                                        firstText: '# OF',
                                         lastText: 'PASSENGERS:',
-                                        fontSize: 18,
+                                        fontSize: 14,
                                       ),
                                       Row(
                                         mainAxisAlignment:
@@ -665,14 +668,15 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                                               },
                                               icon: const Icon(
                                                 Icons.arrow_left,
-                                                size: 35,
+                                                size: 25,
                                                 color: Colors.black,
                                               )),
                                           Text(
                                             passengerCount.toString(),
                                             style: const TextStyle(
                                                 color: Colors.black,
-                                                fontSize: 18),
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 14),
                                           ),
                                           IconButton(
                                               onPressed: () {
@@ -682,7 +686,7 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                                               },
                                               icon: const Icon(
                                                 Icons.arrow_right,
-                                                size: 35,
+                                                size: 25,
                                                 color: Colors.black,
                                               ))
                                         ],
@@ -697,9 +701,9 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       const CustomLinearGradientWidget(
-                                        firstText: '# of',
+                                        firstText: '# OF',
                                         lastText: 'BAGES:',
-                                        fontSize: 18,
+                                        fontSize: 14,
                                       ),
                                       Row(
                                         mainAxisAlignment:
@@ -713,14 +717,15 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                                               },
                                               icon: const Icon(
                                                 Icons.arrow_left,
-                                                size: 35,
+                                                size: 25,
                                                 color: Colors.black,
                                               )),
                                           Text(
                                             BagCount.toString(),
                                             style: const TextStyle(
                                                 color: Colors.black,
-                                                fontSize: 18),
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 14),
                                           ),
                                           IconButton(
                                               onPressed: () {
@@ -730,7 +735,7 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                                               },
                                               icon: const Icon(
                                                 Icons.arrow_right,
-                                                size: 35,
+                                                size: 25,
                                                 color: Colors.black,
                                               ))
                                         ],
@@ -965,6 +970,7 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                               child: Column(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
+                                mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Container(
                                     height: 40,
@@ -989,141 +995,7 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                                         child: Builder(builder: (context) {
                                       return TextButton(
                                         onPressed: () {
-                                          containers.add(Column(
-                                            children: [
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Expanded(
-                                                    flex: 3,
-                                                    child: Builder(
-                                                        builder: (context) {
-                                                      return GestureDetector(
-                                                          onTap: () async {
-                                                            await Navigator.push(
-                                                                context,
-                                                                MaterialPageRoute(
-                                                              builder:
-                                                                  (context) {
-                                                                return PlacePicker(
-                                                                  apiKey:
-                                                                      apiKey,
-
-                                                                  initialPosition: LatLng(
-                                                                      -33.8567844,
-                                                                      151.213108),
-                                                                  useCurrentLocation:
-                                                                      true,
-                                                                  selectInitialPosition:
-                                                                      true,
-
-                                                                  //usePlaceDetailSearch: true,
-                                                                  onPlacePicked:
-                                                                      (result) {
-                                                                    setState(
-                                                                        () {
-                                                                      stopLocation =
-                                                                          result;
-                                                                    });
-
-                                                                    NavigationService
-                                                                        .instance
-                                                                        .goBack();
-                                                                  },
-                                                                );
-                                                              },
-                                                            ));
-                                                          },
-                                                          child: Container(
-                                                            color: tempColor
-                                                                .whiteColor,
-                                                            child:
-                                                                InputDecorator(
-                                                              decoration:
-                                                                  InputDecoration(
-                                                                labelText:
-                                                                    'enter stop point'
-                                                                        .toUpperCase(),
-                                                                border:
-                                                                    OutlineInputBorder(
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .all(
-                                                                    Radius
-                                                                        .circular(
-                                                                      5,
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                              child: Text(
-                                                                  '${stopLocation?.formattedAddress ?? 'Enter Point'}'),
-                                                            ),
-                                                          ));
-                                                    }),
-                                                  ),
-                                                  const SizedBox(
-                                                    width: 10,
-                                                  ),
-                                                  Expanded(
-                                                    child: InkWell(
-                                                      onTap: () {
-                                                        setState(() {
-                                                          containers
-                                                              .removeAt(index);
-                                                          stopLocation = null;
-                                                        });
-                                                      },
-                                                      child: Container(
-                                                        height: 40,
-                                                        width: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .width /
-                                                            2,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      5.0),
-                                                          gradient:
-                                                              LinearGradient(
-                                                            colors: [
-                                                              Colors.blue,
-                                                              Color(0xff00C6FF)
-                                                            ],
-                                                            begin: Alignment
-                                                                .centerLeft,
-                                                            end: Alignment
-                                                                .centerRight,
-                                                          ),
-                                                        ),
-                                                        child: const Center(
-                                                          child: Text(
-                                                            'Remove',
-                                                            style: TextStyle(
-                                                                color: Colors
-                                                                    .white,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                                fontSize: 14),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                              const SizedBox(
-                                                height: 10,
-                                              )
-                                            ],
-                                          ));
-                                          setState(() {});
+                                          addDynamicWidget();
                                         },
                                         child: const Text(
                                           '+ ADD STOP ',
@@ -1184,9 +1056,14 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                                   const SizedBox(
                                     height: 10,
                                   ),
-                                  Builder(builder: (context) {
-                                    return Column(children: containers);
-                                  }),
+                                  ListView.builder(
+                                    shrinkWrap: true,
+                                    physics: NeverScrollableScrollPhysics(),
+                                    itemCount: containers.length,
+                                    itemBuilder: (context, index) {
+                                      return containers[index];
+                                    },
+                                  ),
                                   GestureDetector(
                                     onTap: () {
                                       Navigator.push(context, MaterialPageRoute(
@@ -1396,6 +1273,98 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
         ),
       ),
     );
+  }
+
+  void addDynamicWidget() {
+    setState(() {
+      containers.add(Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                  flex: 3,
+                  child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(
+                          builder: (context) {
+                            return PlacePicker(
+                              apiKey: apiKey,
+
+                              initialPosition: LatLng(-33.8567844, 151.213108),
+                              useCurrentLocation: true,
+                              selectInitialPosition: true,
+
+                              //usePlaceDetailSearch: true,
+                              onPlacePicked: (result) {
+                                stopLocation?.formattedAddress ==
+                                    result.formattedAddress;
+
+                                NavigationService.instance.goBack();
+                              },
+                            );
+                          },
+                        ));
+                      },
+                      child: Container(
+                        color: tempColor.whiteColor,
+                        child: InputDecorator(
+                          decoration: InputDecoration(
+                            labelText: 'enter stop point'.toUpperCase(),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(
+                                  5,
+                                ),
+                              ),
+                            ),
+                          ),
+                          child: Text(
+                              '${stopLocation?.formattedAddress ?? 'Enter Point'}'),
+                        ),
+                      ))),
+              const SizedBox(
+                width: 10,
+              ),
+              Expanded(
+                child: InkWell(
+                  onTap: () {
+                    setState(() {
+                      containers.removeAt(index);
+                      stopLocation = null;
+                    });
+                  },
+                  child: Container(
+                    height: 40,
+                    width: MediaQuery.of(context).size.width / 2,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5.0),
+                      gradient: LinearGradient(
+                        colors: [Colors.blue, Color(0xff00C6FF)],
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                      ),
+                    ),
+                    child: const Center(
+                      child: Text(
+                        'Remove',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 10,
+          )
+        ],
+      ));
+    });
   }
 
   void tapped(int step) {

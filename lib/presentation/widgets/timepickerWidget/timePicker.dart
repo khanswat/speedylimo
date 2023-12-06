@@ -95,7 +95,7 @@ class _TimePickerWidgetState extends State<TimePickerWidget> {
         onTap: widget.onSelected,
         child: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(5),
             color: const Color(0xffEFEFEF),
             border: Border.all(
               color: tempColor.lightGreyColor,
@@ -104,17 +104,21 @@ class _TimePickerWidgetState extends State<TimePickerWidget> {
             ),
           ),
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(4.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 Text(
                   widget.selecTime,
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(
                   width: 10.0,
                 ),
-                const Icon(Icons.access_time),
+                const Icon(
+                  Icons.access_time,
+                  size: 20,
+                ),
                 // ElevatedButton(
                 //   onPressed: () => _selectDate(context),
                 //   child: const Text('Select date'),

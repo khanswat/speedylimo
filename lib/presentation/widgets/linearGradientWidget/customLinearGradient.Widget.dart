@@ -29,7 +29,7 @@ class CustomLinearGradientWidget extends StatelessWidget {
           style: TextStyle(
               color: tempColor.blackColor,
               fontSize: fontSize,
-              fontWeight: FontWeight.w600,
+              fontWeight: FontWeight.bold,
               fontFamily: 'lib/assets/font/AbrilFatface-Regular.ttf'),
         ),
         const SizedBox(

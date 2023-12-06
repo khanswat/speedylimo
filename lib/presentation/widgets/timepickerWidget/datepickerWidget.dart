@@ -38,7 +38,7 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
         onTap: widget.onTap,
         child: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(5),
             color: const Color(0xffEFEFEF),
             border: Border.all(
               color: tempColor.lightGreyColor,
@@ -47,17 +47,23 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
             ),
           ),
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(4.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                Text(widget.selectDate),
+                Text(
+                  widget.selectDate,
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                ),
                 widget.selectDate != ''
                     ? SizedBox(
                         width: 10.0,
                       )
                     : Container(),
-                const Icon(Icons.calendar_month),
+                const Icon(
+                  Icons.calendar_month,
+                  size: 20,
+                ),
                 // ElevatedButton(
                 //   onPressed: () => _selectDate(context),
                 //   child: const Text('Select date'),

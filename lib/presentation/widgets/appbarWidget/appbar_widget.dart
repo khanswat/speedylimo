@@ -66,7 +66,7 @@ class _AppBarWidgetState extends State<AppBarWidget> {
                                   },
                                   icon: Icon(
                                     Icons.arrow_back_ios_new_rounded,
-                                    size: 30,
+                                    size: 25,
                                     color: Colors.white,
                                   ))),
                         )
@@ -84,7 +84,7 @@ class _AppBarWidgetState extends State<AppBarWidget> {
                           widget.title1,
                           style: TextStyle(
                             color: tempColor.blackColor,
-                            fontSize: 25,
+                            fontSize: 22,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -95,7 +95,7 @@ class _AppBarWidgetState extends State<AppBarWidget> {
                           widget.title2,
                           style: TextStyle(
                             color: tempColor.whiteColor,
-                            fontSize: 25,
+                            fontSize: 22,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
