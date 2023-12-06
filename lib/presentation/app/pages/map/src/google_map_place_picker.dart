@@ -12,6 +12,7 @@ import 'package:google_maps_webservice/places.dart';
 
 import 'package:provider/provider.dart';
 import 'package:speedylimo/business_logic/bussiness.logic.dart';
+import 'package:speedylimo/utils/constants/app/app_constants.dart';
 import 'package:tuple/tuple.dart';
 
 import '../../../app.dart';
@@ -449,7 +450,7 @@ class GoogleMapPlacePicker extends StatelessWidget {
       bottomPosition: MediaQuery.of(context).size.height * 0.1,
       leftPosition: MediaQuery.of(context).size.width * 0.15,
       rightPosition: MediaQuery.of(context).size.width * 0.15,
-      width: MediaQuery.of(context).size.width * 0.7,
+      width: MediaQuery.of(context).size.width * 1,
       borderRadius: BorderRadius.circular(12.0),
       elevation: 4.0,
       color: Theme.of(context).cardColor,
@@ -498,22 +499,32 @@ class GoogleMapPlacePicker extends StatelessWidget {
           (canBePicked && (selectText?.isEmpty ?? true)) ||
                   (!canBePicked && (outsideOfPickAreaText?.isEmpty ?? true))
               ? SizedBox.fromSize(
-                  size: Size(56, 56), // button width and height
-                  child: ClipOval(
-                    child: Material(
-                      child: InkWell(
-                          overlayColor: buttonColor,
-                          onTap: () {
-                            if (canBePicked) {
-                              onPlacePicked!(result);
-                            }
-                          },
-                          child: Icon(
-                              canBePicked
-                                  ? Icons.check_sharp
-                                  : Icons.app_blocking_sharp,
-                              color: buttonColor)),
-                    ),
+                  size: Size(200, 40), // button width and height
+                  child: Material(
+                    child: InkWell(
+                        overlayColor: buttonColor,
+                        onTap: () {
+                          if (canBePicked) {
+                            onPlacePicked!(result);
+                          }
+                        },
+                        child: canBePicked
+                            ? Container(
+                                decoration: BoxDecoration(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10.0)),
+                                    color: buttonColor),
+                                child: Center(
+                                    child: Text(
+                                  'Confirm',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                  ),
+                                )),
+                              )
+                            : Container()),
                   ),
                 )
               : SizedBox.fromSize(

@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
@@ -14,7 +15,6 @@ import '../../../../widgets/timepickerWidget/timePicker.dart';
 import '../../../../widgets/widget.dart';
 import '../../pages.dart';
 import 'package:speedylimo/extensions/colors/colors_extension.dart';
-
 import 'package:http/http.dart' as http;
 
 class PassengerHomeScreen extends StatefulWidget {
@@ -23,6 +23,7 @@ class PassengerHomeScreen extends StatefulWidget {
 }
 
 class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
+  final Dio _dio = Dio();
   int _currentStep = 0;
   StepperType stepperType = StepperType.vertical;
   int passengerCount = 0;
@@ -30,13 +31,13 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
   bool color = true;
   bool isChecked = false;
   bool isLoading = false;
-  List<Widget> containers = [];
+
   int index = 0;
   PickResult? fromLocation;
   PickResult? toLocation;
   PickResult? stopLocation;
   int? bookTypeStatus;
-
+  List<Widget> containers = [];
   var TotalDistance;
   var totalDriveTime;
 
@@ -74,11 +75,11 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
       }
     }
 
-    void getTotalDistance(
-        String origin, String destination, String stop, String apiKey) async {
+    void getTotalDistance(String origin, String destination, List<String>? stop,
+        String apiKey) async {
       try {
         var response = await http.get(Uri.parse(
-          'https://maps.googleapis.com/maps/api/distancematrix/json??units=imperial&destinations=$destination&origins=$origin&waypoints=$stop&key=$apiKey',
+          'https://maps.googleapis.com/maps/api/distancematrix/json??units=imperial&destinations=$destination&origins=$origin&waypoints=${stop?.join('|')}&key=$apiKey',
         ));
 
         if (response.statusCode == 200) {
@@ -102,11 +103,11 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
       }
     }
 
-    void getDistanceMatrix(
-        String origin, String destination, String stop, String apiKey) async {
+    void getDistanceMatrix(String origin, String destination,
+        List<String>? stop, String apiKey) async {
       try {
         var response = await http.get(Uri.parse(
-          'https://maps.googleapis.com/maps/api/distancematrix/json??units=imperial&destinations=$destination&origins=$origin&waypoints=$stop&key=$apiKey',
+          'https://maps.googleapis.com/maps/api/directions/json??units=imperial&destinations=$destination&origins=$origin&waypoints=${stop?.join('|')}&key=$apiKey',
         ));
 
         if (response.statusCode == 200) {
@@ -992,20 +993,40 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                                       borderRadius: BorderRadius.circular(5.0),
                                     ),
                                     child: Center(
-                                        child: Builder(builder: (context) {
-                                      return TextButton(
-                                        onPressed: () {
-                                          addDynamicWidget();
-                                        },
-                                        child: const Text(
-                                          '+ ADD STOP ',
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                      );
-                                    })),
+                                        child: TextButton(
+                                      onPressed: () {
+                                        Navigator.push(context,
+                                            MaterialPageRoute(
+                                          builder: (context) {
+                                            return PlacePicker(
+                                              apiKey: apiKey,
+
+                                              initialPosition: LatLng(
+                                                  -33.8567844, 151.213108),
+                                              useCurrentLocation: true,
+                                              selectInitialPosition: true,
+
+                                              //usePlaceDetailSearch: true,
+                                              onPlacePicked: (result) {
+                                                setState(() {
+                                                  stopLocation = result;
+                                                });
+
+                                                NavigationService.instance
+                                                    .goBack();
+                                              },
+                                            );
+                                          },
+                                        )).then((value) => addDynamicWidget());
+                                      },
+                                      child: const Text(
+                                        '+ ADD STOP ',
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    )),
                                   ),
                                   SizedBox(
                                     height: 20,
@@ -1174,28 +1195,31 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                                                     ),
                                               onPressed: () async {
                                                 final origin =
-                                                    '${fromLocation!.geometry!.location.lat},${fromLocation!.geometry!.location.lng}'; // San Francisco, CA
+                                                    '${fromLocation?.geometry?.location.lat ?? 0.0},${fromLocation?.geometry?.location.lng ?? 0.0}'; // San Francisco, CA
                                                 final destination =
-                                                    '${toLocation?.geometry?.location.lat ?? 0.0},${toLocation!.geometry!.location.lng}';
-                                                final stop =
-                                                    '${stopLocation?.geometry?.location.lat ?? 0.0},${stopLocation?.geometry?.location.lng ?? 0.0}';
+                                                    '${toLocation?.geometry?.location.lat ?? 0.0},${toLocation?.geometry?.location.lng ?? 0.0}';
+                                                List<String>? stops = [
+                                                  '${stopLocation?.geometry?.location.lat ?? 0.0},${stopLocation?.geometry?.location.lng ?? 0.0}'
+                                                ];
+
                                                 try {
                                                   //todo for total ditance
 
                                                   getTotalDistance(
                                                       origin,
                                                       destination,
-                                                      stop,
+                                                      stops,
                                                       apiKey);
 
                                                   //todo for total time
                                                   getDistanceMatrix(
                                                       origin,
                                                       destination,
-                                                      stop,
+                                                      stops,
                                                       apiKey);
 
                                                   //todo calculate API CALL
+
                                                   await context
                                                       .read<PriceCubit>()
                                                       .getPrice(
@@ -1276,95 +1300,73 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
   }
 
   void addDynamicWidget() {
-    setState(() {
-      containers.add(Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                  flex: 3,
-                  child: GestureDetector(
-                      onTap: () {
-                        Navigator.push(context, MaterialPageRoute(
-                          builder: (context) {
-                            return PlacePicker(
-                              apiKey: apiKey,
-
-                              initialPosition: LatLng(-33.8567844, 151.213108),
-                              useCurrentLocation: true,
-                              selectInitialPosition: true,
-
-                              //usePlaceDetailSearch: true,
-                              onPlacePicked: (result) {
-                                stopLocation?.formattedAddress ==
-                                    result.formattedAddress;
-
-                                NavigationService.instance.goBack();
-                              },
-                            );
-                          },
-                        ));
-                      },
-                      child: Container(
-                        color: tempColor.whiteColor,
-                        child: InputDecorator(
-                          decoration: InputDecoration(
-                            labelText: 'enter stop point'.toUpperCase(),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(
-                                  5,
-                                ),
-                              ),
-                            ),
+    containers.add(Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(
+                flex: 3,
+                child: Container(
+                  color: tempColor.whiteColor,
+                  child: InputDecorator(
+                    decoration: InputDecoration(
+                      labelText: 'enter stop point'.toUpperCase(),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(
+                            5,
                           ),
-                          child: Text(
-                              '${stopLocation?.formattedAddress ?? 'Enter Point'}'),
                         ),
-                      ))),
-              const SizedBox(
-                width: 10,
-              ),
-              Expanded(
-                child: InkWell(
-                  onTap: () {
-                    setState(() {
-                      containers.removeAt(index);
-                      stopLocation = null;
-                    });
-                  },
-                  child: Container(
-                    height: 40,
-                    width: MediaQuery.of(context).size.width / 2,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5.0),
-                      gradient: LinearGradient(
-                        colors: [Colors.blue, Color(0xff00C6FF)],
-                        begin: Alignment.centerLeft,
-                        end: Alignment.centerRight,
                       ),
                     ),
-                    child: const Center(
-                      child: Text(
-                        'Remove',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 14),
-                      ),
+                    child: Text(
+                        '${stopLocation?.formattedAddress ?? 'Enter Point'}'),
+                  ),
+                )),
+            const SizedBox(
+              width: 10,
+            ),
+            Expanded(
+              child: InkWell(
+                onTap: () {
+                  setState(() {
+                    containers.removeAt(index);
+                    stopLocation = null;
+                  });
+                },
+                child: Container(
+                  height: 40,
+                  width: MediaQuery.of(context).size.width / 2,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5.0),
+                    gradient: LinearGradient(
+                      colors: [Colors.blue, Color(0xff00C6FF)],
+                      begin: Alignment.centerLeft,
+                      end: Alignment.centerRight,
+                    ),
+                  ),
+                  child: const Center(
+                    child: Text(
+                      'Remove',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14),
                     ),
                   ),
                 ),
               ),
-            ],
-          ),
-          const SizedBox(
-            height: 10,
-          )
-        ],
-      ));
-    });
+            ),
+          ],
+        ),
+        const SizedBox(
+          height: 10,
+        )
+      ],
+    ));
+
+    setState(() {});
   }
 
   void tapped(int step) {
