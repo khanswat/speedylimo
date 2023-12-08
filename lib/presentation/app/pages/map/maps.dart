@@ -11,3 +11,4 @@ export 'providers/place_provider.dart';
 export 'providers/search_provider.dart';
 export 'src/utils/uuid.dart';
 export 'src/models/circle_area.dart';
+export 'src/travelCalulator.dart';

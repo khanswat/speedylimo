@@ -58,9 +58,6 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => DriverHomeScreen());
     case bookingQueries:
       return MaterialPageRoute(builder: (context) => BookingQueriesScreen());
-    case bookingQueriesDetail:
-      return MaterialPageRoute(
-          builder: (context) => BookingQueriesDetailScreen());
     case adminpendingrides:
       return MaterialPageRoute(builder: (context) => AdminPendingridesScreen());
     case adminPendingRideDetail:

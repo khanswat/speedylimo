@@ -90,4 +90,12 @@ class UserAPI {
       rethrow;
     }
   }
+
+  Future<dynamic> getBookingQueries() async {
+    try {
+      return await HTTP.instance.iGet(ApiRoutes.bookingQueries_Url);
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

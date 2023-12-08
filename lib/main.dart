@@ -65,6 +65,7 @@ class _MyAppState extends State<MyApp> {
           BlocProvider(create: (context) => PriceCubit()),
           BlocProvider(create: (context) => EditProfileCubit()),
           BlocProvider(create: (context) => StatusCubit()),
+          BlocProvider(create: (context) => BookingQueriesCubit()),
         ],
         child: BlocBuilder<ThemeCubit, ThemeState>(
           builder: (context, state) {

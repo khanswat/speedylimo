@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+
 import 'package:intl/intl.dart';
 import 'package:speedylimo/business_logic/cubits/cubits.dart';
 import 'package:speedylimo/services/navigation/navigation_service.dart';
@@ -49,6 +50,15 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    String formatDuration(int totalDurationInSeconds) {
+      Duration duration = Duration(seconds: totalDurationInSeconds);
+      int hours = duration.inHours;
+      int minutes = (duration.inMinutes % 60);
+
+      String formattedDuration = '$hours h ${minutes} min';
+      return formattedDuration;
+    }
+
     Future<void> _selectTime(BuildContext context) async {
       final picked = await showTimePicker(
         context: context,
@@ -75,55 +85,66 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
       }
     }
 
-    void getTotalDistance(String origin, String destination, List<String>? stop,
-        String apiKey) async {
-      try {
-        var response = await http.get(Uri.parse(
-          'https://maps.googleapis.com/maps/api/distancematrix/json??units=imperial&destinations=$destination&origins=$origin&waypoints=${stop?.join('|')}&key=$apiKey',
-        ));
+    Future<Map<String, dynamic>> getDirections(
+        String origin, List<String?> stops, String destination) async {
+      var waypoints =
+          stops.where((stop) => stop != null && stop != '0.0,0.0').toList();
 
-        if (response.statusCode == 200) {
-          Map<String, dynamic> data = json.decode(response.body);
-          if (data['status'] == 'OK') {
-            int totalDistance =
-                data['rows'][0]['elements'][0]['distance']['value'];
-            ;
-            // Convert the distance to kilometers or miles based on your preference
-            TotalDistance = totalDistance / 1000.0;
+      var waypointsParam =
+          waypoints.isNotEmpty ? '&waypoints=${waypoints.join('|')}' : '';
+      var url =
+          'https://maps.googleapis.com/maps/api/directions/json?origin=$origin&destination=$destination$waypointsParam&key=$apiKey';
 
-            return TotalDistance;
-          } else {
-            print("Error: ${data['status']}");
+      var response = await http.get(Uri.parse(url));
+
+      if (response.statusCode == 200) {
+        Map<String, dynamic> data = json.decode(response.body);
+
+        if (data['status'] == 'OK') {
+          List<dynamic> routes = data['routes'];
+          if (routes.isNotEmpty) {
+            Map<String, dynamic> route = routes[0];
+            Map<String, dynamic> legs = route['legs'][0];
+            // Total distance in meters
+            int totalDistance = legs['distance']['value'];
+            var distanceInMiles = totalDistance / 1609.34;
+
+            // Total duration in seconds
+            int totalDuration = legs['duration']['value'];
+            var formattedDuration = formatDuration(totalDuration);
+
+            return {
+              'distance': distanceInMiles.toStringAsFixed(2),
+              'duration': formattedDuration,
+            };
           }
-        } else {
-          print('Error: ${response.statusCode}');
         }
-      } catch (e) {
-        print(e);
       }
+
+      return {'distance': 0, 'duration': 0};
     }
 
-    void getDistanceMatrix(String origin, String destination,
-        List<String>? stop, String apiKey) async {
-      try {
-        var response = await http.get(Uri.parse(
-          'https://maps.googleapis.com/maps/api/directions/json??units=imperial&destinations=$destination&origins=$origin&waypoints=${stop?.join('|')}&key=$apiKey',
-        ));
+    // void getDistanceMatrix(String origin, String destination,
+    //     List<String>? stop, String apiKey) async {
+    //   try {
+    //     var response = await http.get(Uri.parse(
+    //       'https://maps.googleapis.com/maps/api/directions/json??units=imperial&destinations=$destination&origins=$origin&waypoints=${stop?.join('|')}&key=$apiKey',
+    //     ));
 
-        if (response.statusCode == 200) {
-          Map<String, dynamic> data = json.decode(response.body);
-          if (data['status'] == 'OK') {
-            totalDriveTime = data['rows'][0]['elements'][0]['duration']['text'];
-          } else {
-            print("Error: ${data['status']}");
-          }
-        } else {
-          print('Error: ${response.statusCode}');
-        }
-      } catch (e) {
-        print(e);
-      }
-    }
+    //     if (response.statusCode == 200) {
+    //       Map<String, dynamic> data = json.decode(response.body);
+    //       if (data['status'] == 'OK') {
+    //
+    //       } else {
+    //         print("Error: ${data['status']}");
+    //       }
+    //     } else {
+    //       print('Error: ${response.statusCode}');
+    //     }
+    //   } catch (e) {
+    //     print(e);
+    //   }
+    // }
 
     return BlocListener<PriceCubit, PriceState>(
       listener: (context, state) {
@@ -310,17 +331,13 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                                                                         .state
                                                                         .priceModel
                                                                         ?.price ??
-                                                                    0,
-                                                                distance: context
-                                                                        .read<
-                                                                            UserCubit>()
-                                                                        .state
-                                                                        .priceModel
-                                                                        ?.miles ??
-                                                                    0,
+                                                                    '',
+                                                                distance:
+                                                                    TotalDistance ??
+                                                                        '',
                                                                 totalDriveTime:
                                                                     totalDriveTime ??
-                                                                        0,
+                                                                        '',
                                                                 note: descriptionController
                                                                     .text,
                                                                 stoplocation:
@@ -1198,46 +1215,38 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                                                     '${fromLocation?.geometry?.location.lat ?? 0.0},${fromLocation?.geometry?.location.lng ?? 0.0}'; // San Francisco, CA
                                                 final destination =
                                                     '${toLocation?.geometry?.location.lat ?? 0.0},${toLocation?.geometry?.location.lng ?? 0.0}';
-                                                List<String>? stops = [
+                                                var waypoints = [
                                                   '${stopLocation?.geometry?.location.lat ?? 0.0},${stopLocation?.geometry?.location.lng ?? 0.0}'
                                                 ];
 
-                                                try {
-                                                  //todo for total ditance
+                                                var distance =
+                                                    await getDirections(origin,
+                                                        waypoints, destination);
 
-                                                  getTotalDistance(
-                                                      origin,
-                                                      destination,
-                                                      stops,
-                                                      apiKey);
+                                                print(
+                                                    'Total Distance: ${distance['distance']}');
+                                                print(
+                                                    'Total Duration: ${distance['duration']}');
 
-                                                  //todo for total time
-                                                  getDistanceMatrix(
-                                                      origin,
-                                                      destination,
-                                                      stops,
-                                                      apiKey);
-
-                                                  //todo calculate API CALL
-
-                                                  await context
-                                                      .read<PriceCubit>()
-                                                      .getPrice(
-                                                          miles: TotalDistance)
-                                                      .then((value) => {
-                                                            setState(
-                                                              () {},
-                                                            )
-                                                          });
-
-                                                  print(
-                                                      'Total Drive Time: $totalDriveTime');
-
-                                                  print(
-                                                      'Total Distance: $TotalDistance');
-                                                } catch (e) {
-                                                  print('Error: $e');
-                                                }
+                                                await context
+                                                    .read<PriceCubit>()
+                                                    .getPrice(
+                                                        miles:
+                                                            '${distance['distance']}')
+                                                    .then((value) => {
+                                                          setState(
+                                                            () {
+                                                              TotalDistance =
+                                                                  distance[
+                                                                          'distance']
+                                                                      .toString();
+                                                              totalDriveTime =
+                                                                  distance[
+                                                                          'duration']
+                                                                      .toString();
+                                                            },
+                                                          )
+                                                        });
                                               },
                                             ),
                                           );

@@ -13,3 +13,4 @@ export 'cancel_model.dart';
 export 'editProfile_model.dart';
 export 'complete_model.dart';
 export 'status_model.dart';
+export 'bookingQueries_model.dart';

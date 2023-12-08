@@ -12,3 +12,4 @@ export 'completedRides/completed.rides.cubit.dart';
 export 'priceCubit/price.cubit.dart';
 export 'statusCubit/status.cubit.dart';
 export 'editprofileCubit/edit.profile.dart';
+export 'bookingQueriesCubit/bookingQueries.cubit.dart';

@@ -103,7 +103,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                             child: const CustomLinearGradientWidget(
                               firstText: 'MY',
                               lastText: 'DASHBOARD',
-                              fontSize: 30,
+                              fontSize: 22,
                             ),
                           )
                         ],
@@ -113,7 +113,6 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                       ),
                       AdmainContinerWidget(
                         text: 'BOOKING QUERIES',
-                        fontSize: 14,
                         icons: const Icon(Icons.person,
                             color: Colors.white, size: 25),
                         onPressed: () {

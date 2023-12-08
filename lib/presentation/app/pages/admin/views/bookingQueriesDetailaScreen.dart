@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../../utils/constants/app/app_constants.dart';
+import 'package:speedylimo/data/data.dart';
 import '/business_logic/cubits/cubits.dart';
 import '/presentation/presentation.dart';
-import '/utils/utils.dart';
 
 // ignore: camel_case_types
 class BookingQueriesDetailScreen extends StatefulWidget {
+  final BookingQueryData data;
   const BookingQueriesDetailScreen({
+    required this.data,
     Key? key,
   }) : super(key: key);
 
@@ -36,8 +37,8 @@ class _BookingQueriesDetailScreenState
             )),
         body: SingleChildScrollView(
           child: BookingQueriesDetailWidget(
-            name: 'Amber Bray',
-            EmailAddress: 'hylurowy@mailinator.com',
+            name: '${widget.data.firstName} ${widget.data.lastName}',
+            EmailAddress: widget.data.email ?? '',
             PhoneNo: '+1 (464) 859-6386',
             ContactMethod: 'phone',
             CompanyName: 'Baird Conway LLC',

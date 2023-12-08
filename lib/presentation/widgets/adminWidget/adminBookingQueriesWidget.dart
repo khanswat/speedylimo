@@ -32,7 +32,7 @@ class BookingQueriesWidget extends StatelessWidget {
           GestureDetector(
             onTap: onPressed,
             child: Container(
-                margin: const EdgeInsets.all(15.0),
+                margin: const EdgeInsets.all(5.0),
                 padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
                   border: Border.all(
@@ -50,25 +50,26 @@ class BookingQueriesWidget extends StatelessWidget {
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Name:  ',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.grey,
-                                    fontSize: 15),
+                          Text(
+                            'Name:',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.grey,
+                                fontSize: 12),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Expanded(
+                            child: Text(
+                              name,
+                              style: TextStyle(
+                                fontSize: 13,
+                                fontWeight: FontWeight.bold,
                               ),
-                              Text(
-                                name,
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ],
+                            ),
                           ),
                           Icon(
                             Icons.remove_red_eye_outlined,
@@ -84,16 +85,19 @@ class BookingQueriesWidget extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Text(
-                            'Email Address:   ',
+                            'Email Address:',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Colors.grey,
-                                fontSize: 15),
+                                fontSize: 12),
+                          ),
+                          SizedBox(
+                            width: 10,
                           ),
                           Text(
                             EmailAddress,
                             style: TextStyle(
-                              fontSize: 15,
+                              fontSize: 13,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -106,16 +110,19 @@ class BookingQueriesWidget extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Text(
-                            'Phone No:  ',
+                            'Phone No:',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Colors.grey,
-                                fontSize: 15),
+                                fontSize: 12),
+                          ),
+                          SizedBox(
+                            width: 10,
                           ),
                           Text(
                             PhoneNo,
                             style: TextStyle(
-                              fontSize: 15,
+                              fontSize: 13,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -128,16 +135,19 @@ class BookingQueriesWidget extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Text(
-                            'Date / Time:  ',
+                            'Date / Time:',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Colors.grey,
-                                fontSize: 15),
+                                fontSize: 12),
+                          ),
+                          SizedBox(
+                            width: 10,
                           ),
                           Text(
                             dateTime,
                             style: TextStyle(
-                              fontSize: 15,
+                              fontSize: 13,
                               fontWeight: FontWeight.bold,
                             ),
                           ),

@@ -15,4 +15,5 @@ class ApiRoutes {
   static const String changePassword_Url = '${baseUrl}api/password/change';
   static const String updateProfile_Url = '${baseUrl}api/update-profile';
   static const String status_Url = '${baseUrl}api/update-user-status';
+  static const String bookingQueries_Url = '${baseUrl}api/support';
 }
