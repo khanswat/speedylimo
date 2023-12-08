@@ -28,7 +28,7 @@ class UserRepository {
   Future<String> uploadImage(File imageFile, Map<String, dynamic> data) async {
     try {
       FormData formData = FormData.fromMap({
-        'image': await MultipartFile.fromFile(imageFile.path),
+        //'image': await MultipartFile(mageFile.path),
         // Add other data fields as needed
         'field1': data['field1'],
         'field2': data['field2'],
@@ -140,6 +140,15 @@ class UserRepository {
     try {
       final res = await _userAPI.getStatus();
       return StatusModel.fromJson(res);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<BokingQueriesModel> getBookingQueries() async {
+    try {
+      final res = await _userAPI.getBookingQueries();
+      return BokingQueriesModel.fromMap(res);
     } catch (e) {
       rethrow;
     }
