@@ -64,6 +64,7 @@ dependencies:
   google_api_headers:
   tuple:
   google_maps_flutter:
+  flutter_paypal:
 
 dev_dependencies:
   flutter_test:

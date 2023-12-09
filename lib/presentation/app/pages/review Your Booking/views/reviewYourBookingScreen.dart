@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:speedylimo/data/paypal/constants.dart';
 import '../../../../../utils/constants/app/app_constants.dart';
 import '../../../../widgets/Widget.dart';
 import 'package:speedylimo/presentation/presentation.dart';
 import '/utils/utils.dart';
+import 'package:flutter_paypal/flutter_paypal.dart';
 
 class ReviewYourBookingScreen extends StatefulWidget {
   final dynamic fromlocation;
@@ -88,7 +90,7 @@ class _ReviewYourBookingScreenState extends State<ReviewYourBookingScreen> {
             child: CustomLinearGradientWidget(
               firstText: 'Booking',
               lastText: 'Detail',
-              fontSize: 24,
+              fontSize: 22,
             ),
           ),
           //todo date & time
@@ -399,7 +401,7 @@ class _ReviewYourBookingScreenState extends State<ReviewYourBookingScreen> {
               child: CustomLinearGradientWidget(
                 firstText: 'Billing',
                 lastText: 'Detail',
-                fontSize: 24,
+                fontSize: 22,
               )),
           Container(
             margin: EdgeInsets.all(10.0),
@@ -491,20 +493,54 @@ class _ReviewYourBookingScreenState extends State<ReviewYourBookingScreen> {
                 SizedBox(
                   height: 20,
                 ),
-                Container(
-                  height: 50,
-                  // color: Colors.amber,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5.0),
-                    color: Colors.amber,
-                    border: Border.all(
-                      width: 1,
+                GestureDetector(
+                  onTap: () =>  Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (BuildContext context) => UsePaypal(
+                                sandboxMode: true,
+                               clientId: Constants.clientId,
+                                        secretKey: Constants.secretKey,
+                                        returnURL: Constants.returnURL,
+                                        cancelURL: Constants.cancelURL,
+                                        transactions:   [
+                                          {
+                                            'amount': {
+                                              'total':'${widget.price ?? ''}',
+                                              'currency': 'USD',
+                                           }
+                                          }
+                                        ],
+                                 note: 'Contact us for any questions on your Ride.',
+                                onSuccess: (Map params) async {
+                                  print('onSuccess: $params');
+                                 setState(() {
+                                  
+                                 });
+
+                                },
+                                onError: (error) {
+                                  print("onError: $error");
+                                },
+                                onCancel: (params) {
+                                  print('cancelled: $params');
+                                }),
+                          ),
+                        ),
+                  child: Container(
+                    height: 50,
+                    // color: Colors.amber,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5.0),
+                      color: Colors.amber,
+                      border: Border.all(
+                        width: 1,
+                      ),
                     ),
-                  ),
-                  child: CustomLinearGradientWidget(
-                    firstText: 'Pay',
-                    lastText: 'Pal',
-                    fontSize: 30,
+                    child: CustomLinearGradientWidget(
+                      firstText: 'Pay',
+                      lastText: 'Pal',
+                      fontSize: 24,
+                    ),
                   ),
                 ),
                 SizedBox(
@@ -526,14 +562,14 @@ class _ReviewYourBookingScreenState extends State<ReviewYourBookingScreen> {
                         Icon(
                           Icons.credit_card_outlined,
                           color: Colors.white,
-                          size: 28,
+                          size: 24,
                         ),
                         SizedBox(
                           width: 5,
                         ),
                         Text(
                           'Debit or Credit Card',
-                          style: TextStyle(color: Colors.white, fontSize: 18),
+                          style: TextStyle(color: Colors.white, fontSize: 16),
                         ),
                       ],
                     )),

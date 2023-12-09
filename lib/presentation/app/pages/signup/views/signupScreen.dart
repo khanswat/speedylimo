@@ -143,7 +143,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                     'SIGN',
                                     style: TextStyle(
                                         color: tempColor.blackColor,
-                                        fontSize: 26,
+                                        fontSize: 22,
                                         fontWeight: FontWeight.w600,
                                         fontFamily:
                                             'lib/assets/font/AbrilFatface-Regular.ttf'),
@@ -169,7 +169,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                               style: TextStyle(
                                                 fontFamily:
                                                     'lib/assets/font/AbrilFatface-Regular.ttf',
-                                                fontSize: 30,
+                                                fontSize: 22,
                                                 fontWeight: FontWeight.bold,
                                               ),
                                             ),
@@ -302,7 +302,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                                 pickImage(ImageSource.gallery);
                                               },
                                               child: const FilePickerWidget(
-                                                title: 'CNIC Front Side',
+                                                title: 'Vehicle Insurance',
                                                 icons:
                                                     'lib/assets/icons/idp.png',
                                               ),
@@ -315,7 +315,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                                 pickImage(ImageSource.gallery);
                                               },
                                               child: const FilePickerWidget(
-                                                title: 'CNIC Back Side',
+                                                title: 'Vehicle Registration',
                                                 icons:
                                                     'lib/assets/icons/idp.png',
                                               ),
@@ -342,7 +342,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                                 pickImage(ImageSource.gallery);
                                               },
                                               child: const FilePickerWidget(
-                                                title: 'Partner Photo',
+                                                title: 'Profile Photo',
                                                 icons:
                                                     'lib/assets/icons/idp.png',
                                               ),
@@ -356,7 +356,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                               },
                                               child: const FilePickerWidget(
                                                 title:
-                                                    'Vehicle Registration Book',
+                                                    ' Drug Test ',
                                                 icons:
                                                     'lib/assets/icons/idp.png',
                                               ),
@@ -404,7 +404,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                               : Text(
                                                   'REGISTER',
                                                   style: TextStyle(
-                                                      fontSize: 18,
+                                                      fontSize: 16,
                                                       color: Colors.white),
                                                 ),
                                       onPressed: () {

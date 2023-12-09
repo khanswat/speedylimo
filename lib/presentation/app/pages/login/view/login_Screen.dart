@@ -197,9 +197,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                       previous.password != current.password,
                                   builder: (context, state) {
                                     return TextFieldWidget(
+                                      
                                       controller: passwordController,
                                       withLabel: false,
                                       hint: 'Password',
+                                    
+                                       contentPadding: EdgeInsets.zero,
                                       labelText: 'Password',
                                       hintStyle:
                                           const TextStyle(color: Colors.black),
@@ -271,7 +274,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                                 : Text(
                                                     'Login',
                                                     style: TextStyle(
-                                                        fontSize: 18,
+                                                        fontSize: 16,
                                                         color: Colors.white),
                                                   ),
                                         onPressed: () {
@@ -297,7 +300,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                             .instance
                                             .navigateTo(signupRout),
                                         child: Text(
-                                          'Signup',
+                                          'Sign Up',
                                           style: TextStyle(
                                               color: tempColor.blackColor,
                                               fontSize: 14,

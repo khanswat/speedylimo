@@ -30,12 +30,14 @@ class TextFieldWidget extends StatelessWidget {
     this.onSaved,
     this.onChanged,
     this.onTap,
+    this.contentPadding,
     this.enable = true,
   }) : super(key: key);
 
   final TextEditingController? controller;
   final Widget? icon;
   final Widget? prefixIcon;
+  final EdgeInsets? contentPadding;
   final Color? fillColor;
   final TextStyle? labelStyle;
   final String hint;
@@ -65,12 +67,15 @@ class TextFieldWidget extends StatelessWidget {
       enabled: enable,
       onTap: onTap,
       key: key,
+    
       controller: controller,
       keyboardType: keyboardType,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       maxLength: maxLength,
       obscureText: obscureText,
-      obscuringCharacter: '*',
+      obscuringCharacter: '●',
+      //scrollPadding: EdgeInsets.zero,
+       //style: TextStyle(fontSize: 16),
       textInputAction: textInputAction,
       decoration: InputDecoration(
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
@@ -78,11 +83,12 @@ class TextFieldWidget extends StatelessWidget {
         fillColor: fillColor,
         labelStyle: labelStyle,
         prefixIcon: prefixIcon,
-
+        isCollapsed: false,
         // filled: true,
         isDense: true,
         suffixIcon: icon,
         hintText: hint,
+        contentPadding:contentPadding ,
         labelText: labelText,
         hintStyle: hintStyle,
         //border: InputBorder.none,

@@ -453,7 +453,7 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                     steps: <Step>[
                       Step(
                         title: Text(
-                          'WHEN IS YOUR TRIPS?',
+                          'WHEN IS YOUR TRIP?',
                           style: TextStyle(color: Colors.blue, fontSize: 14),
                         ),
                         content: Column(
@@ -672,7 +672,7 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                                       const CustomLinearGradientWidget(
                                         firstText: '# OF',
                                         lastText: 'PASSENGERS:',
-                                        fontSize: 14,
+                                        fontSize: 14.0,
                                       ),
                                       Row(
                                         mainAxisAlignment:
@@ -831,7 +831,7 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                                       style: TextStyle(
                                           color: Colors.black,
                                           fontWeight: FontWeight.bold,
-                                          fontSize: 18),
+                                          fontSize: 15),
                                     ),
                                     Expanded(
                                         child: Divider(
@@ -861,7 +861,7 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                                             style: TextStyle(
                                                 color: Colors.white,
                                                 fontWeight: FontWeight.bold,
-                                                fontSize: 18),
+                                                fontSize: 14),
                                           ),
                                         ),
                                       ),
@@ -897,14 +897,14 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                                               const CustomLinearGradientWidget(
                                                 firstText: 'ENTER',
                                                 lastText: ' DROPOFF:',
-                                                fontSize: 15,
+                                                fontSize: 14,
                                               ),
                                               Container(
                                                 child: TimePickerWidget(
                                                   fillColor: Colors.white70,
                                                   textColor: Colors.black,
                                                   borderColor: Colors.white70,
-                                                  size: 18,
+                                                  size: 14,
                                                   selecTime: selectedTime
                                                       .format(context),
                                                   onSelected: () async {
@@ -937,7 +937,7 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                                               const CustomLinearGradientWidget(
                                                 firstText: 'TRIP',
                                                 lastText: 'DURATION:',
-                                                fontSize: 15,
+                                                fontSize: 14,
                                               ),
                                               Container(
                                                 // color: const Color(0xff585858),
@@ -945,7 +945,7 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                                                   fillColor: Colors.white70,
                                                   textColor: Colors.black,
                                                   borderColor: Colors.white70,
-                                                  size: 18,
+                                                  size: 14,
                                                   selecTime: selectedTime
                                                       .format(context),
                                                   onSelected: () async {
@@ -1040,7 +1040,7 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                                         '+ ADD STOP ',
                                         style: TextStyle(
                                             color: Colors.white,
-                                            fontSize: 18,
+                                            fontSize: 14,
                                             fontWeight: FontWeight.bold),
                                       ),
                                     )),
@@ -1194,20 +1194,20 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                                                       .isSubmissionInProgress
                                                   ? true
                                                   : false,
-                                              height: 50,
+                                              height: 40,
                                               childWidget: state.status
                                                       .isSubmissionInProgress
                                                   ? const Center(
                                                       child: SizedBox(
-                                                          height: 30,
-                                                          width: 30,
+                                                          height: 23,
+                                                          width: 23,
                                                           child:
                                                               CircularProgressIndicator()),
                                                     )
                                                   : Text(
                                                       'Calculate',
                                                       style: TextStyle(
-                                                          fontSize: 18,
+                                                          fontSize: 14,
                                                           color: Colors.white),
                                                     ),
                                               onPressed: () async {
@@ -1342,6 +1342,7 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                   setState(() {
                     containers.removeAt(index);
                     stopLocation = null;
+                    
                   });
                 },
                 child: Container(
