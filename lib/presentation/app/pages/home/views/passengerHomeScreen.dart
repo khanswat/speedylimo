@@ -41,6 +41,7 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
   List<Widget> containers = [];
   var TotalDistance;
   var totalDriveTime;
+  double totalDistance = 0.0;
 
   String get apiKey => 'AIzaSyAlWLuEzszKgldMmuo9JjtKLxe9MGk75_k';
   String? formattedDate;
@@ -55,8 +56,21 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
       int hours = duration.inHours;
       int minutes = (duration.inMinutes % 60);
 
-      String formattedDuration = '$hours h ${minutes} min';
+      String formattedDuration = '${hours} hours ${minutes} mins';
       return formattedDuration;
+    }
+
+    double convertKmToMiles(String kilometers) {
+      // Parse the input string to extract the numeric value
+      double km = double.tryParse(kilometers.replaceAll(' km', '')) ?? 0.0;
+
+      // Conversion factor from kilometers to miles
+      double conversionFactor = 0.621371;
+
+      // Perform the conversion
+      double miles = km * conversionFactor;
+
+      return miles;
     }
 
     Future<void> _selectTime(BuildContext context) async {
@@ -87,11 +101,12 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
 
     Future<Map<String, dynamic>> getDirections(
         String origin, List<String?> stops, String destination) async {
-      var waypoints =
+      var validStops =
           stops.where((stop) => stop != null && stop != '0.0,0.0').toList();
+      var waypointsParam = validStops.isNotEmpty
+          ? '&waypoints=${validStops.map((waypoint) => 'via:$waypoint').join('|')}'
+          : '';
 
-      var waypointsParam =
-          waypoints.isNotEmpty ? '&waypoints=${waypoints.join('|')}' : '';
       var url =
           'https://maps.googleapis.com/maps/api/directions/json?origin=$origin&destination=$destination$waypointsParam&key=$apiKey';
 
@@ -103,25 +118,30 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
         if (data['status'] == 'OK') {
           List<dynamic> routes = data['routes'];
           if (routes.isNotEmpty) {
-            Map<String, dynamic> route = routes[0];
-            Map<String, dynamic> legs = route['legs'][0];
-            // Total distance in meters
-            int totalDistance = legs['distance']['value'];
-            var distanceInMiles = totalDistance / 1609.34;
+            String totalDistance = '';
+            int totalDuration = 0;
 
-            // Total duration in seconds
-            int totalDuration = legs['duration']['value'];
-            var formattedDuration = formatDuration(totalDuration);
+            for (var route in routes) {
+              for (var leg in route['legs']) {
+                totalDistance += leg['distance']['text'];
+                totalDuration = leg['duration']['value'];
+              }
+            }
+
+            // Convert distance to miles
+            var distanceInMiles = convertKmToMiles(totalDistance);
+
+            print(data);
 
             return {
-              'distance': distanceInMiles.toStringAsFixed(2),
-              'duration': formattedDuration,
+              'distance': distanceInMiles.round(),
+              'duration': formatDuration(totalDuration),
             };
           }
         }
       }
 
-      return {'distance': 0, 'duration': 0};
+      return {'distance': '0', 'duration': '0'};
     }
 
     // void getDistanceMatrix(String origin, String destination,
