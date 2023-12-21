@@ -169,15 +169,6 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                         },
                       ),
                       AdmainContinerWidget(
-                        text: 'DRIVER DOCUMENTS',
-                        fontSize: 14,
-                        icons: const Icon(Icons.panorama,
-                            color: Colors.white, size: 25),
-                        onPressed: () {
-                          NavigationService.instance.navigateTo(documentScreen);
-                        },
-                      ),
-                      AdmainContinerWidget(
                         text: 'Logout',
                         fontSize: 14,
                         icons: const Icon(Icons.power_settings_new_outlined,

@@ -18,8 +18,11 @@ class AdminCanceledRidesScreen extends StatefulWidget {
 }
 
 class _AdminCanceledRidesScreenState extends State<AdminCanceledRidesScreen> {
-  bool revenueclr = true;
-  bool budgetclr = true;
+  @override
+  void initState() {
+    super.initState();
+    context.read<CancelRideCubit>().getCancelRideList();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,94 +37,35 @@ class _AdminCanceledRidesScreenState extends State<AdminCanceledRidesScreen> {
               title2: 'Rides',
               name: context.read<UserCubit>().state.update_name ?? '',
             )),
-        body: Column(
-          children: [
-            Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                      margin: const EdgeInsets.all(15.0),
-                      padding: const EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: tempColor.lightGreyColor,
-                          style: BorderStyle.solid,
-                          width: 1.5,
-                        ),
-                        color: tempColor.whiteColor,
-                        borderRadius: BorderRadius.circular(5.0),
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            width: MediaQuery.of(context).size.width,
-                            height: 40,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.white,
-                              // border: Border.all(
-                              //   color: tempColor.lightGreyColor,
-                              //   // Border color for the outline
-                              //   width: 1.5, // Border width for the outline
-                              // ),
-                            ),
-                            child: Container(
-                              height: 40,
-                              width: MediaQuery.of(context).size.width,
-                              color: Colors.white,
-                              child: Center(
-                                  child: TextFormField(
-                                textAlign: TextAlign.start,
-                                style: const TextStyle(
-                                  color: Colors.black,
-                                ),
-                                decoration: InputDecoration(
-                                  hintText: 'Search',
-                                  contentPadding: EdgeInsets.zero,
-                                  hintStyle: TextStyle(
-                                    color: Colors.grey,
-                                  ),
-                                  prefixIcon: Icon(Icons.search),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                    borderSide: const BorderSide(
-                                        color: Colors.blue, width: 1.0),
-                                  ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                    borderSide: const BorderSide(
-                                        color: Colors.grey, width: 1.0),
-                                  ),
-                                ),
-                              )),
-                            ),
-                          ),
-                        ],
-                      )),
-                ],
-              ),
-            ),
-            Expanded(
-              child: ListView.builder(
-                  itemCount: 3, // The number of items in the list
-                  itemBuilder: (
-                    context,
-                    index,
-                  ) {
+        body: BlocBuilder<CancelRideCubit, CancelRideState>(
+          builder: (context, state) {
+            if (state is CancelRideInitial) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            } else if (state is CancelRidesLoaded) {
+              final data = state.cancelRidesData;
+              return ListView.builder(
+                  itemCount: data.length, // The number of items in the list
+                  itemBuilder: (context, index) {
                     // Build and return each item based on its index
                     return AdminCanceledRideWidget(
-                      orderid: '58',
-                      passengerName: 'Naveed Ullah (Passenger)',
-                      Cancelledby: 'Ali Atta (driver)',
-                      rideType: 'Point to point',
-                      driverName: 'Ali Atta (driver)',
-                      paymentStatus: '1',
-                      Actions: GestureDetector(
+                      orderid: '${data[index].id ?? ''}',
+                      passengerName: data[index].usertype?.name ?? '',
+                      Cancelledby: '${data[index].cancelledBy ?? ''}',
+                      rideType: data[index].bookingType == '1'
+                          ? 'As Directed'
+                          : 'Point To Point',
+                      driverName: data[index].usertypeDriver?.name ?? '',
+                      paymentStatus: data[index].paymentStatus ?? '',
+                      view: GestureDetector(
                         onTap: () {
-                          NavigationService.instance
-                              .navigateTo(adminCanceledRideDetail);
+                          Navigator.push(context, MaterialPageRoute(
+                            builder: (context) {
+                              return AdminCanceledRideDetailScreen(
+                                  data: data[index]);
+                            },
+                          ));
                         },
                         child: CircleAvatar(
                           radius: 17.0,
@@ -134,13 +78,40 @@ class _AdminCanceledRidesScreenState extends State<AdminCanceledRidesScreen> {
                         ),
                       ),
                       onPressed: () {
-                        NavigationService.instance
-                            .navigateTo(adminCanceledRideDetail);
+                        Navigator.push(context, MaterialPageRoute(
+                          builder: (context) {
+                            return AdminCanceledRideDetailScreen(
+                                data: data[index]);
+                          },
+                        ));
                       },
                     );
-                  }),
-            ),
-          ],
+                  });
+            } else {
+              return Container(
+                child: Center(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(
+                        Icons.warning_amber_outlined,
+                        color: Colors.amber,
+                        size: 60,
+                      ),
+                      Text(
+                        'No rides available for you',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w400,
+                            color: tempColor.blackColor),
+                      )
+                    ],
+                  ),
+                ),
+              );
+            }
+          },
         ));
   }
 }

@@ -67,7 +67,7 @@ class BookingQueriesDetailWidget extends StatelessWidget {
                 Row(
                   children: [
                     Expanded(
-                      flex: 1,
+                      flex: 2,
                       child: Text(
                         'Name:',
                         style: TextStyle(
@@ -94,20 +94,85 @@ class BookingQueriesDetailWidget extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      'Email Address:',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.grey,
-                          fontSize: 15),
-                    ),
-                    GestureDetector(
-                      onTap: () => launchGmail(),
+                    Expanded(
+                      flex: 2,
                       child: Text(
-                        EmailAddress,
+                        'Email Address:',
                         style: TextStyle(
-                          fontSize: 15,
-                          color: Colors.blue,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey,
+                            fontSize: 12),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 2,
+                      child: GestureDetector(
+                        onTap: () => launchGmail(),
+                        child: Text(
+                          EmailAddress,
+                          style: TextStyle(
+                            fontSize: 13,
+                            color: Colors.blue,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      flex: 2,
+                      child: Text(
+                        'Contact Email:',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey,
+                            fontSize: 12),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 2,
+                      child: GestureDetector(
+                        onTap: () => launch('Gmail:$ContactEmail'),
+                        child: Text(
+                          ContactEmail,
+                          style: TextStyle(
+                              fontSize: 13,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.blue),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      flex: 2,
+                      child: Text(
+                        'Phone No:',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey,
+                            fontSize: 12),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 2,
+                      child: Text(
+                        PhoneNo,
+                        style: TextStyle(
+                          fontSize: 13,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -120,43 +185,53 @@ class BookingQueriesDetailWidget extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      'Contact Email:',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.grey,
-                          fontSize: 15),
-                    ),
-                    GestureDetector(
-                      onTap: () => launch('Gmail:$ContactEmail'),
+                    Expanded(
+                      flex: 2,
                       child: Text(
-                        ContactEmail,
+                        'Contact Method:',
                         style: TextStyle(
-                            fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey,
+                          fontSize: 12,
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 2,
+                      child: Text(
+                        ContactMethod,
+                        style: TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      flex: 2,
+                      child: Text(
+                        'Company Name:',
+                        style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: Colors.blue),
+                            color: Colors.grey,
+                            fontSize: 12),
                       ),
                     ),
-                  ],
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Phone No:',
-                      style: TextStyle(
+                    Expanded(
+                      flex: 2,
+                      child: Text(
+                        CompanyName,
+                        style: TextStyle(
+                          fontSize: 13,
                           fontWeight: FontWeight.bold,
-                          color: Colors.grey,
-                          fontSize: 15),
-                    ),
-                    Text(
-                      PhoneNo,
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ],
@@ -167,41 +242,24 @@ class BookingQueriesDetailWidget extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      'Contact Method:',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.grey,
-                        fontSize: 15,
+                    Expanded(
+                      flex: 2,
+                      child: Text(
+                        'Summary:',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey,
+                            fontSize: 12),
                       ),
                     ),
-                    Text(
-                      ContactMethod,
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Company Name:',
-                      style: TextStyle(
+                    Expanded(
+                      flex: 2,
+                      child: Text(
+                        Summary,
+                        style: TextStyle(
+                          fontSize: 13,
                           fontWeight: FontWeight.bold,
-                          color: Colors.grey,
-                          fontSize: 15),
-                    ),
-                    Text(
-                      CompanyName,
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ],
@@ -212,18 +270,24 @@ class BookingQueriesDetailWidget extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      'Summary:',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.grey,
-                          fontSize: 15),
+                    Expanded(
+                      flex: 2,
+                      child: Text(
+                        'Request Detail:',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey,
+                            fontSize: 12),
+                      ),
                     ),
-                    Text(
-                      Summary,
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
+                    Expanded(
+                      flex: 2,
+                      child: Text(
+                        RequestDetail,
+                        style: TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ],
@@ -234,20 +298,17 @@ class BookingQueriesDetailWidget extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      'Request Detail:',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.grey,
-                          fontSize: 15),
-                    ),
-                    Text(
-                      RequestDetail,
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
+                    Expanded(
+                      flex: 2,
+                      child: Text(
+                        'File:',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey,
+                            fontSize: 12),
                       ),
                     ),
+                    Expanded(flex: 2, child: Container(child: File)),
                   ],
                 ),
                 SizedBox(
@@ -256,34 +317,24 @@ class BookingQueriesDetailWidget extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      'File:',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.grey,
-                          fontSize: 15),
+                    Expanded(
+                      flex: 2,
+                      child: Text(
+                        'Date / Time:',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey,
+                            fontSize: 12),
+                      ),
                     ),
-                    Container(child: File),
-                  ],
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Date / Time:',
-                      style: TextStyle(
+                    Expanded(
+                      flex: 2,
+                      child: Text(
+                        datetime,
+                        style: TextStyle(
+                          fontSize: 13,
                           fontWeight: FontWeight.bold,
-                          color: Colors.grey,
-                          fontSize: 15),
-                    ),
-                    Text(
-                      datetime,
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ],

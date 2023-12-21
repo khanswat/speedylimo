@@ -52,23 +52,22 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
   @override
   Widget build(BuildContext context) {
     String formatDuration(int totalDurationInSeconds) {
-      Duration duration = Duration(seconds: totalDurationInSeconds);
-      int hours = duration.inHours;
-      int minutes = (duration.inMinutes % 60);
+      var duration = Duration(seconds: totalDurationInSeconds);
+      var hours = duration.inHours;
+      var minutes = (duration.inMinutes % 60);
 
-      String formattedDuration = '${hours} hours ${minutes} mins';
+      var formattedDuration = '$hours hours $minutes mins';
       return formattedDuration;
     }
 
     double convertKmToMiles(String kilometers) {
       // Parse the input string to extract the numeric value
-      double km = double.tryParse(kilometers.replaceAll(' km', '')) ?? 0.0;
+      var km = double.tryParse(kilometers.replaceAll(' km', '')) ?? 0.0;
 
-      // Conversion factor from kilometers to miles
-      double conversionFactor = 0.621371;
+      var conversionFactor = 0.621371;
 
       // Perform the conversion
-      double miles = km * conversionFactor;
+      var miles = km * conversionFactor;
 
       return miles;
     }
@@ -1362,7 +1361,6 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                   setState(() {
                     containers.removeAt(index);
                     stopLocation = null;
-                    
                   });
                 },
                 child: Container(

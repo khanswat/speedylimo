@@ -1,3 +1,5 @@
+import 'package:cached_network_image/cached_network_image.dart';
+
 import '../../../utils/constants/app/app_constants.dart';
 import '/utils/utils.dart';
 import 'package:flutter/material.dart';
@@ -30,32 +32,32 @@ class DocumentWidget extends StatelessWidget {
             color: tempColor.whiteColor,
             borderRadius: BorderRadius.circular(5.0),
           ),
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Text(
-                  name,
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                GestureDetector(
-                  onTap: onPress,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(8.0),
-                    child: Image.asset(
-                      image,
-                      fit: BoxFit.cover,
-                      height: 180,
-                      width: MediaQuery.of(context).size.width,
-                    ),
-                  ),
-                )
-              ])),
+          child: Column(mainAxisSize: MainAxisSize.min, children: [
+            Text(
+              name,
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            GestureDetector(
+              onTap: onPress,
+              child: CachedNetworkImage(
+                imageUrl: image,
+                width: MediaQuery.of(context).size.width,
+                height: 100,
+                fit: BoxFit.cover,
+                progressIndicatorBuilder: (context, url, downloadProgress) =>
+                    Center(
+                        child: CircularProgressIndicator(
+                            value: downloadProgress.progress)),
+                errorWidget: (context, url, error) => Icon(Icons.error),
+              ),
+            )
+          ])),
     );
   }
 }

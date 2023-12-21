@@ -14,3 +14,7 @@ export 'editProfile_model.dart';
 export 'complete_model.dart';
 export 'status_model.dart';
 export 'bookingQueries_model.dart';
+export 'booknow_model.dart';
+export 'adminDriverModel.dart';
+export 'adminPassengerModel.dart';
+export 'deleteModel.dart';

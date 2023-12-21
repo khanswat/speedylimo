@@ -65,6 +65,8 @@ dependencies:
   tuple:
   google_maps_flutter:
   flutter_paypal:
+  file_picker: ^5.0.0
+  cached_network_image:
 
 dev_dependencies:
   flutter_test:

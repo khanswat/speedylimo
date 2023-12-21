@@ -24,6 +24,10 @@ class UserCubit extends Cubit<UserState> with HydratedMixin {
     emit(state.copyWith(statusDriver: status));
   }
 
+  void paymentID(paymentID) {
+    emit(state.copyWith(paymentID: paymentID));
+  }
+
   void logout() async {
     await _sharedPrefs.deleteToken();
     emit(state.copyWithLogout(userData: null));

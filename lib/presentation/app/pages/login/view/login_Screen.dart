@@ -197,12 +197,11 @@ class _LoginScreenState extends State<LoginScreen> {
                                       previous.password != current.password,
                                   builder: (context, state) {
                                     return TextFieldWidget(
-                                      
                                       controller: passwordController,
                                       withLabel: false,
                                       hint: 'Password',
-                                    
-                                       contentPadding: EdgeInsets.zero,
+
+                                      contentPadding: EdgeInsets.zero,
                                       labelText: 'Password',
                                       hintStyle:
                                           const TextStyle(color: Colors.black),
@@ -286,41 +285,67 @@ class _LoginScreenState extends State<LoginScreen> {
                                         });
                                   },
                                 ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
+
                                 //todo forgot password Button
                                 Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment: MainAxisAlignment.end,
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
-                                    TextButton(
-                                        onPressed: () => NavigationService
-                                            .instance
-                                            .navigateTo(signupRout),
-                                        child: Text(
-                                          'Sign Up',
-                                          style: TextStyle(
-                                              color: tempColor.blackColor,
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w400,
-                                              fontFamily: 'Montserrat-Regular'),
-                                        )),
+                                    // TextButton(
+                                    //     onPressed: () => NavigationService
+                                    //         .instance
+                                    //         .navigateTo(signupRout),
+                                    //     child: Text(
+                                    //       'Sign Up',
+                                    //       style: TextStyle(
+                                    //           color: tempColor.blackColor,
+                                    //           fontSize: 14,
+                                    //           fontWeight: FontWeight.w400,
+                                    //           fontFamily: 'Montserrat-Regular'),
+                                    //     )),
                                     TextButton(
                                         onPressed: () => NavigationService
                                             .instance
                                             .navigateTo(forgotPasswordRoute),
                                         child: Text(
-                                          'Forgot Password',
+                                          'Forgot Password?',
                                           style: TextStyle(
-                                              color: tempColor.blackColor,
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w400,
-                                              fontFamily: 'Montserrat-Regular'),
+                                            color: tempColor.blueColor,
+                                            fontSize: 15,
+                                            fontStyle: FontStyle.italic,
+                                            fontWeight: FontWeight.w500,
+                                          ),
                                         )),
                                   ],
-                                )
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                GestureDetector(
+                                    onTap: () {
+                                      NavigationService.instance
+                                          .navigateTo(signupRout);
+                                    },
+                                    child: RichText(
+                                      text: TextSpan(
+                                        text: 'New to SpeedyLimo? ',
+                                        style: TextStyle(
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.w500,
+                                            fontStyle: FontStyle.normal,
+                                            fontSize: 14),
+                                        children: <TextSpan>[
+                                          TextSpan(
+                                            text: 'Register Now',
+                                            style: TextStyle(
+                                                color: tempColor.blueColor,
+                                                fontWeight: FontWeight.w800,
+                                                fontStyle: FontStyle.italic,
+                                                fontSize: 16),
+                                          ),
+                                        ],
+                                      ),
+                                    )),
                               ],
                             ),
                           ),

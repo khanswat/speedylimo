@@ -6,7 +6,7 @@ class FilePickerWidget extends StatelessWidget {
   const FilePickerWidget({
     Key? key,
     this.controller,
-    this.title = '',
+    this.title,
     this.icons = '',
     this.ontap,
     this.prefixIcon,
@@ -19,7 +19,7 @@ class FilePickerWidget extends StatelessWidget {
   final Widget? prefixIcon;
   final Color? fillColor;
   final TextStyle? hint;
-  final String title;
+  final String? title;
   final String icons;
 
   @override
@@ -43,7 +43,7 @@ class FilePickerWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              Text(title),
+              Text(title ?? ''),
               const SizedBox(
                 height: 20.0,
               ),

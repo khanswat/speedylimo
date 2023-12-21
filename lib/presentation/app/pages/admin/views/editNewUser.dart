@@ -149,33 +149,33 @@ class _EditNewUserScreenState extends State<EditNewUserScreen> {
                         const SizedBox(
                           height: 10,
                         ),
-                        Container(
-                          width: MediaQuery.of(context).size.width,
-                          height: 52,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: const Color(0xffEFEFEF),
-                            border: Border.all(
-                              color: tempColor.lightGreyColor,
-                              // Border color for the outline
-                              width: 1.5, // Border width for the outline
-                            ),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              DropDownWidget(
-                                  list: list.toList(),
-                                  onChange: (value) {
-                                    setState(() {
-                                      dvaluel = value!;
-                                    });
-                                  },
-                                  dvaluel: dvaluel),
-                            ],
-                          ),
-                        ),
+                        // Container(
+                        //   width: MediaQuery.of(context).size.width,
+                        //   height: 52,
+                        //   decoration: BoxDecoration(
+                        //     borderRadius: BorderRadius.circular(10),
+                        //     color: const Color(0xffEFEFEF),
+                        //     border: Border.all(
+                        //       color: tempColor.lightGreyColor,
+                        //       // Border color for the outline
+                        //       width: 1.5, // Border width for the outline
+                        //     ),
+                        //   ),
+                        //   child: Row(
+                        //     mainAxisAlignment: MainAxisAlignment.center,
+                        //     crossAxisAlignment: CrossAxisAlignment.start,
+                        //     children: <Widget>[
+                        //       DropDownWidget(
+                        //           list: list.toList(),
+                        //           onChange: (value) {
+                        //             setState(() {
+                        //               dvaluel = value!;
+                        //             });
+                        //           },
+                        //           dvaluel: dvaluel),
+                        //     ],
+                        //   ),
+                        // ),
                         const SizedBox(
                           height: 10,
                         ),

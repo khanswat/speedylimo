@@ -25,6 +25,12 @@ class _AcceptedRidesScreenState extends State<AcceptedRidesScreen> {
   }
 
   @override
+  void didChangeDependencies() {
+    BlocProvider.of<AcceptedRidesCubit>;
+    super.didChangeDependencies();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         endDrawer: NavDrawer(context),

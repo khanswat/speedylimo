@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:speedylimo/data/data.dart';
 import '/business_logic/cubits/cubits.dart';
 import '/presentation/presentation.dart';
@@ -39,13 +40,14 @@ class _BookingQueriesDetailScreenState
           child: BookingQueriesDetailWidget(
             name: '${widget.data.firstName} ${widget.data.lastName}',
             EmailAddress: widget.data.email ?? '',
-            PhoneNo: '+1 (464) 859-6386',
-            ContactMethod: 'phone',
-            CompanyName: 'Baird Conway LLC',
-            ContactEmail: 'kugexozy@mailinator.com',
-            RequestDetail: 'Excepteur velit tem',
-            Summary: 'Qui aut eos esse vol',
-            datetime: '2022-11-04 08:25:37',
+            PhoneNo: widget.data.phoneNo ?? '',
+            ContactMethod: widget.data.contactMethod ?? '',
+            CompanyName: widget.data.companyName ?? '',
+            ContactEmail: widget.data.contact ?? '',
+            RequestDetail: widget.data.requestDetail ?? '',
+            Summary: widget.data.summary ?? '',
+            datetime: DateFormat('yyyy-MM-dd HH:mm:ss')
+                .format(DateTime.parse('${widget.data.createdAt ?? ''}')),
             File: Container(
               child: Row(children: [
                 Image.asset(

@@ -33,18 +33,18 @@ class AdmainContinerWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(10.0),
         ),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Expanded(flex: 1, child: Container(child: icons)),
             Expanded(
-              flex: 3,
+              flex: 2,
               child: Text(
                 text,
                 style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
-                    fontSize: 14),
+                    fontSize: 13),
               ),
             ),
           ],

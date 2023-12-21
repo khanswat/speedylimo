@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:speedylimo/presentation/app/pages/signup/views/signupmainScreen.dart';
 
 import '/utils/utils.dart';
 import '/presentation/presentation.dart';
@@ -16,7 +17,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case forgotPasswordRoute:
       return MaterialPageRoute(builder: (context) => ForgotPasswordScreen());
     case signupRout:
-      return MaterialPageRoute(builder: (context) => SignupScreen());
+      return MaterialPageRoute(builder: (context) => SignupMainScreen());
     case bookNow:
       return MaterialPageRoute(builder: (context) => BookinNowSceen());
     case profile:
@@ -43,15 +44,12 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => CancellRidesScreen());
     case driverMyRide:
       return MaterialPageRoute(builder: (context) => D_MyRidesScreen());
-
     case driverAcceptedRides:
       return MaterialPageRoute(builder: (context) => D_AcceptedRidesScreen());
     case driverCancelledRides:
       return MaterialPageRoute(builder: (context) => D_CancellRidesScreen());
-
     case driverCompltetRides:
       return MaterialPageRoute(builder: (context) => D_CompletedRidesScreen());
-
     case adminHome:
       return MaterialPageRoute(builder: (context) => AdminHomeScreen());
     case driverHome:
@@ -60,26 +58,14 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => BookingQueriesScreen());
     case adminpendingrides:
       return MaterialPageRoute(builder: (context) => AdminPendingridesScreen());
-    case adminPendingRideDetail:
-      return MaterialPageRoute(
-          builder: (context) => AdminPendingRideDetailScreen());
     case adminOngoingRide:
       return MaterialPageRoute(builder: (context) => AdminOngoingRidesScreen());
-    case adminOngoingRideDetail:
-      return MaterialPageRoute(
-          builder: (context) => AdminOngoingRideDetailScreen());
     case adminCanceledRide:
       return MaterialPageRoute(
           builder: (context) => AdminCanceledRidesScreen());
-    case adminCanceledRideDetail:
-      return MaterialPageRoute(
-          builder: (context) => AdminCanceledRideDetailScreen());
     case adminCompleteRide:
       return MaterialPageRoute(
           builder: (context) => AdminCompleteRidesScreen());
-    case adminCompleteRideDetail:
-      return MaterialPageRoute(
-          builder: (context) => AdminCompletedRideDetailScreen());
     case userManagement:
       return MaterialPageRoute(builder: (context) => UserManagementScreen());
     case showUserScreen:
@@ -88,35 +74,8 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => CreateNewUserScreen());
     case editNewUserScreen:
       return MaterialPageRoute(builder: (context) => EditNewUserScreen());
-    case documentScreen:
-      return MaterialPageRoute(builder: (context) => DocumentScreen());
     case documentDrtail:
       return MaterialPageRoute(builder: (context) => DocumentDetailScreen());
-    // case RevenueRoute:
-    //   return MaterialPageRoute(builder: (context) => RevenueScreen());
-    // case InPatientDesRoute:
-    //   final argu
-    // = settings.arguments as dynamic;
-    //   return MaterialPageRoute(
-    //       builder: (context) => InPatientDes_Screen(
-    //           argu['day'] as dynamic, argu['month'] as String));
-    // case OutPatientDesRoute:
-    //   final argu = settings.arguments as dynamic;
-    //   return MaterialPageRoute(
-    //       builder: (context) => OutPatientDes_Screen(
-    //           argu['day'] as dynamic, argu['month'] as String));
-    // case SummaryRoute:
-    //   final argu = settings.arguments as dynamic;
-    //   return MaterialPageRoute(
-    //       builder: (context) => RevenueSummaryScreen(argu['month'] as String));
-    // case BugetRoute:
-    //   return MaterialPageRoute(builder: (context) => BudgetScreen());
-    // case BugetSummaryRoute:
-    //   final argu = settings.arguments as dynamic;
-    //   return MaterialPageRoute(
-    //       builder: (context) => BudgetSummaryScreen(argu['month'] as String));
-    // case RevnueComparisonRoute:
-    //   return MaterialPageRoute(builder: (context) => RevenueComparisonScren());
 
     default:
       throw ('no route found');

@@ -13,3 +13,6 @@ export 'priceCubit/price.cubit.dart';
 export 'statusCubit/status.cubit.dart';
 export 'editprofileCubit/edit.profile.dart';
 export 'bookingQueriesCubit/bookingQueries.cubit.dart';
+export 'bookNowCubit/booknow.cubit.dart';
+export 'signupDriverCubit/signupdriver.Cubit.dart';
+export 'userManagementCubit/usermanagement.cubit.dart';

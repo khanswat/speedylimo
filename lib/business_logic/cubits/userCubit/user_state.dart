@@ -17,6 +17,7 @@ class UserState extends Equatable {
       this.username,
       this.pickResult,
       this.statusDriver,
+      this.paymentID,
       this.photo});
 
   final String? update_name;
@@ -25,11 +26,10 @@ class UserState extends Equatable {
   final String? username;
   final String? statusDriver;
   final PriceModel? priceModel;
-
+  final String? paymentID;
   var photo;
   final UserData? userData;
   final PickResult? pickResult;
-
   final String? email;
 
   @override
@@ -42,7 +42,8 @@ class UserState extends Equatable {
         phoneNo,
         userData,
         pickResult,
-        statusDriver
+        statusDriver,
+        paymentID
       ];
 
   UserState copyWith(
@@ -50,6 +51,7 @@ class UserState extends Equatable {
       PriceModel? priceModel,
       String? username,
       String? phoneNo,
+      String? paymentID,
       dynamic fromLocation,
       dynamic toLocation,
       UserData? userData,
@@ -58,16 +60,16 @@ class UserState extends Equatable {
       var photo,
       String? email}) {
     return UserState(
-      update_name: update_name ?? this.update_name,
-      priceModel: priceModel ?? this.priceModel,
-      photo: photo ?? this.photo,
-      email: email ?? this.email,
-      userData: userData ?? this.userData,
-      phoneNo: phoneNo ?? this.phoneNo,
-      username: username ?? this.username,
-      statusDriver: statusDriver ?? this.statusDriver,
-      pickResult: pickResult ?? this.pickResult,
-    );
+        update_name: update_name ?? this.update_name,
+        priceModel: priceModel ?? this.priceModel,
+        photo: photo ?? this.photo,
+        email: email ?? this.email,
+        userData: userData ?? this.userData,
+        phoneNo: phoneNo ?? this.phoneNo,
+        username: username ?? this.username,
+        statusDriver: statusDriver ?? this.statusDriver,
+        pickResult: pickResult ?? this.pickResult,
+        paymentID: paymentID ?? this.paymentID);
   }
 
   UserState copyWithLogout({

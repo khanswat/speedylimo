@@ -15,3 +15,5 @@ export 'views/createNewUserScreen.dart';
 export 'views/editNewUser.dart';
 export 'views/documentsScreen.dart';
 export 'views/documentDetailScreen.dart';
+export 'views/adminDriverList_screen.dart';
+export 'views/adminPassengerList_screen.dart';

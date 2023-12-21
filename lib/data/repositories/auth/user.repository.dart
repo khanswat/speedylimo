@@ -15,6 +15,9 @@ class UserRepository {
 
   final UserAPI _userAPI = UserAPI();
   final Dio _dio = Dio();
+  var token;
+
+  final SharedPrefs _sharedPrefs = SharedPrefs();
 
   // Future<LogoutModel> getlogout() async {
   //   try {
@@ -88,6 +91,15 @@ class UserRepository {
     }
   }
 
+  Future<BookNowModel> PostBookNow({required body}) async {
+    try {
+      final res = await _userAPI.PostBooknow(body: body);
+      return BookNowModel.fromMap(res);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   Future<CompletedModel> postAccept({required body}) async {
     try {
       final res = await _userAPI.getCompleteRide(body: body);
@@ -115,18 +127,20 @@ class UserRepository {
     }
   }
 
-  Future<String> profile({
+  Future<dynamic> profile({
     required dynamic body,
   }) async {
+    await _sharedPrefs.getToken().then(
+      (value) {
+        token = value;
+      },
+    );
     try {
       var response = await _dio.post(
         ApiRoutes.updateProfile_Url,
         data: body,
         options: Options(
-          headers: {
-            'Authorization':
-                'Bearer 176|pC41eBn2fPjapC6yJAg0xMHI4kyBcXj7LoLS3rNO'
-          },
+          headers: {'Authorization': 'Bearer $token'},
         ),
       );
 
@@ -149,6 +163,33 @@ class UserRepository {
     try {
       final res = await _userAPI.getBookingQueries();
       return BokingQueriesModel.fromMap(res);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<AdminDriverModel> getUserManagement() async {
+    try {
+      final res = await _userAPI.getUserManagement();
+      return AdminDriverModel.fromMap(res);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<AdminPassengerModel> getUserManagementPassenger() async {
+    try {
+      final res = await _userAPI.getUserManagementPassenger();
+      return AdminPassengerModel.fromMap(res);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<DeleteModel> getUserDelete(dynamic id) async {
+    try {
+      final res = await _userAPI.getUserDelete(id: id);
+      return DeleteModel.fromMap(res);
     } catch (e) {
       rethrow;
     }

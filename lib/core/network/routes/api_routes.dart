@@ -16,4 +16,8 @@ class ApiRoutes {
   static const String updateProfile_Url = '${baseUrl}api/update-profile';
   static const String status_Url = '${baseUrl}api/update-user-status';
   static const String bookingQueries_Url = '${baseUrl}api/support';
+  static const String Booknow_Url = '${baseUrl}api/bookRide';
+  static const String driverList_Url = '${baseUrl}api/user/Driver';
+  static const String PassengerList_Url = '${baseUrl}api/user/Passenger';
+  static const String userDelete_Url = '${baseUrl}api/user/delete';
 }

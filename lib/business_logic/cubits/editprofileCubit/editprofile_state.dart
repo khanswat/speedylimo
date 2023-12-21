@@ -10,7 +10,7 @@ class EditProfileState extends Equatable {
     this.errorMessage,
     this.imageString,
   });
-  final UserData? user;
+  final ProfileModel? user;
   final FormzStatus status;
 
   final String? errorMessage;
@@ -28,27 +28,16 @@ class EditProfileState extends Equatable {
     FormzStatus? status,
     String? errorMessage,
     String? imageString,
-    ProfileModel? profileModel,
+    ProfileModel? user,
   }) {
     return EditProfileState(
         status: status ?? this.status,
         imageString: this.imageString,
+        user: user ?? this.user,
         errorMessage: errorMessage ?? this.errorMessage);
   }
 }
 
 class EditProfileInitial extends EditProfileState {
   EditProfileInitial() : super();
-}
-
-class EditProfileImageLoading extends EditProfileState {}
-
-class EditProfileImageLoaded extends EditProfileState {
-  final UserData? user;
-  EditProfileImageLoaded({required this.user, updateSuccessMessage});
-}
-
-class EditProfileImageError extends EditProfileState {
-  final message;
-  EditProfileImageError(this.message);
 }

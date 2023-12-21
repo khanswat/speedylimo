@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../../data/data.dart';
 import '../../../../../utils/constants/app/app_constants.dart';
 import '/business_logic/cubits/cubits.dart';
 import '/presentation/presentation.dart';
@@ -7,7 +8,9 @@ import '/utils/utils.dart';
 
 // ignore: camel_case_types
 class AdminCanceledRideDetailScreen extends StatefulWidget {
+  final CancelRideData data;
   const AdminCanceledRideDetailScreen({
+    required this.data,
     Key? key,
   }) : super(key: key);
 
@@ -18,9 +21,6 @@ class AdminCanceledRideDetailScreen extends StatefulWidget {
 
 class _AdminCanceledRideDetailScreenState
     extends State<AdminCanceledRideDetailScreen> {
-  bool revenueclr = true;
-  bool budgetclr = true;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,22 +36,26 @@ class _AdminCanceledRideDetailScreenState
             )),
         body: SingleChildScrollView(
           child: AdminCanceledRideDetailWidget(
-            PassengerName: 'Naveed Ullah (Passenger)',
-            Drivername: 'Ali Atta (driver)',
-            Ridetype: 'Point to point',
-            ExtraNote: 'Write some thinks..',
-            PaymentID: '7T991655K36223211',
-            PaymentStatus: '1',
-            Passengers: '1',
-            Bags: '1',
-            Time: '07:41 pm 23/01/03',
-            Status: 'Cancelled',
-            Status1: 'Point to point',
-            Status2: 'Point to point',
-            PickUp: 'Model Colony Malir Cantonment, Karachi, Pakistan',
-            DropOff:
-                'Park Avenue, Shahrah-e-Faisal Road, Pakistan Employees Co-Operative Housing Society Block 6 PECHS, Karachi, Pakistan',
-          ),
+              PassengerName: widget.data.usertype?.name ?? '',
+              Drivername: '',
+              Ridetype: widget.data.bookingType == '1'
+                  ? 'As Directed'
+                  : 'Point To Point',
+              ExtraNote: widget.data.specialInstruction ?? '',
+              PaymentID: '${widget.data.paymentId ?? ''}',
+              PaymentStatus: widget.data.paymentStatus ?? '',
+              Passengers: widget.data.passenger ?? '',
+              Bags: widget.data.bags ?? '',
+              Time: widget.data.time ?? '',
+              Status: widget.data.status == 0 ? 'Cancelled' : 'Active',
+              Status1: widget.data.bookingType == '1'
+                  ? 'As Directed'
+                  : 'Point To Point',
+              Status2: widget.data.bookingType == '1'
+                  ? 'As Directed'
+                  : 'Point To Point',
+              PickUp: widget.data.pickupLocation ?? '',
+              DropOff: widget.data.dropoffLocation ?? ''),
         ));
   }
 }

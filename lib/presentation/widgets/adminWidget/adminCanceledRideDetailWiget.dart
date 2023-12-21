@@ -51,7 +51,7 @@ class AdminCanceledRideDetailWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(children: [
       Container(
-          margin: const EdgeInsets.all(15.0),
+          margin: const EdgeInsets.all(10.0),
           padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
             border: Border.all(
@@ -86,17 +86,25 @@ class AdminCanceledRideDetailWidget extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      'Passenger Name:',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.grey,
-                          fontSize: 15),
+                    Expanded(
+                      flex: 2,
+                      child: Text(
+                        'Passenger Name:',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey,
+                            fontSize: 12),
+                      ),
                     ),
-                    Text(
-                      PassengerName,
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                    Expanded(
+                      flex: 2,
+                      child: Text(
+                        PassengerName,
+                        style: TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -106,21 +114,71 @@ class AdminCanceledRideDetailWidget extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      'Driver Name:',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.grey,
-                          fontSize: 15),
+                    Expanded(
+                      flex: 2,
+                      child: Text(
+                        'Driver Name:',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey,
+                            fontSize: 12),
+                      ),
                     ),
-                    GestureDetector(
-                      onTap: () {},
+                    Expanded(
+                      flex: 2,
                       child: Text(
                         Drivername,
                         style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 13,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      flex: 2,
+                      child: Text(
+                        'Ride Type:',
+                        style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                            fontSize: 15),
+                            color: Colors.grey,
+                            fontSize: 12),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 2,
+                      child: Row(
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: tempColor.statusdark,
+                                style: BorderStyle.solid,
+                                width: 1.5,
+                              ),
+                              color: tempColor.statusdark,
+                              borderRadius: BorderRadius.circular(5.0),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(2.0),
+                              child: Text(
+                                Ridetype,
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 13),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ],
@@ -131,54 +189,25 @@ class AdminCanceledRideDetailWidget extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      'Ride Type:',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.grey,
-                          fontSize: 15),
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: tempColor.statusdark,
-                          style: BorderStyle.solid,
-                          width: 1.5,
-                        ),
-                        color: tempColor.statusdark,
-                        borderRadius: BorderRadius.circular(5.0),
-                      ),
-                      height: 25,
-                      width: 130,
-                      child: Center(
-                        child: Text(
-                          Ridetype,
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 15),
-                        ),
+                    Expanded(
+                      flex: 2,
+                      child: Text(
+                        'Extra Note:',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey,
+                            fontSize: 12),
                       ),
                     ),
-                  ],
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Extra Note:',
-                      style: TextStyle(
+                    Expanded(
+                      flex: 2,
+                      child: Text(
+                        ExtraNote,
+                        style: TextStyle(
+                          fontSize: 13,
                           fontWeight: FontWeight.bold,
-                          color: Colors.grey,
-                          fontSize: 15),
-                    ),
-                    Text(
-                      ExtraNote,
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -186,7 +215,7 @@ class AdminCanceledRideDetailWidget extends StatelessWidget {
             ),
           )),
       Container(
-          margin: const EdgeInsets.all(15.0),
+          margin: const EdgeInsets.all(10.0),
           padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
             border: Border.all(
@@ -221,17 +250,25 @@ class AdminCanceledRideDetailWidget extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      'Payment ID:',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.grey,
-                          fontSize: 15),
+                    Expanded(
+                      flex: 2,
+                      child: Text(
+                        'Payment ID:',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey,
+                            fontSize: 12),
+                      ),
                     ),
-                    Text(
-                      PaymentID,
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                    Expanded(
+                      flex: 2,
+                      child: Text(
+                        PaymentID,
+                        style: TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -239,25 +276,30 @@ class AdminCanceledRideDetailWidget extends StatelessWidget {
                   height: 10,
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      'Payment Status:',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.grey,
-                          fontSize: 15),
+                    Expanded(
+                      flex: 1,
+                      child: Text(
+                        'Payment Status:',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey,
+                            fontSize: 12),
+                      ),
                     ),
-                    CircleAvatar(
-                      radius: 17.0,
-                      backgroundColor: tempColor.statusdark,
-                      child: Center(
-                        child: Text(
-                          PaymentStatus,
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 15),
+                    Expanded(
+                      flex: 3,
+                      child: CircleAvatar(
+                        radius: 17.0,
+                        backgroundColor: tempColor.statusdark,
+                        child: Center(
+                          child: Text(
+                            PaymentStatus,
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 13),
+                          ),
                         ),
                       ),
                     ),
@@ -267,7 +309,7 @@ class AdminCanceledRideDetailWidget extends StatelessWidget {
             ),
           )),
       Container(
-          margin: const EdgeInsets.all(15.0),
+          margin: const EdgeInsets.all(10.0),
           padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
             border: Border.all(
@@ -302,17 +344,23 @@ class AdminCanceledRideDetailWidget extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      'Passengers:',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.grey,
-                          fontSize: 15),
+                    Expanded(
+                      flex: 2,
+                      child: Text(
+                        'Passengers:',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey,
+                            fontSize: 12),
+                      ),
                     ),
-                    Text(
-                      Passengers,
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                    Expanded(
+                      flex: 2,
+                      child: Text(
+                        Passengers,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 13),
+                      ),
                     ),
                   ],
                 ),
@@ -322,20 +370,24 @@ class AdminCanceledRideDetailWidget extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      'Bags:',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.grey,
-                          fontSize: 15),
+                    Expanded(
+                      flex: 2,
+                      child: Text(
+                        'Bags:',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey,
+                            fontSize: 12),
+                      ),
                     ),
-                    Center(
+                    Expanded(
+                      flex: 2,
                       child: Text(
                         Bags,
                         style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.bold,
-                            fontSize: 15),
+                            fontSize: 13),
                       ),
                     ),
                   ],
@@ -346,17 +398,23 @@ class AdminCanceledRideDetailWidget extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      'Time:',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.grey,
-                          fontSize: 15),
+                    Expanded(
+                      flex: 2,
+                      child: Text(
+                        'Time:',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey,
+                            fontSize: 12),
+                      ),
                     ),
-                    Text(
-                      Time,
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                    Expanded(
+                      flex: 2,
+                      child: Text(
+                        Time,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 13),
+                      ),
                     ),
                   ],
                 ),
@@ -366,33 +424,42 @@ class AdminCanceledRideDetailWidget extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      'Status:',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.grey,
-                          fontSize: 15),
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: tempColor.redColor,
-                          style: BorderStyle.solid,
-                          width: 1.5,
-                        ),
-                        color: tempColor.redColor,
-                        borderRadius: BorderRadius.circular(5.0),
+                    Expanded(
+                      flex: 2,
+                      child: Text(
+                        'Status:',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey,
+                            fontSize: 12),
                       ),
-                      height: 25,
-                      width: 90,
-                      child: Center(
-                        child: Text(
-                          Status,
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 15),
-                        ),
+                    ),
+                    Expanded(
+                      flex: 2,
+                      child: Row(
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: tempColor.redColor,
+                                style: BorderStyle.solid,
+                                width: 1.5,
+                              ),
+                              color: tempColor.redColor,
+                              borderRadius: BorderRadius.circular(5.0),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(2.0),
+                              child: Text(
+                                Status,
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 13),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ],
@@ -416,6 +483,7 @@ class AdminCanceledRideDetailWidget extends StatelessWidget {
             padding: const EdgeInsets.all(5.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CustomLinearGradientWidget(
                   firstText: 'LOCATION',
@@ -451,7 +519,7 @@ class AdminCanceledRideDetailWidget extends StatelessWidget {
                       style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
-                          fontSize: 15),
+                          fontSize: 13),
                     ),
                   ),
                 ),
@@ -462,20 +530,22 @@ class AdminCanceledRideDetailWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Expanded(
+                      flex: 2,
                       child: Text(
                         'PickUp:',
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Colors.grey,
-                            fontSize: 15),
+                            fontSize: 13),
                       ),
                     ),
                     Expanded(
+                      flex: 2,
                       child: Text(
                         PickUp,
                         textAlign: TextAlign.start,
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 15),
+                            fontWeight: FontWeight.bold, fontSize: 13),
                       ),
                     ),
                   ],
@@ -487,24 +557,24 @@ class AdminCanceledRideDetailWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Expanded(
+                      flex: 2,
                       child: Text(
                         'DropOff:',
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Colors.grey,
-                            fontSize: 15),
+                            fontSize: 12),
                       ),
                     ),
                     Expanded(
-                      child: Center(
-                        child: Text(
-                          DropOff,
-                          textAlign: TextAlign.start,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 15),
-                        ),
+                      flex: 2,
+                      child: Text(
+                        DropOff,
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 13),
                       ),
                     ),
                   ],
@@ -563,7 +633,7 @@ class AdminCanceledRideDetailWidget extends StatelessWidget {
                       style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
-                          fontSize: 16),
+                          fontSize: 13),
                     ),
                   ),
                 ),

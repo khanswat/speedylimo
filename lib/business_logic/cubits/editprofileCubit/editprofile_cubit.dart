@@ -13,13 +13,13 @@ class EditProfileCubit extends Cubit<EditProfileState> {
   var context = NavigationService.instance.navigatorKey.currentContext;
 
   Future updateUserProfileData(
-      {required File imageFile, required Map<String, dynamic> data}) async {
+      {required dynamic imageFile, required Map<String, dynamic> data}) async {
     // if (!(state.status.isValidated)) return;
     emit(state.copyWith(status: FormzStatus.submissionInProgress));
 
     try {
       var formData = FormData.fromMap({
-        'image': await MultipartFile.fromFile(imageFile.path),
+        'image': await MultipartFile.fromFile(imageFile),
         // Add other data fields as needed
         'name': data['name'],
         'email': data['email'],
@@ -32,7 +32,7 @@ class EditProfileCubit extends Cubit<EditProfileState> {
       final resData = await UserRepository.instance.profile(body: formData);
       if (resData == 'success') {
         emit(state.copyWith(
-            // profileModel: resData,
+            user: resData,
             status: FormzStatus.submissionSuccess,
             errorMessage: resData));
       } else {
@@ -41,9 +41,7 @@ class EditProfileCubit extends Cubit<EditProfileState> {
       }
     } on DioError catch (e) {
       emit(state.copyWith(
-          errorMessage: e.response?.statusCode == 500
-              ? e.response?.statusMessage
-              : e.response?.data['message'].toString(),
+          errorMessage: e.response?.statusMessage,
           status: FormzStatus.submissionFailure));
     } catch (e) {
       emit(state.copyWith(

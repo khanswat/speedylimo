@@ -16,27 +16,26 @@ class DropDownWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 300,
-      child: DropdownButton<String>(
-        iconEnabledColor: Colors.black,
-        items: list
-            .map((e) => DropdownMenuItem<String>(
-                  // ignore: sort_child_properties_last
-                  child: SizedBox(
-                    width: 270,
+    return DropdownButtonHideUnderline(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: DropdownButton<String>(
+          isExpanded: true,
+          iconEnabledColor: Colors.black,
+          items: list
+              .map((e) => DropdownMenuItem<String>(
+                    // ignore: sort_child_properties_last
                     child: Text(
                       e,
                       style: const TextStyle(
                           fontSize: 16, fontWeight: FontWeight.w400),
                     ),
-                  ),
-                  value: e,
-                ))
-            .toList(),
-        value: dvaluel,
-        onChanged: onChange,
-        underline: const SizedBox(),
+                    value: e,
+                  ))
+              .toList(),
+          value: dvaluel,
+          onChanged: onChange,
+        ),
       ),
     );
   }
