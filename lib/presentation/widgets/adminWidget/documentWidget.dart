@@ -5,24 +5,26 @@ import '/utils/utils.dart';
 import 'package:flutter/material.dart';
 
 class DocumentWidget extends StatelessWidget {
-  const DocumentWidget({
-    Key? key,
-    this.image = '',
-    this.name = '',
-    this.onPress,
-  }) : super(key: key);
+  const DocumentWidget(
+      {Key? key,
+      this.image = '',
+      this.name = '',
+      this.onPress,
+      required this.onDownload})
+      : super(key: key);
 
   final String name;
   final String image;
   final VoidCallback? onPress;
+  final VoidCallback onDownload;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onPress,
       child: Container(
-          margin: const EdgeInsets.all(15.0),
-          padding: const EdgeInsets.all(15),
+          margin: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
             border: Border.all(
               color: tempColor.lightGreyColor,
@@ -56,6 +58,17 @@ class DocumentWidget extends StatelessWidget {
                             value: downloadProgress.progress)),
                 errorWidget: (context, url, error) => Icon(Icons.error),
               ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                GestureDetector(
+                    onTap: onDownload,
+                    child: Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: Icon(Icons.download),
+                    )),
+              ],
             )
           ])),
     );

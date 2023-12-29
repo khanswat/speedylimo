@@ -4,6 +4,7 @@ import 'package:formz/formz.dart';
 import 'package:speedylimo/business_logic/cubits/cubits.dart';
 import 'package:speedylimo/data/data.dart';
 import 'package:speedylimo/data/paypal/constants.dart';
+import 'package:speedylimo/services/navigation/navigation_service.dart';
 import '../../../../../utils/constants/app/app_constants.dart';
 import '../../../../widgets/Widget.dart';
 import 'package:speedylimo/presentation/presentation.dart';
@@ -509,6 +510,7 @@ class _ReviewYourBookingScreenState extends State<ReviewYourBookingScreen> {
                                     content: Text('Booked Successfully!!!'),
                                   ),
                                 );
+                              NavigationService.instance.goBack();
                             }
                           },
                           builder: (context, state) {
@@ -518,12 +520,17 @@ class _ReviewYourBookingScreenState extends State<ReviewYourBookingScreen> {
                                   cornerRadius: 5.0,
                                   key: const Key(
                                       'loginForm_continue_raisedButton'),
-                                  height: 60,
-                                  childWidget: Text(
-                                    'Book Now',
-                                    style: TextStyle(
-                                        fontSize: 14, color: Colors.white),
-                                  ),
+                                  height: 50,
+                                  childWidget: state is BookNowLoading
+                                      ? CircularProgressIndicator(
+                                          color: tempColor.whiteColor,
+                                        )
+                                      : Text(
+                                          'Book Now',
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              color: Colors.white),
+                                        ),
                                   onPressed: () {
                                     context.read<BooknowCubit>().PostBookNow(
                                         calendar: widget.pickupdate,
@@ -604,40 +611,10 @@ class _ReviewYourBookingScreenState extends State<ReviewYourBookingScreen> {
                             child: CustomLinearGradientWidget(
                               firstText: 'Pay',
                               lastText: 'Pal',
-                              fontSize: 24,
+                              fontSize: 18,
                             ),
                           ),
                         ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                      height: 50,
-                      // color: Colors.amber,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5.0),
-                        color: Colors.black,
-                        border: Border.all(
-                          width: 1,
-                        ),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.credit_card_outlined,
-                            color: Colors.white,
-                            size: 24,
-                          ),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Text(
-                            'Debit or Credit Card',
-                            style: TextStyle(color: Colors.white, fontSize: 16),
-                          ),
-                        ],
-                      )),
                 ],
               ),
             )

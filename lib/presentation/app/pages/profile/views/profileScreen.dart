@@ -130,16 +130,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               color: Colors.grey,
                               imagePath: _imageFile != null
                                   ? CircleAvatar(
-                                      radius: 40.0,
+                                      radius: 70.0,
                                       backgroundColor: Colors.white,
-                                      child: Image.file(File(_imageFile!.path)),
+                                      backgroundImage:
+                                          FileImage(File(_imageFile!.path)),
                                     )
                                   : CircleAvatar(
-                                      radius: 60.0,
+                                      radius: 70.0,
                                       backgroundColor: Colors.white,
-                                      backgroundImage: AssetImage(
-                                        'login'.png,
-                                      ),
+                                      backgroundImage: NetworkImage(
+                                          'https://myspeedylimo.com/images/profile/${context.read<UserCubit>().state.userData?.user?.image}'),
                                     ),
                               icon: Icon(
                                 Icons.camera_alt,

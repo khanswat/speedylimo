@@ -36,182 +36,192 @@ class _DriverHomeScreenState extends State<DriverHomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: PreferredSize(
-            preferredSize: const Size.fromHeight(80),
-            child: AppBarWidget(
-              isshow: false,
-              showback: false,
-              logo: true,
-              title1: '',
-              title2: '',
-              name: context.read<UserCubit>().state.update_name ?? '',
-            )),
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(14.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  margin: const EdgeInsets.all(15.0),
-                  padding: const EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: tempColor.lightGreyColor,
-                      style: BorderStyle.solid,
-                      width: 1.5,
+    return BlocProvider(
+      create: (context) => StatusCubit(),
+      child: Scaffold(
+          appBar: PreferredSize(
+              preferredSize: const Size.fromHeight(80),
+              child: AppBarWidget(
+                isshow: false,
+                showback: false,
+                logo: true,
+                title1: '',
+                title2: '',
+                name: context.read<UserCubit>().state.update_name ?? '',
+              )),
+          body: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(14.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    margin: const EdgeInsets.all(15.0),
+                    padding: const EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: tempColor.lightGreyColor,
+                        style: BorderStyle.solid,
+                        width: 1.5,
+                      ),
+                      color: tempColor.whiteColor,
+                      borderRadius: BorderRadius.circular(5.0),
                     ),
-                    color: tempColor.whiteColor,
-                    borderRadius: BorderRadius.circular(5.0),
-                  ),
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          const CircleAvatar(
-                              radius: 50.0,
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            CircleAvatar(
+                              radius: 40.0,
                               backgroundColor: Colors.white,
-                              backgroundImage: AssetImage(
-                                'lib/assets/icons/login.png',
-                              )),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                context
-                                        .read<UserCubit>()
-                                        .state
-                                        .userData
-                                        ?.user
-                                        ?.name ??
-                                    '',
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 18),
-                              ),
-                              const SizedBox(
-                                height: 2,
-                              ),
-                              SizedBox(
-                                child: BlocBuilder<StatusCubit, StatusState>(
-                                  builder: (context, state) {
-                                    return ElevatedButton(
-                                      onPressed: () {
-                                        context.read<StatusCubit>().getStatus();
-                                      },
-                                      style: ElevatedButton.styleFrom(
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(20),
-                                        ),
-                                        // ignore: deprecated_member_use
-                                        primary: context
-                                                    .read<UserCubit>()
-                                                    .state
-                                                    .statusDriver ==
-                                                'User is now online.'
-                                            ? Colors.green
-                                            : Colors.grey,
-                                      ),
-                                      child: Text(
-                                        context
-                                                    .read<UserCubit>()
-                                                    .state
-                                                    .statusDriver ==
-                                                'User is now online.'
-                                            ? "YOU'RE ONLINE"
-                                            : "YOU'RE OFFLINE",
-                                        style: const TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    );
-                                  },
+                              backgroundImage: NetworkImage(
+                                  'https://myspeedylimo.com/images/profile/${context.read<UserCubit>().state.userData?.user?.image}'),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  context
+                                          .read<UserCubit>()
+                                          .state
+                                          .userData
+                                          ?.user
+                                          ?.name ??
+                                      '',
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18),
                                 ),
-                              )
-                            ],
-                          ),
+                                const SizedBox(
+                                  height: 2,
+                                ),
+                                SizedBox(
+                                  child: BlocBuilder<StatusCubit, StatusState>(
+                                    builder: (context, state) {
+                                      return ElevatedButton(
+                                        onPressed: () async {
+                                          await context
+                                              .read<StatusCubit>()
+                                              .getStatus();
+                                        },
+                                        style: ElevatedButton.styleFrom(
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                          ),
+                                          // ignore: deprecated_member_use
+                                          primary: context
+                                                      .read<UserCubit>()
+                                                      .state
+                                                      .statusDriver ==
+                                                  'User is now online.'
+                                              ? Colors.green
+                                              : Colors.grey,
+                                        ),
+                                        child: Text(
+                                          context
+                                                      .read<UserCubit>()
+                                                      .state
+                                                      .statusDriver ==
+                                                  'User is now online.'
+                                              ? "YOU'RE ONLINE"
+                                              : "YOU'RE OFFLINE",
+                                          style: const TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                )
+                              ],
+                            ),
 
-                          // ignore: avoid_unnecessary_containers
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      AdmainContinerWidget(
-                          text: 'My Rides',
+                            // ignore: avoid_unnecessary_containers
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        AdmainContinerWidget(
+                            text: 'My Rides',
+                            fontSize: 14,
+                            icons: Image.asset(
+                              'rides'.png,
+                              height: 25,
+                              color: tempColor.whiteColor,
+                            ),
+                            onPressed: () {
+                              NavigationService.instance
+                                  .navigateTo(driverMyRide);
+                            }),
+                        AdmainContinerWidget(
+                          text: 'Accepted Rides',
                           fontSize: 14,
                           icons: Image.asset(
                             'rides'.png,
                             height: 25,
                             color: tempColor.whiteColor,
                           ),
+                          onPressed: () => NavigationService.instance
+                              .navigateTo(driverAcceptedRides),
+                        ),
+                        AdmainContinerWidget(
+                          text: 'Cancelled Rides',
+                          fontSize: 14,
+                          icons: Image.asset(
+                            'rides'.png,
+                            height: 25,
+                            color: tempColor.whiteColor,
+                          ),
+                          onPressed: () => NavigationService.instance
+                              .navigateTo(driverCancelledRides),
+                        ),
+                        AdmainContinerWidget(
+                          text: 'Completed Rides',
+                          fontSize: 14,
+                          icons: Image.asset(
+                            'rides'.png,
+                            height: 25,
+                            color: tempColor.whiteColor,
+                          ),
+                          onPressed: () => NavigationService.instance
+                              .navigateTo(driverCompltetRides),
+                        ),
+                        AdmainContinerWidget(
+                          text: 'Change Password',
+                          fontSize: 14,
+                          icons: Image.asset(
+                            'changePass'.png,
+                            height: 25,
+                            color: tempColor.whiteColor,
+                          ),
+                          onPressed: () => NavigationService.instance
+                              .navigateTo(changePasswordRoute),
+                        ),
+                        AdmainContinerWidget(
+                          text: 'Logout',
+                          fontSize: 14,
+                          icons: const Icon(Icons.logout_outlined,
+                              color: Colors.white, size: 25),
                           onPressed: () {
-                            NavigationService.instance.navigateTo(driverMyRide);
-                          }),
-                      AdmainContinerWidget(
-                        text: 'Accepted Rides',
-                        fontSize: 14,
-                        icons: Image.asset(
-                          'rides'.png,
-                          height: 25,
-                          color: tempColor.whiteColor,
+                            showCanceldialoge();
+                          },
                         ),
-                        onPressed: () => NavigationService.instance
-                            .navigateTo(driverAcceptedRides),
-                      ),
-                      AdmainContinerWidget(
-                        text: 'Cancelled Rides',
-                        fontSize: 14,
-                        icons: Image.asset(
-                          'rides'.png,
-                          height: 25,
-                          color: tempColor.whiteColor,
-                        ),
-                        onPressed: () => NavigationService.instance
-                            .navigateTo(driverCancelledRides),
-                      ),
-                      AdmainContinerWidget(
-                        text: 'Completed Rides',
-                        fontSize: 14,
-                        icons: Image.asset(
-                          'rides'.png,
-                          height: 25,
-                          color: tempColor.whiteColor,
-                        ),
-                        onPressed: () => NavigationService.instance
-                            .navigateTo(driverCompltetRides),
-                      ),
-                      AdmainContinerWidget(
-                        text: 'Change Password',
-                        fontSize: 14,
-                        icons: Image.asset(
-                          'changePass'.png,
-                          height: 25,
-                          color: tempColor.whiteColor,
-                        ),
-                        onPressed: () => NavigationService.instance
-                            .navigateTo(changePasswordRoute),
-                      ),
-                      AdmainContinerWidget(
-                        text: 'Logout',
-                        fontSize: 14,
-                        icons: const Icon(Icons.logout_outlined,
-                            color: Colors.white, size: 25),
-                        onPressed: () {
-                          showCanceldialoge();
-                        },
-                      ),
-                    ],
-                  ),
-                )
-              ],
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
-          ),
-        ));
+          )),
+    );
   }
 
   Future showCanceldialoge() {

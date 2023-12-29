@@ -18,3 +18,4 @@ export 'booknow_model.dart';
 export 'adminDriverModel.dart';
 export 'adminPassengerModel.dart';
 export 'deleteModel.dart';
+export 'supportModel.dart';

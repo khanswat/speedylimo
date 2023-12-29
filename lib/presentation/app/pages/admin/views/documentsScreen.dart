@@ -1,9 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:file_saver/file_saver.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+
 import 'package:speedylimo/data/data.dart';
-import 'package:speedylimo/utils/constants/app/app_constants.dart';
-import 'package:speedylimo/utils/utils.dart';
 
 import '/presentation/presentation.dart';
 
@@ -18,7 +17,6 @@ class DocumentScreen extends StatefulWidget {
 class _DocumentScreenState extends State<DocumentScreen> {
   bool showSuffix = false;
   bool _obscureText = true;
-  String baseurl = 'https://myspeedylimo.com/';
 
   @override
   void initState() {
@@ -52,13 +50,14 @@ class _DocumentScreenState extends State<DocumentScreen> {
                 SizedBox(
                   height: 10,
                 ),
-                CircleAvatar(
-                  radius: 60,
-                  backgroundColor: tempColor.whiteColor, // Image radius
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(60.0),
                   child: CachedNetworkImage(
                     imageUrl:
                         'https://myspeedylimo.com/${widget.data.driverDocs!.partnerPhoto}',
-                    fit: BoxFit.cover,
+                    fit: BoxFit.fill,
+                    height: 120,
+                    width: 120,
                     progressIndicatorBuilder:
                         (context, url, downloadProgress) => Center(
                             child: CircularProgressIndicator(
@@ -81,28 +80,76 @@ class _DocumentScreenState extends State<DocumentScreen> {
                   image:
                       'https://myspeedylimo.com/${widget.data.driverDocs?.cnicFront}',
                   onPress: () {},
+                  onDownload: () {
+                    SaveImage(
+                        url:
+                            'https://myspeedylimo.com/${widget.data.driverDocs?.cnicFront}',
+                        ext: 'webp',
+                        name: 'Cnic Front');
+                  },
                 ),
                 DocumentWidget(
                   name: 'Cnic Back',
                   image:
                       'https://myspeedylimo.com/${widget.data.driverDocs?.cnicBack}',
                   onPress: () {},
+                  onDownload: () {
+                    SaveImage(
+                        url:
+                            'https://myspeedylimo.com/${widget.data.driverDocs?.cnicBack}',
+                        ext: 'jpg',
+                        name: 'Cnic Back');
+                  },
                 ),
                 DocumentWidget(
                   name: 'Driving License',
                   image:
                       'https://myspeedylimo.com/${widget.data.driverDocs?.drivingLicense}',
                   onPress: () {},
+                  onDownload: () {
+                    SaveImage(
+                        url:
+                            'https://myspeedylimo.com/${widget.data.driverDocs?.drivingLicense}',
+                        ext: 'webp',
+                        name: 'Driving License');
+                  },
                 ),
                 DocumentWidget(
                   name: 'Vehicle Registration Book',
                   image:
                       'https://myspeedylimo.com/${widget.data.driverDocs?.vehicleRegBook}',
                   onPress: () {},
+                  onDownload: () {
+                    SaveImage(
+                        url:
+                            'https://myspeedylimo.com/${widget.data.driverDocs?.vehicleRegBook}',
+                        ext: 'png',
+                        name: 'Vehicle Registration Book');
+                  },
                 ),
               ],
             ),
           ),
         ));
+  }
+
+  void SaveImage(
+      {required String url, required String ext, required String name}) async {
+    await FileSaver.instance
+        .saveFile(
+          name: name,
+          link: LinkDetails(
+            link: url,
+          ),
+          mimeType: MimeType.other,
+          ext: ext,
+        )
+        .then((value) => ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(SnackBar(
+            content: Text(
+              'Download Successfully!!!',
+            ),
+          )));
   }
 }

@@ -76,9 +76,9 @@ class _CallNowScreenState extends State<CallNowScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       CustomLinearGradientWidget(
-                        firstText: 'CALL',
-                        lastText: 'NOW',
-                        fontSize: 25,
+                        firstText: 'Call',
+                        lastText: 'Now',
+                        fontSize: 18,
                       ),
                       const SizedBox(
                         height: 20,
@@ -91,7 +91,7 @@ class _CallNowScreenState extends State<CallNowScreen> {
                             style: TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.bold,
-                                fontSize: 18),
+                                fontSize: 16),
                           ),
                         ],
                       ),
@@ -238,7 +238,7 @@ class _CallNowScreenState extends State<CallNowScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const Text(
-                          'LEARN ABOUT SPEEDY LIMO',
+                          'Learn About Speedy Limo',
                           style: TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
@@ -269,7 +269,7 @@ class _CallNowScreenState extends State<CallNowScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const Text(
-                          'GET SUPPORT',
+                          'Get Support',
                           style: TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.bold,

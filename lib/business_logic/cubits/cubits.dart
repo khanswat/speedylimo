@@ -16,3 +16,4 @@ export 'bookingQueriesCubit/bookingQueries.cubit.dart';
 export 'bookNowCubit/booknow.cubit.dart';
 export 'signupDriverCubit/signupdriver.Cubit.dart';
 export 'userManagementCubit/usermanagement.cubit.dart';
+export 'supportCubit/support.cubit.dart';

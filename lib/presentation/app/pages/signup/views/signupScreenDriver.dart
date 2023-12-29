@@ -91,10 +91,13 @@ class _SignupScreenDriverState extends State<SignupScreenDriver> {
                 ));
             }
             if (state.status.isSubmissionSuccess) {
-              final data = context.read<LoginCubit>().state.userModel?.data!;
-              context.read<UserCubit>().updateUser(data!);
-              _sharedPrefs.setToken(data.token ?? '');
-              NavigationService.instance.pushAndReplac(bottomBarRoute);
+              ScaffoldMessenger.of(context)
+                ..hideCurrentSnackBar()
+                ..showSnackBar(SnackBar(
+                  content: Text(
+                    'Register Successfully',
+                  ),
+                ));
             }
           },
           child: RawScrollbar(

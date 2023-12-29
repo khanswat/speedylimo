@@ -49,122 +49,95 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
   var selectedTime = TimeOfDay.now();
   TextEditingController descriptionController = TextEditingController();
 
-  @override
-  Widget build(BuildContext context) {
-    String formatDuration(int totalDurationInSeconds) {
-      var duration = Duration(seconds: totalDurationInSeconds);
-      var hours = duration.inHours;
-      var minutes = (duration.inMinutes % 60);
+  String formatDuration(int totalDurationInSeconds) {
+    var duration = Duration(seconds: totalDurationInSeconds);
+    var hours = duration.inHours;
+    var minutes = (duration.inMinutes % 60);
+    var formattedDuration = '$hours hours $minutes mins';
+    return formattedDuration;
+  }
 
-      var formattedDuration = '$hours hours $minutes mins';
-      return formattedDuration;
-    }
+  double convertKmToMiles(String kilometers) {
+    var km = double.tryParse(kilometers.replaceAll(' km', '')) ?? 0.0;
+    var conversionFactor = 0.621371;
+    var miles = km * conversionFactor;
 
-    double convertKmToMiles(String kilometers) {
-      // Parse the input string to extract the numeric value
-      var km = double.tryParse(kilometers.replaceAll(' km', '')) ?? 0.0;
+    return miles;
+  }
 
-      var conversionFactor = 0.621371;
+  Future<Map<String, dynamic>> getDirections(
+      String origin, List<String?> stops, String destination) async {
+    var validStops =
+        stops.where((stop) => stop != null && stop != '0.0,0.0').toList();
+    var waypointsParam = validStops.isNotEmpty
+        ? '&waypoints=${validStops.map((waypoint) => 'via:$waypoint').join('|')}'
+        : '';
 
-      // Perform the conversion
-      var miles = km * conversionFactor;
+    var url =
+        'https://maps.googleapis.com/maps/api/directions/json?origin=$origin&destination=$destination$waypointsParam&key=$apiKey';
 
-      return miles;
-    }
+    var response = await http.get(Uri.parse(url));
 
-    Future<void> _selectTime(BuildContext context) async {
-      final picked = await showTimePicker(
-        context: context,
-        initialTime: selectedTime,
-      );
-      if (picked != null && picked != selectedTime) {
-        setState(() {
-          selectedTime = picked;
-        });
-      }
-    }
+    if (response.statusCode == 200) {
+      Map<String, dynamic> data = json.decode(response.body);
 
-    Future<void> _selectDate(BuildContext context) async {
-      final picked = await showDatePicker(
-          context: context,
-          initialDate: selectedDate,
-          firstDate: DateTime(1996),
-          lastDate: DateTime(2030));
-      if (picked != null && picked != selectedDate) {
-        setState(() {
-          selectedDate = picked;
-          formattedDate = DateFormat('dd MMM, yyyy').format(selectedDate);
-        });
-      }
-    }
+      if (data['status'] == 'OK') {
+        List<dynamic> routes = data['routes'];
+        if (routes.isNotEmpty) {
+          String totalDistance = '';
+          int totalDuration = 0;
 
-    Future<Map<String, dynamic>> getDirections(
-        String origin, List<String?> stops, String destination) async {
-      var validStops =
-          stops.where((stop) => stop != null && stop != '0.0,0.0').toList();
-      var waypointsParam = validStops.isNotEmpty
-          ? '&waypoints=${validStops.map((waypoint) => 'via:$waypoint').join('|')}'
-          : '';
-
-      var url =
-          'https://maps.googleapis.com/maps/api/directions/json?origin=$origin&destination=$destination$waypointsParam&key=$apiKey';
-
-      var response = await http.get(Uri.parse(url));
-
-      if (response.statusCode == 200) {
-        Map<String, dynamic> data = json.decode(response.body);
-
-        if (data['status'] == 'OK') {
-          List<dynamic> routes = data['routes'];
-          if (routes.isNotEmpty) {
-            String totalDistance = '';
-            int totalDuration = 0;
-
-            for (var route in routes) {
-              for (var leg in route['legs']) {
-                totalDistance += leg['distance']['text'];
-                totalDuration = leg['duration']['value'];
-              }
+          for (var route in routes) {
+            for (var leg in route['legs']) {
+              totalDistance += leg['distance']['text'];
+              totalDuration = leg['duration']['value'];
             }
-
-            // Convert distance to miles
-            var distanceInMiles = convertKmToMiles(totalDistance);
-
-            print(data);
-
-            return {
-              'distance': distanceInMiles.round(),
-              'duration': formatDuration(totalDuration),
-            };
           }
+
+          // Convert distance to miles
+          var distanceInMiles = convertKmToMiles(totalDistance);
+
+          print(data);
+
+          return {
+            'distance': distanceInMiles.round(),
+            'duration': formatDuration(totalDuration),
+          };
         }
       }
-
-      return {'distance': '0', 'duration': '0'};
     }
 
-    // void getDistanceMatrix(String origin, String destination,
-    //     List<String>? stop, String apiKey) async {
-    //   try {
-    //     var response = await http.get(Uri.parse(
-    //       'https://maps.googleapis.com/maps/api/directions/json??units=imperial&destinations=$destination&origins=$origin&waypoints=${stop?.join('|')}&key=$apiKey',
-    //     ));
+    return {'distance': '0', 'duration': '0'};
+  }
 
-    //     if (response.statusCode == 200) {
-    //       Map<String, dynamic> data = json.decode(response.body);
-    //       if (data['status'] == 'OK') {
-    //
-    //       } else {
-    //         print("Error: ${data['status']}");
-    //       }
-    //     } else {
-    //       print('Error: ${response.statusCode}');
-    //     }
-    //   } catch (e) {
-    //     print(e);
-    //   }
-    // }
+  Future<void> _selectTime(BuildContext context) async {
+    final picked = await showTimePicker(
+      context: context,
+      initialTime: selectedTime,
+    );
+    if (picked != null && picked != selectedTime) {
+      setState(() {
+        selectedTime = picked;
+      });
+    }
+  }
 
+  Future<void> _selectDate(BuildContext context) async {
+    final picked = await showDatePicker(
+        context: context,
+        initialDate: selectedDate,
+        firstDate: DateTime(1996),
+        lastDate: DateTime(2030));
+    if (picked != null && picked != selectedDate) {
+      setState(() {
+        selectedDate = picked;
+        formattedDate = DateFormat('dd MMM, yyyy').format(selectedDate);
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return BlocListener<PriceCubit, PriceState>(
       listener: (context, state) {
         if (state.status.isSubmissionFailure) {
@@ -202,8 +175,8 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                   height: 10,
                 ),
                 CustomLinearGradientWidget(
-                  firstText: 'BOOK',
-                  lastText: 'NOW',
+                  firstText: 'Book',
+                  lastText: 'Now',
                   fontSize: 18,
                 ),
                 Expanded(
@@ -311,7 +284,8 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
                                               InkWell(
-                                                onTap: fromLocation == null
+                                                onTap: fromLocation == null &&
+                                                        toLocation == null
                                                     ? () {
                                                         ScaffoldMessenger.of(
                                                             context)
@@ -1357,10 +1331,35 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
             ),
             Expanded(
               child: InkWell(
-                onTap: () {
+                onTap: () async {
+                  final origin =
+                      '${fromLocation?.geometry?.location.lat ?? 0.0},${fromLocation?.geometry?.location.lng ?? 0.0}'; // San Francisco, CA
+                  final destination =
+                      '${toLocation?.geometry?.location.lat ?? 0.0},${toLocation?.geometry?.location.lng ?? 0.0}';
+                  var waypoints = ['${0.0},${0.0}'];
+
+                  var distance =
+                      await getDirections(origin, waypoints, destination);
+
+                  print('Total Distance: ${distance['distance']}');
+                  print('Total Duration: ${distance['duration']}');
+
+                  await context
+                      .read<PriceCubit>()
+                      .getPrice(miles: '${distance['distance']}')
+                      .then((value) => {
+                            setState(
+                              () {
+                                TotalDistance = distance['distance'].toString();
+                                totalDriveTime =
+                                    distance['duration'].toString();
+                              },
+                            )
+                          });
                   setState(() {
                     containers.removeAt(index);
                     stopLocation = null;
+                    stopLocation?.formattedAddress == '';
                   });
                 },
                 child: Container(

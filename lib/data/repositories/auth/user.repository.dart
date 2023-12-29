@@ -136,13 +136,13 @@ class UserRepository {
       },
     );
     try {
-      var response = await _dio.post(
-        ApiRoutes.updateProfile_Url,
-        data: body,
-        options: Options(
-          headers: {'Authorization': 'Bearer $token'},
-        ),
-      );
+      var response = await _dio.post(ApiRoutes.updateProfile_Url,
+          data: body,
+          options: Options(headers: {
+            'Content-Type': 'multipart/form-data',
+            'Authorization': 'Bearer $token',
+            'Accept': 'application/json'
+          }));
 
       return response.data['message'];
     } catch (e) {

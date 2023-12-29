@@ -79,7 +79,7 @@ class _AcceptedRidesScreenState extends State<AcceptedRidesScreen> {
                             ..showSnackBar(
                               SnackBar(
                                 backgroundColor: tempColor.redColor,
-                                content: Text(state.message!),
+                                content: Text('Already Completed'),
                               ),
                             );
                         }
@@ -89,7 +89,7 @@ class _AcceptedRidesScreenState extends State<AcceptedRidesScreen> {
                             ..showSnackBar(
                               SnackBar(
                                 backgroundColor: tempColor.blueColor,
-                                content: Text('Ride Accepted!!!'),
+                                content: Text('Ride Completed!!!'),
                               ),
                             );
                         }
