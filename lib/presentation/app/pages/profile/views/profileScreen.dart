@@ -139,7 +139,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       radius: 70.0,
                                       backgroundColor: Colors.white,
                                       backgroundImage: NetworkImage(
-                                          'https://myspeedylimo.com/images/profile/${context.read<UserCubit>().state.userData?.user?.image}'),
+                                          '${context.read<UserCubit>().state.userData?.user?.image}'),
                                     ),
                               icon: Icon(
                                 Icons.camera_alt,

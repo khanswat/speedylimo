@@ -380,24 +380,25 @@ class _GetSupportScreenState extends State<GetSupportScreen> {
                           },
                           child: Container(
                               width: MediaQuery.of(context).size.width,
+                              height: 100,
                               decoration: BoxDecoration(
                                 border: Border.all(
-                                  color: tempColor.blackColor,
+                                  color: tempColor.lightGreyColor,
                                   style: BorderStyle.solid,
                                   width: 1.5,
                                 ),
-                                color: tempColor.whiteColor,
                                 borderRadius: BorderRadius.circular(10.0),
                               ),
                               child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   const Icon(
                                     Icons.file_upload_outlined,
                                     color: Colors.blue,
-                                    size: 100,
+                                    size: 50,
                                   ),
                                   const Text(
-                                    'ATTACHMENTS & SCREEN SHOTS or Drop file here',
+                                    'Drop file here',
                                     textAlign: TextAlign.center,
                                     style: TextStyle(fontSize: 14),
                                   ),

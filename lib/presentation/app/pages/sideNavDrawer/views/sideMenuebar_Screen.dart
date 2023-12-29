@@ -44,11 +44,11 @@ class _NavDrawerState extends State<NavDrawer> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     // ignore: avoid_unnecessary_containers
-                    Container(
-                      child: CircleAvatar(
-                          radius: 45.0,
-                          backgroundColor: Colors.white,
-                          backgroundImage: AssetImage('login'.png)),
+                    CircleAvatar(
+                      radius: 45.0,
+                      backgroundColor: Colors.white,
+                      backgroundImage: NetworkImage(
+                          '${context.read<UserCubit>().state.userData?.user?.image}'),
                     ),
                     const SizedBox(
                       height: 10,
