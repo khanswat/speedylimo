@@ -29,9 +29,10 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
   StepperType stepperType = StepperType.vertical;
   int passengerCount = 0;
   int BagCount = 0;
-  bool color = true;
-  bool isChecked = false;
+  bool color = false;
+  bool isChecked = true;
   bool isLoading = false;
+  bool checkedValue = false;
 
   int index = 0;
   PickResult? fromLocation;
@@ -194,6 +195,8 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                                       fromLocation != null ? continued : null,
                                   child: Container(
                                     margin: EdgeInsets.only(top: 10),
+                                    width: 200,
+                                    height: 37,
                                     decoration: BoxDecoration(
                                       gradient: LinearGradient(
                                         colors: fromLocation != null
@@ -206,19 +209,20 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                                     ),
                                     child: Padding(
                                       padding: const EdgeInsets.all(8.0),
-                                      child: Text(
-                                        'Continue to Step ${_currentStep + 2}',
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 14),
+                                      child: Center(
+                                        child: Text(
+                                          'Continue to Step ${_currentStep + 2}',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 14),
+                                        ),
                                       ),
                                     ),
                                   ),
                                 )
                               : _currentStep == 1
                                   ? Container(
-                                      margin: EdgeInsets.only(top: 10),
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
@@ -226,17 +230,14 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                                           TextButton(
                                             onPressed: continued,
                                             child: Container(
+                                              width: 200,
+                                              height: 37,
                                               decoration: BoxDecoration(
                                                 gradient: LinearGradient(
-                                                  colors: bookTypeStatus != null
-                                                      ? [
-                                                          Colors.blue,
-                                                          Color(0xff00C6FF)
-                                                        ]
-                                                      : [
-                                                          Colors.grey,
-                                                          Colors.grey
-                                                        ],
+                                                  colors: [
+                                                    Colors.blue,
+                                                    Color(0xff00C6FF)
+                                                  ],
                                                   begin: Alignment.centerLeft,
                                                   end: Alignment.centerRight,
                                                 ),
@@ -246,13 +247,15 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                                               child: Padding(
                                                 padding:
                                                     const EdgeInsets.all(8.0),
-                                                child: Text(
-                                                  'Continue to Step ${_currentStep + 2}',
-                                                  style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontSize: 14),
+                                                child: Center(
+                                                  child: Text(
+                                                    'Continue to Step ${_currentStep + 2}',
+                                                    style: TextStyle(
+                                                        color: Colors.white,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 14),
+                                                  ),
                                                 ),
                                               ),
                                             ),
@@ -284,8 +287,12 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
                                               InkWell(
-                                                onTap: fromLocation == null &&
-                                                        toLocation == null
+                                                onTap: context
+                                                            .read<UserCubit>()
+                                                            .state
+                                                            .priceModel
+                                                            ?.price ==
+                                                        null
                                                     ? () {
                                                         ScaffoldMessenger.of(
                                                             context)
@@ -293,7 +300,7 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                                                           ..showSnackBar(
                                                               SnackBar(
                                                             content: Text(
-                                                              'Please Select Pickup & DropOff Location',
+                                                              'Please Calculate Price',
                                                             ),
                                                           ));
                                                       }
@@ -338,12 +345,19 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                                                                             ?.formattedAddress ??
                                                                         '',
                                                                 bookStatus:
-                                                                    bookTypeStatus);
+                                                                    bookTypeStatus ??
+                                                                        0);
                                                           },
                                                         ));
                                                       },
                                                 child: Container(
-                                                  decoration: fromLocation ==
+                                                  width: 200,
+                                                  height: 37,
+                                                  decoration: context
+                                                              .read<UserCubit>()
+                                                              .state
+                                                              .priceModel
+                                                              ?.price ==
                                                           null
                                                       ? BoxDecoration(
                                                           gradient:
@@ -579,8 +593,8 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   const CustomLinearGradientWidget(
-                                    firstText: 'PICKUP',
-                                    lastText: 'DATE:',
+                                    firstText: 'Pickup',
+                                    lastText: 'Date :',
                                     fontSize: 14,
                                   ),
                                   Container(
@@ -620,8 +634,8 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   const CustomLinearGradientWidget(
-                                    firstText: 'PICKUP',
-                                    lastText: ' TIME:',
+                                    firstText: 'Pickup',
+                                    lastText: 'Time :',
                                     fontSize: 14,
                                   ),
                                   Container(
@@ -663,8 +677,8 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       const CustomLinearGradientWidget(
-                                        firstText: '# OF',
-                                        lastText: 'PASSENGERS:',
+                                        firstText: '# Of',
+                                        lastText: 'Passengers :',
                                         fontSize: 14.0,
                                       ),
                                       Row(
@@ -712,8 +726,8 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       const CustomLinearGradientWidget(
-                                        firstText: '# OF',
-                                        lastText: 'BAGES:',
+                                        firstText: '# Of',
+                                        lastText: 'Bags :',
                                         fontSize: 14,
                                       ),
                                       Row(
@@ -791,6 +805,7 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                                         color = false;
                                         isChecked = true;
                                         bookTypeStatus = 0;
+                                        checkedValue = false;
                                       });
                                     },
                                     child: Container(
@@ -801,7 +816,7 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                                         child: Padding(
                                           padding: EdgeInsets.all(10.0),
                                           child: Text(
-                                            'POINT-TO-POINT',
+                                            'Point-To-Point',
                                             style: TextStyle(
                                                 color: Colors.white,
                                                 fontWeight: FontWeight.bold,
@@ -850,7 +865,7 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                                         padding: const EdgeInsets.all(10.0),
                                         child: const Center(
                                           child: Text(
-                                            'AS DIRECTED',
+                                            'As Directed',
                                             style: TextStyle(
                                                 color: Colors.white,
                                                 fontWeight: FontWeight.bold,
@@ -866,9 +881,46 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                             SizedBox(
                               height: 10,
                             ),
+                            isChecked == false
+                                ? Container(
+                                    padding: EdgeInsets.all(2),
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                        color: tempColor.lightGreyColor,
+                                        style: BorderStyle.solid,
+                                        width: 1.5,
+                                      ),
+                                      color: Color(0xffEBF2F8),
+                                      borderRadius: BorderRadius.circular(6.0),
+                                    ),
+                                    child: Center(
+                                      child: CheckboxListTile(
+                                        contentPadding: EdgeInsets.zero,
+
+                                        title: Text(
+                                          'Enter DropOff Time / Trip Duration',
+                                          style: TextStyle(
+                                              fontSize: 14,
+                                              color: tempColor.blackColor,
+                                              fontWeight: FontWeight.w500),
+                                        ),
+                                        value: checkedValue,
+                                        onChanged: (newValue) {
+                                          setState(() {
+                                            checkedValue = newValue!;
+                                          });
+                                        },
+                                        controlAffinity: ListTileControlAffinity
+                                            .leading, //  <-- leading Checkbox
+                                      ),
+                                    ))
+                                : SizedBox(),
+                            SizedBox(
+                              height: 10,
+                            ),
                             //todo point to  point container
                             Container(
-                              child: isChecked == false
+                              child: checkedValue == true && isChecked == false
                                   ? Column(
                                       children: [
                                         Container(
@@ -888,8 +940,8 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
                                               const CustomLinearGradientWidget(
-                                                firstText: 'ENTER',
-                                                lastText: ' DROPOFF:',
+                                                firstText: 'DropOff',
+                                                lastText: ' Time :',
                                                 fontSize: 14,
                                               ),
                                               Container(
@@ -928,8 +980,8 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
                                               const CustomLinearGradientWidget(
-                                                firstText: 'TRIP',
-                                                lastText: 'DURATION:',
+                                                firstText: 'Trip',
+                                                lastText: 'Duration :',
                                                 fontSize: 14,
                                               ),
                                               Container(
@@ -1175,12 +1227,7 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                                                       .isSubmissionInProgress
                                                   ? false
                                                   : (!state.status
-                                                              .isSubmissionInProgress &&
-                                                          fromLocation
-                                                                  ?.geometry
-                                                                  ?.location
-                                                                  .lat !=
-                                                              null
+                                                          .isSubmissionInProgress
                                                       ? false
                                                       : true),
                                               isOutline: state.status
@@ -1273,6 +1320,7 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                                       controller: descriptionController,
                                       hint: 'Add Note',
                                       labelText: 'Add Note',
+                                      fillColor: tempColor.whiteColor,
                                       labelStyle:
                                           TextStyle(color: Colors.black),
                                     ),

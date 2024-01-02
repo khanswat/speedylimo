@@ -19,7 +19,6 @@ class CustomLinearGradientWidget extends StatelessWidget {
   final double? fontSize;
   final bool enable;
 
-
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -50,7 +49,7 @@ class CustomLinearGradientWidget extends StatelessWidget {
                     text: lastText,
                     style: TextStyle(
                       fontFamily: 'lib/assets/font/AbrilFatface-Regular.ttf',
-                      fontSize: 2.5+fontSize!,
+                      fontSize: fontSize,
                       fontWeight: FontWeight.bold,
                     ),
                   ),

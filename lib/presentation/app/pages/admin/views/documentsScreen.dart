@@ -76,7 +76,7 @@ class _DocumentScreenState extends State<DocumentScreen> {
                       fontSize: 14),
                 ),
                 DocumentWidget(
-                  name: 'Cnic Front',
+                  name: 'vehicle Insurance',
                   image:
                       'https://myspeedylimo.com/${widget.data.driverDocs?.cnicFront}',
                   onPress: () {},
@@ -85,11 +85,11 @@ class _DocumentScreenState extends State<DocumentScreen> {
                         url:
                             'https://myspeedylimo.com/${widget.data.driverDocs?.cnicFront}',
                         ext: 'webp',
-                        name: 'Cnic Front');
+                        name: 'Vehiccle Insurance');
                   },
                 ),
                 DocumentWidget(
-                  name: 'Cnic Back',
+                  name: 'Drug Test',
                   image:
                       'https://myspeedylimo.com/${widget.data.driverDocs?.cnicBack}',
                   onPress: () {},
@@ -98,7 +98,7 @@ class _DocumentScreenState extends State<DocumentScreen> {
                         url:
                             'https://myspeedylimo.com/${widget.data.driverDocs?.cnicBack}',
                         ext: 'jpg',
-                        name: 'Cnic Back');
+                        name: 'Drug Test');
                   },
                 ),
                 DocumentWidget(
@@ -115,7 +115,7 @@ class _DocumentScreenState extends State<DocumentScreen> {
                   },
                 ),
                 DocumentWidget(
-                  name: 'Vehicle Registration Book',
+                  name: 'Vehicle Registration',
                   image:
                       'https://myspeedylimo.com/${widget.data.driverDocs?.vehicleRegBook}',
                   onPress: () {},
@@ -124,7 +124,7 @@ class _DocumentScreenState extends State<DocumentScreen> {
                         url:
                             'https://myspeedylimo.com/${widget.data.driverDocs?.vehicleRegBook}',
                         ext: 'png',
-                        name: 'Vehicle Registration Book');
+                        name: 'Vehicle Registration');
                   },
                 ),
               ],

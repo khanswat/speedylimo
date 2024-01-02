@@ -107,7 +107,7 @@ class _SignupScreenDriverState extends State<SignupScreenDriver> {
             thumbVisibility: true,
             child: SingleChildScrollView(
               child: Container(
-                margin: EdgeInsets.only(right: 20),
+                margin: EdgeInsets.only(right: 10),
                 child: Column(
                   children: [
                     BlocBuilder<LoginCubit, LoginState>(

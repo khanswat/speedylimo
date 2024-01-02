@@ -158,6 +158,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   builder: (context, state) {
                                     return TextFieldWidget(
                                       controller: emailController,
+                                      contentPadding: EdgeInsets.zero,
                                       withLabel: true,
                                       hint: 'Email Address',
                                       labelText: 'Email Address',
@@ -189,7 +190,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
 
                                 const SizedBox(
-                                  height: 15,
+                                  height: 10,
                                 ),
                                 //todo password field
                                 BlocBuilder<LoginCubit, LoginState>(

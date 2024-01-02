@@ -197,51 +197,51 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 labelStyle: TextStyle(color: Colors.black),
                               );
                             }),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            BlocBuilder<EditProfileCubit, EditProfileState>(
-                                builder: (context, state) {
-                              return TextFieldWidget(
-                                enable: true,
-                                controller: accountController,
-                                withLabel: true,
-                                hint: 'Enter Your Account Number',
-                                labelText: 'Enter Your Account  Number',
-                                validatation: false,
-                                labelStyle: TextStyle(color: Colors.black),
-                              );
-                            }),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            BlocBuilder<EditProfileCubit, EditProfileState>(
-                                builder: (context, state) {
-                              return TextFieldWidget(
-                                enable: true,
-                                controller: bankController,
-                                withLabel: true,
-                                hint: 'Enter Your Bank Name',
-                                labelText: 'Enter Your Bank  Name',
-                                validatation: false,
-                                labelStyle: TextStyle(color: Colors.black),
-                              );
-                            }),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            BlocBuilder<EditProfileCubit, EditProfileState>(
-                                builder: (context, state) {
-                              return TextFieldWidget(
-                                enable: true,
-                                controller: branchController,
-                                withLabel: true,
-                                hint: 'Enter Your Branch Name',
-                                labelText: 'Enter Your Branch  Name',
-                                validatation: false,
-                                labelStyle: TextStyle(color: Colors.black),
-                              );
-                            }),
+                            // SizedBox(
+                            //   height: 10,
+                            // ),
+                            // BlocBuilder<EditProfileCubit, EditProfileState>(
+                            //     builder: (context, state) {
+                            //   return TextFieldWidget(
+                            //     enable: true,
+                            //     controller: accountController,
+                            //     withLabel: true,
+                            //     hint: 'Enter Your Account Number',
+                            //     labelText: 'Enter Your Account  Number',
+                            //     validatation: false,
+                            //     labelStyle: TextStyle(color: Colors.black),
+                            //   );
+                            // }),
+                            // SizedBox(
+                            //   height: 10,
+                            // ),
+                            // BlocBuilder<EditProfileCubit, EditProfileState>(
+                            //     builder: (context, state) {
+                            //   return TextFieldWidget(
+                            //     enable: true,
+                            //     controller: bankController,
+                            //     withLabel: true,
+                            //     hint: 'Enter Your Bank Name',
+                            //     labelText: 'Enter Your Bank  Name',
+                            //     validatation: false,
+                            //     labelStyle: TextStyle(color: Colors.black),
+                            //   );
+                            // }),
+                            // SizedBox(
+                            //   height: 10,
+                            // ),
+                            // BlocBuilder<EditProfileCubit, EditProfileState>(
+                            //     builder: (context, state) {
+                            //   return TextFieldWidget(
+                            //     enable: true,
+                            //     controller: branchController,
+                            //     withLabel: true,
+                            //     hint: 'Enter Your Branch Name',
+                            //     labelText: 'Enter Your Branch  Name',
+                            //     validatation: false,
+                            //     labelStyle: TextStyle(color: Colors.black),
+                            //   );
+                            // }),
                             SizedBox(
                               height: 10,
                             ),
@@ -280,18 +280,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     onPressed: () {
                                       context
                                           .read<EditProfileCubit>()
-                                          .updateUserProfileData(
-                                        imageFile: _imageFile?.path,
-                                        data: {
-                                          'name': nameController.text,
-                                          'email': emailController.text,
-                                          'phone_number': phoneController.text,
-                                          'account_number':
-                                              accountController.text,
-                                          'bank_name': bankController.text,
-                                          'branch_name': branchController.text
-                                        },
-                                      );
+                                          .updateProfile(
+                                              image: File(_imageFile!.path),
+                                              name: nameController.text,
+                                              email: emailController.text,
+                                              phone: phoneController.text,
+                                              accountnumber: '0000',
+                                              bankname: 'abc',
+                                              branchname: 'abc');
                                     });
                               },
                             )
