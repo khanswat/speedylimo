@@ -20,21 +20,6 @@ class _BttomNavigationScreenState extends State<BttomNavigationScreen>
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
 
-  static final List<Widget> _bodyView = <Widget>[
-    Text(
-      'Index 0: Home',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 1: Business',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 2: School',
-      style: optionStyle,
-    ),
-  ];
-
   // ignore: unused_element
   void _onItemTapped(int index) {
     setState(() {
@@ -48,7 +33,7 @@ class _BttomNavigationScreenState extends State<BttomNavigationScreen>
   void initState() {
     // tODO: implement initState
     super.initState();
-    _tabController = TabController(vsync: this, length: 3);
+    _tabController = TabController(vsync: this, length: 2);
   }
 
   Widget _tabItem(Widget child, String label, Widget screen,
@@ -76,7 +61,7 @@ class _BttomNavigationScreenState extends State<BttomNavigationScreen>
         ));
   }
 
-  final List<String> _labels = ['SPEEDY LIMO', 'PROFILE', 'CALL NOW'];
+  final List<String> _labels = ['SPEEDY LIMO', 'ACCOUNT'];
 
   @override
   Widget build(BuildContext context) {
@@ -89,10 +74,6 @@ class _BttomNavigationScreenState extends State<BttomNavigationScreen>
       Icon(
         Icons.account_circle,
         size: 30,
-      ),
-      Icon(
-        Icons.wifi_calling_3,
-        size: 30,
       )
     ];
     final screens = <Widget>[
@@ -100,7 +81,6 @@ class _BttomNavigationScreenState extends State<BttomNavigationScreen>
           ? PassengerHomeScreen()
           : DriverHomeScreen(),
       ProfileScreen(),
-      const CallNowScreen(),
     ];
 
     return Scaffold(

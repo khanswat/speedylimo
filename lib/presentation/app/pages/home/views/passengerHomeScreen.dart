@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
-
+import 'dart:math' show cos, sqrt, asin;
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -59,7 +59,7 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
   }
 
   double convertKmToMiles(String kilometers) {
-    var km = double.tryParse(kilometers.replaceAll(' km', '')) ?? 0.0;
+    var km = double.tryParse(kilometers.replaceAll('mi', '')) ?? 0.0;
     var conversionFactor = 0.621371;
     var miles = km * conversionFactor;
 
@@ -85,12 +85,12 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
       if (data['status'] == 'OK') {
         List<dynamic> routes = data['routes'];
         if (routes.isNotEmpty) {
-          String totalDistance = '';
-          int totalDuration = 0;
+          var totalDistance = '';
+          var totalDuration = 0;
 
           for (var route in routes) {
             for (var leg in route['legs']) {
-              totalDistance += leg['distance']['text'];
+              totalDistance = leg['distance']['text'];
               totalDuration = leg['duration']['value'];
             }
           }
@@ -98,7 +98,7 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
           // Convert distance to miles
           var distanceInMiles = convertKmToMiles(totalDistance);
 
-          print(data);
+          print(totalDistance);
 
           return {
             'distance': distanceInMiles.round(),
@@ -191,17 +191,17 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                         children: <Widget>[
                           _currentStep == 0
                               ? TextButton(
-                                  onPressed:
-                                      fromLocation != null ? continued : null,
+                                  onPressed: continued,
                                   child: Container(
                                     margin: EdgeInsets.only(top: 10),
                                     width: 200,
                                     height: 37,
                                     decoration: BoxDecoration(
                                       gradient: LinearGradient(
-                                        colors: fromLocation != null
-                                            ? [Colors.blue, Color(0xff00C6FF)]
-                                            : [Colors.grey, Colors.grey],
+                                        colors: [
+                                          Colors.blue,
+                                          Color(0xff00C6FF)
+                                        ],
                                         begin: Alignment.centerLeft,
                                         end: Alignment.centerRight,
                                       ),
@@ -466,7 +466,7 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                         content: Column(
                           children: <Widget>[
                             //todo location
-                            Container(
+                            /* Container(
                               padding: const EdgeInsets.all(10),
                               decoration: BoxDecoration(
                                 border: Border.all(
@@ -575,7 +575,7 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                             ),
                             SizedBox(
                               height: 10,
-                            ),
+                            ),*/
                             //todo Date
                             Container(
                               padding: const EdgeInsets.all(10),
@@ -604,8 +604,7 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                                       labelStyle: TextStyle(
                                           color: Colors.blue, fontSize: 14),
                                       selectDate: formattedDate ??
-                                          '${selectedDate.toLocal()}'
-                                              .split(' ')[0],
+                                          '${DateFormat('dd MMM, yyyy').format(selectedDate.toLocal())}',
                                       onTap: () async {
                                         await _selectDate(context);
                                       },
@@ -1252,9 +1251,9 @@ class _PassengerHomeScreenState extends State<PassengerHomeScreen> {
                                                     ),
                                               onPressed: () async {
                                                 final origin =
-                                                    '${fromLocation?.geometry?.location.lat ?? 0.0},${fromLocation?.geometry?.location.lng ?? 0.0}'; // San Francisco, CA
+                                                    '${fromLocation?.geometry?.location.lat},${fromLocation?.geometry?.location.lng}'; // San Francisco, CA
                                                 final destination =
-                                                    '${toLocation?.geometry?.location.lat ?? 0.0},${toLocation?.geometry?.location.lng ?? 0.0}';
+                                                    '${toLocation?.geometry?.location.lat},${toLocation?.geometry?.location.lng}';
                                                 var waypoints = [
                                                   '${stopLocation?.geometry?.location.lat ?? 0.0},${stopLocation?.geometry?.location.lng ?? 0.0}'
                                                 ];

@@ -1,0 +1,1 @@
+export 'allrideScreen.dart';

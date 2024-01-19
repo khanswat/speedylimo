@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:speedylimo/utils/constants/app/app_constants.dart';
 import '../../../../../business_logic/cubits/cubits.dart';
 import '../../../../../services/navigation/navigation_service.dart';
 import '../../../../widgets/Widget.dart';
@@ -42,123 +43,49 @@ class _NavDrawerState extends State<NavDrawer> {
                 // ignore: sort_child_properties_last
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    // ignore: avoid_unnecessary_containers
-                    CircleAvatar(
-                      radius: 45.0,
-                      backgroundColor: Colors.white,
-                      backgroundImage: NetworkImage(
-                          '${context.read<UserCubit>().state.userData?.user?.image}'),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      ' ${data?.name ?? ''}',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18),
-                    ),
-                  ],
                 ),
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [Colors.blue, Color(0xff00C6FF)],
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight,
-                  ),
-                ),
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage(
+                          'login'.png,
+                        ),
+                        colorFilter: const ColorFilter.mode(
+                            Colors.black45, BlendMode.darken),
+                        fit: BoxFit.fill)),
               ),
               Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Column(
-                    children: [
-                      ListTile(
-                        leading: Image.asset(
-                          'rides'.png,
-                          height: 30,
-                        ),
-                        title: const Text(
-                          'My Rides',
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 14),
-                        ),
-                        onTap: () =>
-                            NavigationService.instance.navigateTo(myride),
-                      ),
-                      ListTile(
-                        leading: Image.asset(
-                          'rides'.png,
-                          height: 30,
-                        ),
-                        title: const Text(
-                          'Accepted Rides',
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 14),
-                        ),
-                        onTap: () => NavigationService.instance
-                            .navigateTo(acceptedRides),
-                      ),
-                      ListTile(
-                        leading: Image.asset(
-                          'rides'.png,
-                          height: 30,
-                        ),
-                        title: const Text(
-                          'Cancelled Rides',
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 14),
-                        ),
-                        onTap: () =>
-                            NavigationService.instance.navigateTo(cancellRides),
-                      ),
-                      ListTile(
-                        leading: Image.asset(
-                          'rides'.png,
-                          height: 30,
-                        ),
-                        title: Text(
-                          'Completed Rides',
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 14),
-                        ),
-                        onTap: () => NavigationService.instance
-                            .navigateTo(completeRides),
-                      ),
-                    ],
-                  ),
                   ListTile(
-                    leading: Image.asset(
-                      'changePass'.png,
-                      height: 30,
+                    leading: Icon(
+                      Icons.directions_car_filled_outlined,
+                      size: 25,
+                      color: Colors.grey,
                     ),
                     title: const Text(
-                      'Change Password',
+                      'My Rides',
                       style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
                           fontSize: 14),
                     ),
-                    onTap: () => NavigationService.instance
-                        .navigateTo(changePasswordRoute),
+                    onTap: () =>
+                        NavigationService.instance.navigateTo(allRides),
                   ),
                   ListTile(
                     leading: const Icon(
-                      Icons.logout_outlined,
-                      color: Colors.black,
-                      size: 30,
+                      Icons.logout,
+                      color: Colors.grey,
+                      size: 25,
                     ),
-                    title: const Text('Logout'),
+                    title: Text(
+                      'Logout',
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14),
+                    ),
                     onTap: () {
                       showCanceldialoge();
                     },

@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math';
 
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
@@ -66,7 +67,8 @@ class EditProfileCubit extends Cubit<EditProfileState> {
           errorMessage: e.response?.statusMessage,
           status: FormzStatus.submissionFailure));
     } catch (_) {
-      emit(state.copyWith(status: FormzStatus.submissionFailure));
+      emit(state.copyWith(
+          status: FormzStatus.submissionFailure, errorMessage: ''));
     }
   }
 }

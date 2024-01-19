@@ -52,3 +52,5 @@ const String createNewUserScreen = 'CreateNewUserScreen';
 const String editNewUserScreen = 'EditNewUserScreen';
 const String documentScreen = 'DocumentScreen';
 const String documentDrtail = 'DocumenDetailtScreen';
+const String allRides = 'allRides';
+const String editProfile = 'editProfile';

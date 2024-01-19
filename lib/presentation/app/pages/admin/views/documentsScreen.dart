@@ -3,6 +3,7 @@ import 'package:file_saver/file_saver.dart';
 import 'package:flutter/material.dart';
 
 import 'package:speedylimo/data/data.dart';
+import 'package:speedylimo/services/navigation/navigation_service.dart';
 
 import '/presentation/presentation.dart';
 
@@ -79,7 +80,13 @@ class _DocumentScreenState extends State<DocumentScreen> {
                   name: 'vehicle Insurance',
                   image:
                       'https://myspeedylimo.com/${widget.data.driverDocs?.cnicFront}',
-                  onPress: () {},
+                  onPress: () async {
+                    await showDialog(
+                        context: context,
+                        builder: (_) => imageDialog(
+                            'https://myspeedylimo.com/${widget.data.driverDocs?.cnicFront}',
+                            context));
+                  },
                   onDownload: () {
                     SaveImage(
                         url:
@@ -92,7 +99,13 @@ class _DocumentScreenState extends State<DocumentScreen> {
                   name: 'Drug Test',
                   image:
                       'https://myspeedylimo.com/${widget.data.driverDocs?.cnicBack}',
-                  onPress: () {},
+                  onPress: () async {
+                    await showDialog(
+                        context: context,
+                        builder: (_) => imageDialog(
+                            'https://myspeedylimo.com/${widget.data.driverDocs?.cnicBack}',
+                            context));
+                  },
                   onDownload: () {
                     SaveImage(
                         url:
@@ -105,7 +118,13 @@ class _DocumentScreenState extends State<DocumentScreen> {
                   name: 'Driving License',
                   image:
                       'https://myspeedylimo.com/${widget.data.driverDocs?.drivingLicense}',
-                  onPress: () {},
+                  onPress: () async {
+                    await showDialog(
+                        context: context,
+                        builder: (_) => imageDialog(
+                            'https://myspeedylimo.com/${widget.data.driverDocs?.drivingLicense}',
+                            context));
+                  },
                   onDownload: () {
                     SaveImage(
                         url:
@@ -118,7 +137,13 @@ class _DocumentScreenState extends State<DocumentScreen> {
                   name: 'Vehicle Registration',
                   image:
                       'https://myspeedylimo.com/${widget.data.driverDocs?.vehicleRegBook}',
-                  onPress: () {},
+                  onPress: () async {
+                    await showDialog(
+                        context: context,
+                        builder: (_) => imageDialog(
+                            'https://myspeedylimo.com/${widget.data.driverDocs?.vehicleRegBook}',
+                            context));
+                  },
                   onDownload: () {
                     SaveImage(
                         url:
@@ -151,5 +176,42 @@ class _DocumentScreenState extends State<DocumentScreen> {
               'Download Successfully!!!',
             ),
           )));
+  }
+
+  Widget imageDialog(url, context) {
+    return Dialog(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 8.0),
+            child: Align(
+              alignment: Alignment.topLeft,
+              child: IconButton(
+                onPressed: () {
+                  NavigationService.instance.goBack();
+                },
+                icon: Icon(Icons.close_outlined),
+                color: Colors.redAccent,
+              ),
+            ),
+          ),
+          Container(
+            width: 250,
+            height: 350,
+            child: CachedNetworkImage(
+              imageUrl: url,
+              fit: BoxFit.cover,
+              progressIndicatorBuilder: (context, url, downloadProgress) =>
+                  Center(
+                      child: CircularProgressIndicator(
+                          value: downloadProgress.progress)),
+              errorWidget: (context, url, error) => Icon(Icons.error),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

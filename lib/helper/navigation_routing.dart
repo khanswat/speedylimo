@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:speedylimo/presentation/app/pages/signup/views/signupmainScreen.dart';
 
 import '/utils/utils.dart';
 import '/presentation/presentation.dart';
@@ -76,6 +75,10 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => EditNewUserScreen());
     case documentDrtail:
       return MaterialPageRoute(builder: (context) => DocumentDetailScreen());
+    case allRides:
+      return MaterialPageRoute(builder: (context) => AllRidesScreen());
+    case editProfile:
+      return MaterialPageRoute(builder: (context) => EditprofileScreen());
 
     default:
       throw ('no route found');
